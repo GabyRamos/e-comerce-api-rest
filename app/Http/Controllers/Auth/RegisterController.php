@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -29,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -50,9 +49,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => 'required|string|max:255|unique:users',
+            'email' => [
+                'email',
+                'max:255',
+                    Rule::unique('users')->where(function ($query) {
+                    return $query->where('is_deleted', false);
+                }),
+            ],
+            'password' => 'required|string|confirmed',
         ]);
     }
 
@@ -64,10 +69,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //return $data;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'company_name' => $data['company_name'],
+            'role_id' => $data['role_id'],
+            'biller_id' => $data['biller_id'],
+            'warehouse_id' => $data['warehouse_id'],
+            'is_active' => false,
+            'is_deleted' => false,
+            'password' => bcrypt($data['password']),
         ]);
     }
 }
