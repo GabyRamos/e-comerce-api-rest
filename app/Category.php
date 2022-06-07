@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable =[
 
-    public function users()
-    {
-        return $this->belongsToMany('App\User')->as('subscriptions')->withTimestamps();
-    }
+        "name", 'image', "parent_id", "is_active"
+    ];
 
-    public function articles()
+    public function product()
     {
-        return $this->hasMany('App\Article');
+    	return $this->hasMany('App\Product');
     }
 }

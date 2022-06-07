@@ -2,132 +2,202 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin;
-use App\User;
-use App\Writer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use App\Http\Resources\User as UserResource;
-use Tymon\JWTAuth\JWTGuard;
-
+use App\User;
+use App\Roles;
+use App\Biller;
+use App\Warehouse;
+use Auth;
+use Hash;
+use Keygen;
+use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Mail\UserNotification;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-        try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['message' => 'invalid_credentials'], 400);
-            }
-        } catch (JWTException $e) {
-            return response()->json(['message' => 'could_not_create_token'], 500);
-        }
-        $user = JWTAuth::user();
 
-        return response()->json(compact('token', 'user'))
-            ->withCookie(
-                'token',
-                $token,
-                config('jwt.ttl'), // ttl => time to live
-                '/', // path
-                null, // domain
-                config('app.env') !== 'local', // Secure
-                true, // httpOnly
-                false, //
-                config('app.env') !== 'local' ? 'None' : 'Lax' // SameSite
-            );
+    public function index()
+    {
+        $role = Role::find(Auth::user()->role_id);
+        if($role->hasPermissionTo('users-index')){
+            $permissions = Role::findByName($role->name)->permissions;
+            foreach ($permissions as $permission)
+                $all_permission[] = $permission->name;
+            $lims_user_list = User::where('is_deleted', false)->get();
+            return view('user.index', compact('lims_user_list', 'all_permission'));
+        }
+        else
+            return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
     }
 
-    public function register(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'editorial' => 'required|string',
-            'short_bio' => 'required|string',
-            'role' => 'required'
+        $role = Role::find(Auth::user()->role_id);
+        if($role->hasPermissionTo('users-add')){
+            $lims_role_list = Roles::where('is_active', true)->get();
+            $lims_biller_list = Biller::where('is_active', true)->get();
+            $lims_warehouse_list = Warehouse::where('is_active', true)->get();
+            return view('user.create', compact('lims_role_list', 'lims_biller_list', 'lims_warehouse_list'));
+        }
+        else
+            return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
+    }
+
+    public function generatePassword()
+    {
+        $id = Keygen::numeric(6)->generate();
+        return $id;
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => [
+                'max:255',
+                    Rule::unique('users')->where(function ($query) {
+                    return $query->where('is_deleted', false);
+                }),
+            ],
+            'email' => [
+                'email',
+                'max:255',
+                    Rule::unique('users')->where(function ($query) {
+                    return $query->where('is_deleted', false);
+                }),
+            ],
         ]);
 
-        if ($request->role == User::ROLE_USER) {
-
-            $userable = Writer::create([
-                'editorial' => $request->get('editorial'),
-                'short_bio' => $request->get('short_bio'),
-            ]);
-        } else {
-            $userable = Admin::create([
-                'credential_number' => $request->get('credential_number'),
-            ]);
+        $data = $request->all();
+        $message = 'User created successfully';
+        try{
+            Mail::send( 'mail.user_details', $data, function( $message ) use ($data)
+            {
+                $message->to( $data['email'] )->subject( 'User Account Details' );
+            });
         }
-
-        $user = $userable->user()->create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),]);
-
-        $token = JWTAuth::fromUser($user);
-
-        return response()->json(new UserResource($user, $token), 201)
-            ->withCookie(
-                'token',
-                $token,
-                config('jwt.ttl'),
-                '/',
-                null,
-                config('app.env') !== 'local',
-                true,
-                false,
-                config('app.env') !== 'local' ? 'None' : 'Lax'
-            );
+        catch(\Exception $e){
+            $message = 'User created successfully. Please setup your <a href="setting/mail_setting">mail setting</a> to send mail.';
+        }
+        if(!isset($data['is_active']))
+            $data['is_active'] = false;
+        $data['is_deleted'] = false;
+        $data['password'] = bcrypt($data['password']);
+        User::create($data);
+        return redirect('user')->with('message1', $message); 
     }
 
-    public function getAuthenticatedUser()
+    public function edit($id)
     {
-        try {
-            if (!$user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['message' => 'user_not_found'], 404);
-            }
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['message' => 'token_expired'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['message' => 'token_invalid'], $e->getStatusCode());
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(['message' => 'token_absent'], $e->getStatusCode());
+        $role = Role::find(Auth::user()->role_id);
+        if($role->hasPermissionTo('users-edit')){
+            $lims_user_data = User::find($id);
+            $lims_role_list = Roles::where('is_active', true)->get();
+            $lims_biller_list = Biller::where('is_active', true)->get();
+            $lims_warehouse_list = Warehouse::where('is_active', true)->get();
+            return view('user.edit', compact('lims_user_data', 'lims_role_list', 'lims_biller_list', 'lims_warehouse_list'));
         }
-        return response()->json(new UserResource($user), 200);
+        else
+            return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
     }
 
-    public function logout()
+    public function update(Request $request, $id)
     {
-        try {
-            JWTAuth::invalidate(JWTAuth::getToken());
+        if(!env('USER_VERIFIED'))
+            return redirect()->back()->with('not_permitted', 'This feature is disable for demo!');
 
-//            Cookie::queue(Cookie::forget('token'));
-//            $cookie = Cookie::forget('token');
-//            $cookie->withSameSite('None');
-            return response()->json([
-                "status" => "success",
-                "message" => "User successfully logged out."
-            ], 200)
-                ->withCookie('token', null,
-                config('jwt.ttl'),
-                '/',
-                null,
-                config('app.env') !== 'local',
-                true,
-                false,
-                config('app.env') !== 'local' ? 'None' : 'Lax'
-            );
-        } catch (JWTException $e) {
-            // something went wrong whilst attempting to encode the token
-            return response()->json(["message" => "No se pudo cerrar la sesión."], 500);
+        $this->validate($request, [
+            'name' => [
+                'max:255',
+                Rule::unique('users')->ignore($id)->where(function ($query) {
+                    return $query->where('is_deleted', false);
+                }),
+            ],
+            'email' => [
+                'email',
+                'max:255',
+                    Rule::unique('users')->ignore($id)->where(function ($query) {
+                    return $query->where('is_deleted', false);
+                }),
+            ],
+        ]);
+
+        $input = $request->except('password');
+        if(!isset($input['is_active']))
+            $input['is_active'] = false;
+        if(!empty($request['password']))
+            $input['password'] = bcrypt($request['password']);
+        $lims_user_data = User::find($id);
+        $lims_user_data->update($input);
+        return redirect('user')->with('message2', 'Data updated successfullly');
+    }
+
+    public function profile($id)
+    {
+        $lims_user_data = User::find($id);
+        return view('user.profile', compact('lims_user_data'));
+    }
+
+    public function profileUpdate(Request $request, $id)
+    {
+        if(!env('USER_VERIFIED'))
+            return redirect()->back()->with('not_permitted', 'This feature is disable for demo!');
+
+        $input = $request->all();
+        $lims_user_data = User::find($id);
+        $lims_user_data->update($input);
+        return redirect()->back()->with('message3', 'Data updated successfullly');
+    }
+
+    public function changePassword(Request $request, $id)
+    {
+        if(!env('USER_VERIFIED'))
+            return redirect()->back()->with('not_permitted', 'This feature is disable for demo!');
+
+        $input = $request->all();
+        $lims_user_data = User::find($id);
+        if($input['new_pass'] != $input['confirm_pass'])
+            return redirect("user/" .  "profile/" . $id )->with('message2', "Please Confirm your new password");
+
+        if (Hash::check($input['current_pass'], $lims_user_data->password)) {
+            $lims_user_data->password = bcrypt($input['new_pass']);
+            $lims_user_data->save();
         }
+        else {
+            return redirect("user/" .  "profile/" . $id )->with('message1', "Current Password doesn't match");
+        }
+        auth()->logout();
+        return redirect('/');
+    }
+
+    public function deleteBySelection(Request $request)
+    {
+        $user_id = $request['userIdArray'];
+        foreach ($user_id as $id) {
+            $lims_user_data = User::find($id);
+            $lims_user_data->is_deleted = true;
+            $lims_user_data->is_active = false;
+            $lims_user_data->save();
+        }
+        return 'User deleted successfully!';
+    }
+
+    public function destroy($id)
+    {
+        if(!env('USER_VERIFIED'))
+            return redirect()->back()->with('not_permitted', 'This feature is disable for demo!');
+        
+        $lims_user_data = User::find($id);
+        $lims_user_data->is_deleted = true;
+        $lims_user_data->is_active = false;
+        $lims_user_data->save();
+        if(Auth::id() == $id){
+            auth()->logout();
+            return redirect('/login');
+        }
+        else
+            return redirect('user')->with('message3', 'Data deleted successfullly');
     }
 }
