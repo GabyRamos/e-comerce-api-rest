@@ -5,10 +5,10 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ $errors->first('name') }}</div>
 @endif
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 
 <section>
@@ -23,7 +23,7 @@
                     <th class="not-exported"></th>
                     <th>{{trans('file.Warehouse')}}</th>
                     <th>{{trans('file.Phone Number')}}</th>
-                    <th>{{trans('file.Email')}}</th>                 
+                    <th>{{trans('file.Email')}}</th>
                     <th>{{trans('file.Address')}}</th>
                     <th>{{trans('file.Number of Product')}}</th>
                     <th>{{trans('file.Stock Quantity')}}</th>
@@ -102,11 +102,11 @@
             <label>{{trans('file.Email')}}</label>
             <input type="email" name="email" placeholder="example@example.com" class="form-control">
           </div>
-          <div class="form-group">       
+          <div class="form-group">
             <label>{{trans('file.Address')}} *</label>
             <textarea required class="form-control" rows="3" name="address"></textarea>
-          </div>                
-          <div class="form-group">       
+          </div>
+          <div class="form-group">
             <input type="submit" value="{{trans('file.submit')}}" class="btn btn-primary">
           </div>
       </div>
@@ -138,11 +138,11 @@
             <label>{{trans('file.Email')}}</label>
             <input type="email" name="email" placeholder="example@example.com" class="form-control">
           </div>
-          <div class="form-group">       
+          <div class="form-group">
             <label>{{trans('file.Address')}} *</label>
             <textarea class="form-control" rows="3" name="address" required></textarea>
-          </div>                
-          <div class="form-group">       
+          </div>
+          <div class="form-group">
             <input type="submit" value="{{trans('file.submit')}}" class="btn btn-primary">
           </div>
       </div>
@@ -172,7 +172,7 @@
               <div class="col-md-6">
                   <div class="form-group">
                       <label> {{trans('file.Sample File')}}</label>
-                      <a href="public/sample_file/sample_warehouse.csv" class="btn btn-info btn-block btn-md"><i class="dripicons-download"></i>  {{trans('file.Download')}}</a>
+                      <a href="sample_file/sample_warehouse.csv" class="btn btn-info btn-block btn-md"><i class="dripicons-download"></i>  {{trans('file.Download')}}</a>
                   </div>
               </div>
         </div>
@@ -191,7 +191,7 @@
 
     var warehouse_id = [];
     var user_verified = <?php echo json_encode(env('USER_VERIFIED')) ?>;
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -206,7 +206,7 @@
   }
 
 	$(document).ready(function() {
-        
+
 	    $('.open-EditWarehouseDialog').on('click', function() {
 	        var url = "warehouse/"
 	        var id = $(this).data('id').toString();
@@ -326,7 +326,7 @@ $.ajaxSetup({
 $( "#select_all" ).on( "change", function() {
     if ($(this).is(':checked')) {
         $("tbody input[type='checkbox']").prop('checked', true);
-    } 
+    }
     else {
         $("tbody input[type='checkbox']").prop('checked', false);
     }

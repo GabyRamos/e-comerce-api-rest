@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
 	"dashboard" => "Tablero",
 	"language" => "Idioma",
@@ -107,7 +107,7 @@ return [
 	"Subtraction" => "Sustracción",
 	"Addition" => "Adición",
 	"Transfer" => "Transferir",
-	"Return" => "Regreso",
+	"Return" => "Devoluciones",
 	"User" => "Usuario",
 	"Email" => "Email",
 	"Company Name" => "nombre de empresa",
@@ -440,8 +440,8 @@ return [
 	"Image name must be same as product name" =>  "El nombre de la imagen debe ser igual al nombre del producto",
 	"Paying Amount" => "Cantidad de pago",
 	"Payable Amount" => "Cantidad a pagar",
-	"Change" => "Cambio",	
-	"Back" => "Espalda",
+	"Change" => "Cambio",
+	"Back" => "atras",
 	"Role Permission" => "Permiso de rol",
 	"Exclusive: Poduct price = Actual product price + Tax. Inclusive: Actual product price = Product price - Tax" => "Exclusivo: precio del producto = precio real del producto + impuestos. Incluido: Precio real del producto = Precio del producto - Impuestos.",
 	"Accounting" => "Contabilidad",
@@ -467,7 +467,7 @@ return [
 	"Update Payroll" => "Actualizar Nómina",
 	"Method" => "Método",
 	"Sale Return" => "Venta de devolución",
-	"Purchase Return" => "Devolución de compra",	
+	"Purchase Return" => "Devolución de compra",
 	"Net Sale Return" => "Retorno de venta neto,",
 	"Net Purchase Return" => "Devolución de compra neta,",
 	"Attendance" => "Asistencia",

@@ -53,7 +53,7 @@ class DeliveryController extends Controller
     		$delivery_data[] = $customer_sale[0]->name;
     		$delivery_data[] = $customer_sale[0]->address.' '.$customer_sale[0]->city.' '.$customer_sale[0]->country;
     		$delivery_data[] = '';
-    	}        
+    	}
     	return $delivery_data;
     }
 
@@ -65,7 +65,7 @@ class DeliveryController extends Controller
         if ($document) {
             $ext = pathinfo($document->getClientOriginalName(), PATHINFO_EXTENSION);
             $documentName = $data['reference_no'] . '.' . $ext;
-            $document->move('public/documents/delivery', $documentName);
+            $document->move('documents/delivery', $documentName);
             $delivery->file = $documentName;
         }
         $delivery->sale_id = $data['sale_id'];
@@ -96,7 +96,7 @@ class DeliveryController extends Controller
             }
             catch(\Exception $e){
                 $message = 'Delivery created successfully. Please setup your <a href="setting/mail_setting">mail setting</a> to send mail.';
-            }  
+            }
         }
         return redirect('delivery')->with('message', $message);
     }
@@ -176,7 +176,7 @@ class DeliveryController extends Controller
         }
         else
             $message = 'Customer does not have email!';
-        
+
         return redirect()->back()->with('message', $message);
     }
 
@@ -205,7 +205,7 @@ class DeliveryController extends Controller
         if ($document) {
             $ext = pathinfo($document->getClientOriginalName(), PATHINFO_EXTENSION);
             $documentName = $input['reference_no'] . '.' . $ext;
-            $document->move('public/documents/delivery', $documentName);
+            $document->move('documents/delivery', $documentName);
             $input['file'] = $documentName;
         }
     	$lims_delivery_data->update($input);
@@ -228,7 +228,7 @@ class DeliveryController extends Controller
             }
             catch(\Exception $e){
                 $message = 'Delivery updated successfully. Please setup your <a href="setting/mail_setting">mail setting</a> to send mail.';
-            }   
+            }
         }
     	return redirect('delivery')->with('message', $message);
     }

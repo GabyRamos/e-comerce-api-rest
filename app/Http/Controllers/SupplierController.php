@@ -56,7 +56,7 @@ class SupplierController extends Controller
             ],
             'image' => 'image|mimes:jpg,jpeg,png,gif|max:100000',
         ]);
-        
+
         $lims_supplier_data = $request->except('image');
         $lims_supplier_data['is_active'] = true;
         $image = $request->image;
@@ -64,7 +64,7 @@ class SupplierController extends Controller
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = preg_replace('/[^a-zA-Z0-9]/', '', $request['company_name']);
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/images/supplier', $imageName);
+            $image->move('images/supplier', $imageName);
             $lims_supplier_data['image'] = $imageName;
         }
         Supplier::create($lims_supplier_data);
@@ -117,7 +117,7 @@ class SupplierController extends Controller
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = preg_replace('/[^a-zA-Z0-9]/', '', $request['company_name']);
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/images/supplier', $imageName);
+            $image->move('images/supplier', $imageName);
             $input['image'] = $imageName;
         }
 
@@ -196,9 +196,9 @@ class SupplierController extends Controller
                 }
                 catch(\Excetion $e){
                     $message = 'Supplier imported successfully. Please setup your <a href="setting/mail_setting">mail setting</a> to send mail.';
-                }   
+                }
             }
         }
-        return redirect('supplier')->with('message', $message); 
+        return redirect('supplier')->with('message', $message);
     }
 }

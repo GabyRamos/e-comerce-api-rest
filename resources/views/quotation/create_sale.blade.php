@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -78,14 +78,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php 
+                                                    <?php
                                                     $temp_unit_name = [];
                                                     $temp_unit_operator = [];
                                                     $temp_unit_operation_value = [];
                                                     ?>
                                                     @foreach($lims_product_quotation_data as $product_quotation)
                                                     <tr>
-                                                    <?php 
+                                                    <?php
                                                         $product_data = DB::table('products')->find($product_quotation->product_id);
                                                         if($product_quotation->variant_id) {
                                                             $product_variant_data = \App\ProductVariant::select('item_code')->FindExactProduct($product_quotation->product_id, $product_quotation->variant_id)->first();
@@ -247,7 +247,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Attach Document')}}</label>
-                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i> 
+                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -734,7 +734,7 @@ $('select[name="paid_by_id"]').on("change", function() {
         $('select[name="gift_card_id"]').attr('required', true);
     }
     else if (id == 3) {
-        $.getScript( "../../public/vendor/stripe/checkout.js" );
+        $.getScript( "../../vendor/stripe/checkout.js" );
         $(".card-element").show();
     } else if (id == 4) {
         $("#cheque").show();
@@ -1102,7 +1102,7 @@ $(document).on('submit', '.payment-form', function(e) {
 @endsection @section('scripts')
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 
-@endsection 
+@endsection
 
 @section('scripts')
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>

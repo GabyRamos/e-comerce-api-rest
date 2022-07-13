@@ -1,18 +1,18 @@
 @extends('layout.main') @section('content')
 @if(session()->has('create_message'))
-    <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('create_message') }}</div> 
+    <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('create_message') }}</div>
 @endif
 @if(session()->has('edit_message'))
-    <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('edit_message') }}</div> 
+    <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('edit_message') }}</div>
 @endif
 @if(session()->has('import_message'))
-    <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('import_message') }}</div> 
+    <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('import_message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-    <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+    <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 @if(session()->has('message'))
-    <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+    <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 
 <section>
@@ -38,7 +38,7 @@
                     <th class="not-exported">{{trans('file.action')}}</th>
                 </tr>
             </thead>
-            
+
         </table>
     </div>
 </section>
@@ -54,7 +54,7 @@
         <div class="modal-body">
           <p class="italic"><small>{{trans('file.The field labels marked with * are required input fields')}}.</small></p>
            <p>{{trans('file.The correct column order is')}} (image, name*, code*, type*, brand, category*, unit_code*, cost*, price*, product_details) {{trans('file.and you must follow this')}}.</p>
-           <p>{{trans('file.To display Image it must be stored in')}} public/images/product {{trans('file.directory')}}. {{trans('file.Image name must be same as product name')}}</p>
+           <p>{{trans('file.To display Image it must be stored in')}} images/product {{trans('file.directory')}}. {{trans('file.Image name must be same as product name')}}</p>
            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -65,10 +65,10 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label> {{trans('file.Sample File')}}</label>
-                        <a href="public/sample_file/sample_products.csv" class="btn btn-info btn-block btn-md"><i class="dripicons-download"></i>  {{trans('file.Download')}}</a>
+                        <a href="sample_file/sample_products.csv" class="btn btn-info btn-block btn-md"><i class="dripicons-download"></i>  {{trans('file.Download')}}</a>
                     </div>
                 </div>
-           </div>           
+           </div>
             {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
         </div>
         {!! Form::close() !!}
@@ -107,7 +107,7 @@
                     </table>
                 </div>
             </div>
-                
+
             <h5 id="combo-header"></h5>
             <table class="table table-bordered table-hover item-list">
                 <thead>
@@ -151,14 +151,14 @@
     $( "#select_all" ).on( "change", function() {
         if ($(this).is(':checked')) {
             $("tbody input[type='checkbox']").prop('checked', true);
-        } 
+        }
         else {
             $("tbody input[type='checkbox']").prop('checked', false);
         }
     });
-    
+
     $(document).on("click", "tr.product-link td:not(:first-child, :last-child)", function() {
-        productDetails( $(this).parent().data('product'), $(this).parent().data('imagedata') );        
+        productDetails( $(this).parent().data('product'), $(this).parent().data('imagedata') );
     });
 
     $(document).on("click", ".view", function(){
@@ -171,7 +171,7 @@
           var divToPrint=document.getElementById('product-details');
           var newWin=window.open('','Print-Window');
           newWin.document.open();
-          newWin.document.write('<link rel="stylesheet" href="<?php echo asset('public/vendor/bootstrap/css/bootstrap.min.css') ?>" type="text/css"><style type="text/css">@media print {.modal-dialog { max-width: 1000px;} }</style><body onload="window.print()">'+divToPrint.innerHTML+'</body>');
+          newWin.document.write('<link rel="stylesheet" href="<?php echo asset('vendor/bootstrap/css/bootstrap.min.css') ?>" type="text/css"><style type="text/css">@media print {.modal-dialog { max-width: 1000px;} }</style><body onload="window.print()">'+divToPrint.innerHTML+'</body>');
           newWin.document.close();
           setTimeout(function(){newWin.close();},10);
     });
@@ -188,17 +188,17 @@
                 slidertext = '<div id="product-img-slider" class="carousel slide" data-ride="carousel"><div class="carousel-inner">';
                 for (var i = 0; i < product_image.length; i++) {
                     if(!i)
-                        slidertext += '<div class="carousel-item active"><img src="public/images/product/'+product_image[i]+'" height="300" width="100%"></div>';
+                        slidertext += '<div class="carousel-item active"><img src="images/product/'+product_image[i]+'" height="300" width="100%"></div>';
                     else
-                        slidertext += '<div class="carousel-item"><img src="public/images/product/'+product_image[i]+'" height="300" width="100%"></div>';
+                        slidertext += '<div class="carousel-item"><img src="images/product/'+product_image[i]+'" height="300" width="100%"></div>';
                 }
                 slidertext += '</div><a class="carousel-control-prev" href="#product-img-slider" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control-next" href="#product-img-slider" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>';
             }
             else {
-                slidertext = '<img src="public/images/product/'+product[17]+'" height="300" width="100%">';
+                slidertext = '<img src="images/product/'+product[17]+'" height="300" width="100%">';
             }
         }
-        
+
         $("#combo-header").text('');
         $("table.item-list thead").remove();
         $("table.item-list tbody").remove();
@@ -285,7 +285,7 @@
                 }
             });
         }
-        
+
         $('#product-content').html(htmltext);
         $('#slider-content').html(slidertext);
         $('#product-details').modal('show');
@@ -400,7 +400,7 @@
                             body: function ( data, row, column, node ) {
                                 if (column === 0 && (data.indexOf('<img src=') !== -1)) {
                                     var regex = /<img.*?src=['"](.*?)['"]/;
-                                    data = regex.exec(data)[1];                 
+                                    data = regex.exec(data)[1];
                                 }
                                 return data;
                             }

@@ -28,7 +28,7 @@ class TransferController extends Controller
                 $all_permission[] = $permission->name;
             if(empty($all_permission))
                 $all_permission[] = 'dummy text';
-            
+
             if(Auth::user()->role_id > 2 && config('staff_access') == 'own')
                 $lims_transfer_all = Transfer::with('fromWarehouse', 'toWarehouse', 'user')->orderBy('id', 'desc')->where('user_id', Auth::id())->get();
             else
@@ -71,7 +71,7 @@ class TransferController extends Controller
         $product_qty = [];
         $product_data = [];
         //product without variant
-        foreach ($lims_product_warehouse_data as $product_warehouse) 
+        foreach ($lims_product_warehouse_data as $product_warehouse)
         {
             $product_qty[] = $product_warehouse->qty;
             $lims_product_data = Product::select('name', 'code')->find($product_warehouse->product_id);
@@ -79,7 +79,7 @@ class TransferController extends Controller
             $product_name[] = $lims_product_data->name;
         }
         //product with variant
-        foreach ($lims_product_with_variant_warehouse_data as $product_warehouse) 
+        foreach ($lims_product_with_variant_warehouse_data as $product_warehouse)
         {
             $product_qty[] = $product_warehouse->qty;
             $lims_product_data = Product::select('name', 'code')->find($product_warehouse->product_id);
@@ -108,7 +108,7 @@ class TransferController extends Controller
         $product[] = $lims_product_data->name;
         $product[] = $lims_product_data->code;
         $product[] = $lims_product_data->cost;
-        
+
         if ($lims_product_data->tax_id) {
             $lims_tax_data = Tax::find($lims_product_data->tax_id);
             $product[] = $lims_tax_data->rate;
@@ -136,7 +136,7 @@ class TransferController extends Controller
                 $unit_operation_value[] = $unit->operation_value;
             }
         }
-        
+
         $product[] = implode(",", $unit_name) . ',';
         $product[] = implode(",", $unit_operator) . ',';
         $product[] = implode(",", $unit_operation_value) . ',';
@@ -165,7 +165,7 @@ class TransferController extends Controller
                 return redirect()->back()->withErrors($v->errors());
 
             $documentName = $document->getClientOriginalName();
-            $document->move('public/documents/transfer', $documentName);
+            $document->move('documents/transfer', $documentName);
             $data['document'] = $documentName;
         }
         Transfer::create($data);
@@ -187,7 +187,7 @@ class TransferController extends Controller
             if($data['status'] != 2){
                 if ($lims_purchase_unit_data->operator == '*')
                     $quantity = $qty[$i] * $lims_purchase_unit_data->operation_value;
-                else 
+                else
                     $quantity = $qty[$i] / $lims_purchase_unit_data->operation_value;
             }
             else
@@ -209,7 +209,7 @@ class TransferController extends Controller
             //deduct quantity from sending warehouse
             $lims_product_warehouse_data->qty -= $quantity;
             $lims_product_warehouse_data->save();
-            
+
             if($data['status'] == 1){
                 if($lims_product_data->is_variant) {
                     $lims_product_warehouse_data = Product_Warehouse::FindProductWithVariant($id, $lims_product_variant_data->variant_id, $data['to_warehouse_id'])->first();
@@ -329,10 +329,10 @@ class TransferController extends Controller
             );
             if ($v->fails())
                 return redirect()->back()->withErrors($v->errors());
-            
+
             $ext = pathinfo($document->getClientOriginalName(), PATHINFO_EXTENSION);
             $documentName = $data['reference_no'] . '.' . $ext;
-            $document->move('public/documents/transfer', $documentName);
+            $document->move('documents/transfer', $documentName);
             $data['document'] = $documentName;
         }
         $item = 0;
@@ -340,7 +340,7 @@ class TransferController extends Controller
         $data['user_id'] = Auth::id();
         Transfer::create($data);
         $lims_transfer_data = Transfer::latest()->first();
-        
+
         foreach ($product_data as $key => $product) {
             if($product['tax_method'] == 1){
                 $net_unit_cost = $cost[$key];
@@ -391,7 +391,7 @@ class TransferController extends Controller
                 $product_warehouse->qty -= $quantity;
                 $product_warehouse->save();
             }
-            
+
             $product_transfer = new ProductTransfer();
             $product_transfer->transfer_id = $lims_transfer_data->id;
             $product_transfer->product_id = $product['id'];
@@ -443,7 +443,7 @@ class TransferController extends Controller
                 return redirect()->back()->withErrors($v->errors());
 
             $documentName = $document->getClientOriginalName();
-            $document->move('public/documents/transfer', $documentName);
+            $document->move('documents/transfer', $documentName);
             $data['document'] = $documentName;
         }
 
@@ -467,7 +467,7 @@ class TransferController extends Controller
             } else {
                 $quantity = $product_transfer_data->qty / $lims_transfer_unit_data->operation_value;
             }
-            
+
             if($lims_transfer_data->status == 1){
                 if($product_transfer_data->variant_id) {
                     $lims_product_variant_data = ProductVariant::select('id')->FindExactProduct($product_transfer_data->product_id, $product_transfer_data->variant_id)->first();
@@ -479,7 +479,7 @@ class TransferController extends Controller
                     $lims_product_from_warehouse_data = Product_Warehouse::FindProductWithoutVariant($product_transfer_data->product_id, $lims_transfer_data->from_warehouse_id)->first();
                     $lims_product_to_warehouse_data = Product_Warehouse::FindProductWithoutVariant($product_transfer_data->product_id, $lims_transfer_data->to_warehouse_id)->first();
                 }
-                    
+
                 $lims_product_from_warehouse_data->qty += $quantity;
                 $lims_product_from_warehouse_data->save();
 
@@ -498,7 +498,7 @@ class TransferController extends Controller
                 $lims_product_from_warehouse_data->qty += $quantity;
                 $lims_product_from_warehouse_data->save();
             }
-            
+
             if($product_transfer_data->variant_id && !(in_array($old_product_variant_id[$key], $product_variant_id)) ){
                 $product_transfer_data->delete();
             }
@@ -527,7 +527,7 @@ class TransferController extends Controller
                 }
                 else{
                     $lims_product_from_warehouse_data = Product_Warehouse::FindProductWithoutVariant($pro_id, $data['from_warehouse_id'])->first();
-                    $lims_product_to_warehouse_data = Product_Warehouse::FindProductWithoutVariant($pro_id, $data['to_warehouse_id'])->first();                    
+                    $lims_product_to_warehouse_data = Product_Warehouse::FindProductWithoutVariant($pro_id, $data['to_warehouse_id'])->first();
                 }
 
                 $lims_product_from_warehouse_data->qty -= $quantity;
@@ -545,7 +545,7 @@ class TransferController extends Controller
                     $lims_product_warehouse_data->qty = $quantity;
                     $lims_product_warehouse_data->save();
                 }
-                
+
             }
             elseif($data['status'] == 3) {
                 if($lims_product_data->is_variant) {
@@ -570,7 +570,7 @@ class TransferController extends Controller
             $product_transfer['tax_rate'] = $tax_rate[$key];
             $product_transfer['tax'] = $tax[$key];
             $product_transfer['total'] = $total[$key];
-            
+
             if($lims_product_data->is_variant && in_array($product_variant_id[$key], $old_product_variant_id) ) {
                 ProductTransfer::where([
                     ['transfer_id', $id],

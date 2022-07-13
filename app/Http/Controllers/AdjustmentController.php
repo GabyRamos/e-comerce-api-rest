@@ -38,7 +38,7 @@ class AdjustmentController extends Controller
         $product_name = [];
         $product_qty = [];
         $product_data = [];
-        foreach ($lims_product_warehouse_data as $product_warehouse) 
+        foreach ($lims_product_warehouse_data as $product_warehouse)
         {
             $product_qty[] = $product_warehouse->qty;
             $product_code[] =  $product_warehouse->code;
@@ -80,7 +80,7 @@ class AdjustmentController extends Controller
         $document = $request->document;
         if ($document) {
             $documentName = $document->getClientOriginalName();
-            $document->move('public/documents/adjustment', $documentName);
+            $document->move('documents/adjustment', $documentName);
             $data['document'] = $documentName;
         }
         Adjustment::create($data);
@@ -130,7 +130,7 @@ class AdjustmentController extends Controller
         $document = $request->document;
         if ($document) {
             $documentName = $document->getClientOriginalName();
-            $document->move('public/documents/adjustment', $documentName);
+            $document->move('documents/adjustment', $documentName);
             $data['document'] = $documentName;
         }
 

@@ -14,7 +14,7 @@ use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
-    
+
     public function index()
     {
         $role = Role::find(Auth::user()->role_id);
@@ -71,7 +71,7 @@ class EmployeeController extends Controller
             $data['is_active'] = true;
             $data['is_deleted'] = false;
             $data['password'] = bcrypt($data['password']);
-            $data['phone'] = $data['phone_number']; 
+            $data['phone'] = $data['phone_number'];
             User::create($data);
             $user = User::latest()->first();
             $data['user_id'] = $user->id;
@@ -87,13 +87,13 @@ class EmployeeController extends Controller
             ],
             'image' => 'image|mimes:jpg,jpeg,png,gif|max:100000',
         ]);
-        
+
         $image = $request->image;
         if ($image) {
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = preg_replace('/[^a-zA-Z0-9]/', '', $request['email']);
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/images/employee', $imageName);
+            $image->move('images/employee', $imageName);
             $data['image'] = $imageName;
         }
 
@@ -103,7 +103,7 @@ class EmployeeController extends Controller
 
         return redirect('employees')->with('message', $message);
     }
-    
+
     public function update(Request $request, $id)
     {
         $lims_employee_data = Employee::find($request['employee_id']);
@@ -135,14 +135,14 @@ class EmployeeController extends Controller
             ],
             'image' => 'image|mimes:jpg,jpeg,png,gif|max:100000',
         ]);
-        
+
         $data = $request->except('image');
         $image = $request->image;
         if ($image) {
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = preg_replace('/[^a-zA-Z0-9]/', '', $request['email']);
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/images/employee', $imageName);
+            $image->move('images/employee', $imageName);
             $data['image'] = $imageName;
         }
 

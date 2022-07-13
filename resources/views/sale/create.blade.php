@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -926,17 +926,17 @@ $('select[name="paid_by_id"]').on("change", function() {
         $('select[name="gift_card_id"]').attr('required', true);
     }
     else if (id == 3) {
-        $.getScript( "../public/vendor/stripe/checkout.js" );
+        $.getScript( "../vendor/stripe/checkout.js" );
         $(".card-element").show();
         $("#gift-card").hide();
         $("#cheque").hide();
-    } 
+    }
     else if (id == 4) {
         $("#cheque").show();
         $("#gift-card").hide();
         $(".card-element").hide();
         $('input[name="cheque_no"]').attr('required', true);
-    } 
+    }
     else {
         $("#gift-card").hide();
         $(".card-element").hide();

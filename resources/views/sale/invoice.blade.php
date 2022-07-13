@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/png" href="{{url('public/logo', $general_setting->site_logo)}}" />
+    <link rel="icon" type="image/png" href="{{url('logo', $general_setting->site_logo)}}" />
     <title>{{$general_setting->site_title}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,7 +63,7 @@
             .hidden-print {
                 display: none !important;
             }
-            @page { margin: 0; } body { margin: 0.5cm; margin-bottom:1.6cm; } 
+            @page { margin: 0; } body { margin: 0.5cm; margin-bottom:1.6cm; }
         }
     </style>
   </head>
@@ -84,15 +84,15 @@
         </table>
         <br>
     </div>
-        
+
     <div id="receipt-data">
         <div class="centered">
             @if($general_setting->site_logo)
-                <img src="{{url('public/logo', $general_setting->site_logo)}}" height="42" width="42" style="margin:10px 0;filter: brightness(0);">
+                <img src="{{url('logo', $general_setting->site_logo)}}" height="42" width="42" style="margin:10px 0;filter: brightness(0);">
             @endif
-            
+
             <h2>{{$lims_biller_data->company_name}}</h2>
-            
+
             <p>{{trans('file.Address')}}: {{$lims_warehouse_data->address}}
                 <br>{{trans('file.Phone Number')}}: {{$lims_warehouse_data->phone}}
             </p>
@@ -104,7 +104,7 @@
         <table>
             <tbody>
                 @foreach($lims_product_sale_data as $product_sale_data)
-                @php 
+                @php
                     $lims_product_data = \App\Product::find($product_sale_data->product_id);
                     if($product_sale_data->variant_id) {
                         $variant_data = \App\Variant::find($product_sale_data->variant_id);
@@ -167,14 +167,14 @@
                     <td style="padding: 5px;width:30%">{{trans('file.Paid By')}}: {{$payment_data->paying_method}}</td>
                     <td style="padding: 5px;width:40%">{{trans('file.Amount')}}: {{number_format((float)$payment_data->amount, 2, '.', '')}}</td>
                     <td style="padding: 5px;width:30%">{{trans('file.Change')}}: {{number_format((float)$payment_data->change, 2, '.', '')}}</td>
-                </tr>                
+                </tr>
                 @endforeach
                 <tr><td class="centered" colspan="3">{{trans('file.Thank you for shopping with us. Please come again')}}</td></tr>
                 <tr>
                     <td class="centered" colspan="3">
                     <?php echo '<img style="margin-top:10px;" src="data:image/png;base64,' . DNS1D::getBarcodePNG($lims_sale_data->reference_no, 'C128') . '" width="300" alt="barcode"   />';?>
                     <br>
-                    <?php echo '<img style="margin-top:10px;" src="data:image/png;base64,' . DNS2D::getBarcodePNG($lims_sale_data->reference_no, 'QRCODE') . '" alt="barcode"   />';?>    
+                    <?php echo '<img style="margin-top:10px;" src="data:image/png;base64,' . DNS2D::getBarcodePNG($lims_sale_data->reference_no, 'QRCODE') . '" alt="barcode"   />';?>
                     </td>
                 </tr>
             </tbody>
@@ -187,7 +187,7 @@
 </div>
 
 <script type="text/javascript">
-    function auto_print() {     
+    function auto_print() {
         window.print()
     }
     setTimeout(auto_print, 1000);

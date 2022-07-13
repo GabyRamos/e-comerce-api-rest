@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -58,7 +58,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label></label><br>
-                                            <a href="../public/sample_file/sample_transfer_products.csv" class="btn btn-primary btn-block btn-lg"><i class="dripicons-download"></i> {{trans('file.Download Sample File')}}</a>
+                                            <a href="../sample_file/sample_transfer_products.csv" class="btn btn-primary btn-block btn-lg"><i class="dripicons-download"></i> {{trans('file.Download Sample File')}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Attach Document')}}</label>
-                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i> 
+                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -129,7 +129,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </section>
 <script type="text/javascript">
     $("ul#transfer").siblings('a').attr('aria-expanded','true');

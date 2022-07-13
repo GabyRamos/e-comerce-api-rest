@@ -78,12 +78,12 @@ class ReturnPurchaseController extends Controller
             ])
             ->whereNotNull('product_warehouse.variant_id')
             ->get();
-        
+
         $product_code = [];
         $product_name = [];
         $product_qty = [];
         $product_data = [];
-        foreach ($lims_product_warehouse_data as $product_warehouse) 
+        foreach ($lims_product_warehouse_data as $product_warehouse)
         {
             $product_qty[] = $product_warehouse->qty;
             $product_code[] =  $product_warehouse->code;
@@ -91,7 +91,7 @@ class ReturnPurchaseController extends Controller
             $product_type[] = $product_warehouse->type;
         }
 
-        foreach ($lims_product_with_variant_warehouse_data as $product_warehouse) 
+        foreach ($lims_product_with_variant_warehouse_data as $product_warehouse)
         {
             $lims_product_variant_data = ProductVariant::select('item_code')->FindExactProduct($product_warehouse->id, $product_warehouse->variant_id)->first();
             $product_qty[] = $product_warehouse->qty;
@@ -123,7 +123,7 @@ class ReturnPurchaseController extends Controller
         $product[] = $lims_product_data->name;
         $product[] = $lims_product_data->code;
         $product[] = $lims_product_data->cost;
-        
+
         if ($lims_product_data->tax_id) {
             $lims_tax_data = Tax::find($lims_product_data->tax_id);
             $product[] = $lims_tax_data->rate;
@@ -152,7 +152,7 @@ class ReturnPurchaseController extends Controller
                 $unit_operation_value[] = $unit->operation_value;
             }
         }
-        
+
         $product[] = implode(",", $unit_name) . ',';
         $product[] = implode(",", $unit_operator) . ',';
         $product[] = implode(",", $unit_operation_value) . ',';
@@ -181,14 +181,14 @@ class ReturnPurchaseController extends Controller
                 return redirect()->back()->withErrors($v->errors());
 
             $documentName = $document->getClientOriginalName();
-            $document->move('public/return/documents', $documentName);
+            $document->move('return/documents', $documentName);
             $data['document'] = $documentName;
         }
 
         $lims_return_data = ReturnPurchase::create($data);
         if($data['supplier_id']){
             $lims_supplier_data = Supplier::find($data['supplier_id']);
-        
+
             //collecting male data
             $mail_data['email'] = $lims_supplier_data->email;
             $mail_data['reference_no'] = $lims_return_data->reference_no;
@@ -348,7 +348,7 @@ class ReturnPurchaseController extends Controller
         }
         else
             $message = "This return doesn't belong to any supplier";
-        
+
         return redirect()->back()->with('message', $message);
     }
 
@@ -384,9 +384,9 @@ class ReturnPurchaseController extends Controller
             );
             if ($v->fails())
                 return redirect()->back()->withErrors($v->errors());
-            
+
             $documentName = $document->getClientOriginalName();
-            $document->move('public/return/documents', $documentName);
+            $document->move('return/documents', $documentName);
             $data['document'] = $documentName;
         }
 
@@ -522,7 +522,7 @@ class ReturnPurchaseController extends Controller
             $mail_data['order_tax'] = $lims_return_data->order_tax;
             $mail_data['order_tax_rate'] = $lims_return_data->order_tax_rate;
             $mail_data['grand_total'] = $lims_return_data->grand_total;
-            
+
             try{
                 Mail::send( 'mail.return_details', $mail_data, function( $message ) use ($mail_data)
                 {

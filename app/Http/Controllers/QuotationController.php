@@ -38,7 +38,7 @@ class QuotationController extends Controller
                 $all_permission[] = $permission->name;
             if(empty($all_permission))
                 $all_permission[] = 'dummy text';
-            
+
             if(Auth::user()->role_id > 2 && config('staff_access') == 'own')
                 $lims_quotation_all = Quotation::with('biller', 'customer', 'supplier', 'user')->orderBy('id', 'desc')->where('user_id', Auth::id())->get();
             else
@@ -83,7 +83,7 @@ class QuotationController extends Controller
             if ($v->fails())
                 return redirect()->back()->withErrors($v->errors());
             $documentName = $document->getClientOriginalName();
-            $document->move('public/quotation/documents', $documentName);
+            $document->move('quotation/documents', $documentName);
             $data['document'] = $documentName;
         }
         $data['reference_no'] = 'qr-' . date("Ymd") . '-'. date("his");
@@ -157,7 +157,7 @@ class QuotationController extends Controller
             }
             catch(\Exception $e){
                 $message = 'Quotation created successfully. Please setup your <a href="setting/mail_setting">mail setting</a> to send mail.';
-            } 
+            }
         }
         return redirect('quotations')->with('message', $message);
     }
@@ -212,7 +212,7 @@ class QuotationController extends Controller
         }
         else
             $message = 'Customer doesnt have email!';
-        
+
         return redirect()->back()->with('message', $message);
     }
 
@@ -237,7 +237,7 @@ class QuotationController extends Controller
             ['product_warehouse.warehouse_id', $id],
         ])->whereNull('product_warehouse.variant_id')->select('product_warehouse.*')->get();
 
-        foreach ($lims_product_warehouse_data as $product_warehouse) 
+        foreach ($lims_product_warehouse_data as $product_warehouse)
         {
             $product_qty[] = $product_warehouse->qty;
             $lims_product_data = Product::find($product_warehouse->product_id);
@@ -268,7 +268,7 @@ class QuotationController extends Controller
         }
         //retrieve product data of digital and combo
         $lims_product_data = Product::whereNotIn('type', ['standard'])->where('is_active', true)->get();
-        foreach ($lims_product_data as $product) 
+        foreach ($lims_product_data as $product)
         {
             $product_qty[] = $product->qty;
             $lims_product_data = $product->id;
@@ -306,7 +306,7 @@ class QuotationController extends Controller
         }
         else
             $product[] = $lims_product_data->price;
-        
+
         if($lims_product_data->tax_id) {
             $lims_tax_data = Tax::find($lims_product_data->tax_id);
             $product[] = $lims_tax_data->rate;
@@ -336,7 +336,7 @@ class QuotationController extends Controller
                     $unit_operation_value[] = $unit->operation_value;
                 }
             }
-            
+
             $product[] = implode(",",$unit_name) . ',';
             $product[] = implode(",",$unit_operator) . ',';
             $product[] = implode(",",$unit_operation_value) . ',';
@@ -413,7 +413,7 @@ class QuotationController extends Controller
                 return redirect()->back()->withErrors($v->errors());
 
             $documentName = $document->getClientOriginalName();
-            $document->move('public/quotation/documents', $documentName);
+            $document->move('quotation/documents', $documentName);
             $data['document'] = $documentName;
         }
         $lims_quotation_data = Quotation::find($id);
@@ -523,7 +523,7 @@ class QuotationController extends Controller
             }
             catch(\Exception $e){
                 $message = 'Quotation updated successfully. Please setup your <a href="setting/mail_setting">mail setting</a> to send mail.';
-            } 
+            }
         }
         return redirect('quotations')->with('message', $message);
     }

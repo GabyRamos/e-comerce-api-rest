@@ -76,16 +76,16 @@ input.input-material:focus {
 input.input-material~label.active {
     font-size: 0.8em;
     top: -10px;
-    color: #7c5cc4;
+    color: #436ab4;
 }
 
 input.form-control-custom:checked+label::before {
-    background: #7c5cc4 !important;
+    background: #436ab4 !important;
 }
 
 .login-page .logo span,
 .register-page .logo span {
-    color: #7c5cc4;
+    color: #436ab4;
 }
 
 .login-page a.forgot-pass,
@@ -93,19 +93,19 @@ input.form-control-custom:checked+label::before {
 .register-page a.forgot-pass,
 .register-page a.signup {
     font-size: 0.8em;
-    color: #7c5cc4;
+    color: #436ab4;
 }
 
 .btn-primary {
-    color: color-yiq(#7c5cc4);
-    background-color: #7c5cc4;
-    border-color: #7c5cc4;
+    color: color-yiq(#436ab4);
+    background-color: #436ab4;
+    border-color: #436ab4;
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-    background-color: #7c5cc4;
-    border-color: #7c5cc4;
+    background-color: #436ab4;
+    border-color: #436ab4;
 }
 
 .btn-outline-primary {
@@ -131,8 +131,8 @@ input.form-control-custom:checked+label::before {
 .btn-outline-primary:not([disabled]):not(.disabled).active,
 .show>.btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #7c5cc4;
-    border-color: #7c5cc4;
+    background-color: #436ab4;
+    border-color: #436ab4;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(51, 179, 90, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(51, 179, 90, 0.5);
 }
@@ -179,7 +179,7 @@ a {
 }
 
 .border-primary {
-    border-color: #7c5cc4 !important;
+    border-color: #436ab4 !important;
 }
 
 .text-primary {
@@ -313,12 +313,12 @@ a {
 }
 
 @-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
+  from { bottom:-100px; opacity:0 }
   to { bottom:0px; opacity:1 }
 }
 
-@keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
   to{ bottom:0; opacity:1 }
 }
 
@@ -408,9 +408,9 @@ a:focus,button:focus,.btn:focus {
 
 .btn-primary.active {
 	background-color: transparent !important;
-	border: 2px solid #7c5cc4 !important;
+	border: 2px solid #436ab4 !important;
 	box-shadow: none !important;
-	color: #7c5cc4 !important;
+	color: #436ab4 !important;
 }
 
 .count-title {
@@ -421,7 +421,7 @@ a:focus,button:focus,.btn:focus {
 }
 
 .dashboard-counts {
-	padding: 10px 0; 
+	padding: 10px 0;
 }
 
 .filter-toggle {
@@ -432,7 +432,7 @@ a:focus,button:focus,.btn:focus {
 
 .filter-toggle .date-btn {
 	padding: 0.3rem 0.75rem;
-	border-radius: 15px; 
+	border-radius: 15px;
 }
 
 .filter-toggle .date-btn.active {
@@ -531,13 +531,13 @@ th span.number-in-words{
 /*--------Written by Tarik -----------*/
 
 .btn-primary {
-    background-color: #7c5cc4;
-    border-color: #7c5cc4;
+    background-color: #436ab4;
+    border-color: #436ab4;
 }
 
 .btn-primary:hover {
-    background-color: #6244a6;
-    border-color: #6244a6;
+    background-color: #436ab4;
+    border-color: #436ab4;
 }
 
 a:hover {
@@ -696,7 +696,7 @@ nav.navbar .nav-item li.notifications a i{
 	float: left;
 	vertical-align: middle;
 	width: 30%;
-} 
+}
 
 .dt-buttons {
 	display: inline-block;

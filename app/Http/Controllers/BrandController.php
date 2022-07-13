@@ -36,7 +36,7 @@ class BrandController extends Controller
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = date("Ymdhis");
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/images/brand', $imageName);
+            $image->move('images/brand', $imageName);
             $input['image'] = $imageName;
         }
         Brand::create($input);
@@ -68,7 +68,7 @@ class BrandController extends Controller
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = date("Ymdhis");
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/images/brand', $imageName);
+            $image->move('images/brand', $imageName);
             $lims_brand_data->image = $imageName;
         }
         $lims_brand_data->save();
@@ -128,7 +128,7 @@ class BrandController extends Controller
     {
         $lims_brand_data = Brand::findOrFail($id);
         $lims_brand_data->is_active = false;
-        unlink('public/images/brand/'.$lims_brand_data->image);
+        unlink('images/brand/'.$lims_brand_data->image);
         $lims_brand_data->save();
         return redirect('brand')->with('not_permitted', 'Brand deleted successfully!');
     }
@@ -141,15 +141,15 @@ class BrandController extends Controller
             if($brand > 0) {
                 $data = Brand::where('id', $brand)->first();
                 $csvData[]=$data->title.','.$data->image;
-            }   
-        }        
+            }
+        }
         $filename=date('Y-m-d').".csv";
         $file_path=public_path().'/downloads/'.$filename;
-        $file_url=url('/').'/downloads/'.$filename;   
+        $file_url=url('/').'/downloads/'.$filename;
         $file = fopen($file_path,"w+");
         foreach ($csvData as $exp_data){
           fputcsv($file,explode(',',$exp_data));
-        }   
+        }
         fclose($file);
         return $file_url;
     }

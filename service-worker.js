@@ -3,7 +3,7 @@ importScripts(
 );
 
 
-workbox.precaching.precacheAndRoute([{"revision":"133cb6ccde559821aa7b1fa541dd43c5","url":"public/offline.html"}]);
+workbox.precaching.precacheAndRoute([{"revision":"133cb6ccde559821aa7b1fa541dd43c5","url":"offline.html"}]);
 
 const networkFirstHandler = new workbox.strategies.NetworkFirst({
     cacheName: 'dynamic',
@@ -17,7 +17,7 @@ const networkFirstHandler = new workbox.strategies.NetworkFirst({
     ]
 });
 
-const FALLBACK_URL = workbox.precaching.getCacheKeyForURL('public/offline.html');
+const FALLBACK_URL = workbox.precaching.getCacheKeyForURL('offline.html');
 const matcher = ({ event }) => event.request.mode === 'navigate';
 const handler = args =>
     networkFirstHandler

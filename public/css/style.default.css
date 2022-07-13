@@ -1363,7 +1363,7 @@ button {
 .register-page p {
     font-size: 0.8em;
     font-weight: 300;
-    color: #aaa;
+    color: #2287ca;
     margin-bottom: 0;
 }
 
@@ -1483,8 +1483,8 @@ STYLE SWITCHER FOR DEMO
     color: #495057;
 }
 
-/* ========================================= 
-   THEMING OF BOOTSTRAP COMPONENTS           
+/* =========================================
+   THEMING OF BOOTSTRAP COMPONENTS
    ========================================= */
 /*
  * 1. NAVBAR
@@ -1626,25 +1626,25 @@ STYLE SWITCHER FOR DEMO
 }
 
 .btn-primary:hover {
-    color: color-yiq(#2b954b);
-    background-color: #2b954b;
-    border-color: #288b46;
+    color: color-yiq(#e825bc);
+    background-color: #e825bc;
+    border-color: #e825bc;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(51, 179, 90, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(51, 179, 90, 0.5);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(232, 37, 188, 1);
+    box-shadow: 0 0 0 0.2rem rgba(232, 37, 188, 1);
 }
 
 .btn-primary:not([disabled]):not(.disabled):active,
 .btn-primary:not([disabled]):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
-    color: color-yiq(#288b46);
-    background-color: #288b46;
-    border-color: #258141;
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(51, 179, 90, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(51, 179, 90, 0.5);
+    color: color-yiq(#e825bc);
+    background-color: #e825bc;
+    border-color: #e825bc;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(232, 37, 188, 1);
+    box-shadow: 0 0 0 0.2rem rgba(232, 37, 188, 1);
 }
 
 .btn-secondary {
@@ -2188,7 +2188,7 @@ STYLE SWITCHER FOR DEMO
 }
 
 /*
- * 3. TYPE  
+ * 3. TYPE
  */
 body {
     font-family: "Nunito", sans-serif;

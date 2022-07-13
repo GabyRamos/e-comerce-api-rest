@@ -4,10 +4,10 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ $errors->first('code') }}</div>
 @endif
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 
 <section>
@@ -78,8 +78,8 @@
                 <label>{{trans('file.name')}} *</label>
                 {{Form::text('name',null,array('required' => 'required', 'class' => 'form-control', 'placeholder' => 'Type expense category name...'))}}
             </div>
-            <input type="hidden" name="is_active" value="1">          
-            <div class="form-group">       
+            <input type="hidden" name="is_active" value="1">
+            <div class="form-group">
               <input type="submit" value="{{trans('file.submit')}}" class="btn btn-primary">
             </div>
         </div>
@@ -107,7 +107,7 @@
                 {{Form::text('name',null,array('required' => 'required', 'class' => 'form-control', 'placeholder' => 'Type expense category name...'))}}
             </div>
         <input type="hidden" name="expense_category_id">
-        <div class="form-group">       
+        <div class="form-group">
             <input type="submit" value="{{trans('file.submit')}}" class="btn btn-primary">
           </div>
         </div>
@@ -138,7 +138,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label> {{trans('file.Sample File')}}</label>
-                        <a href="public/sample_file/sample_expense_category.csv" class="btn btn-info btn-block btn-md"><i class="dripicons-download"></i>  {{trans('file.Download')}}</a>
+                        <a href="sample_file/sample_expense_category.csv" class="btn btn-info btn-block btn-md"><i class="dripicons-download"></i>  {{trans('file.Download')}}</a>
                     </div>
                 </div>
             </div>
@@ -157,7 +157,7 @@
 
     var expense_category_id = [];
     var user_verified = <?php echo json_encode(env('USER_VERIFIED')) ?>;
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -264,7 +264,7 @@ function confirmDelete() {
                         body: function ( data, row, column, node ) {
                             if (column === 0 && (data.indexOf('<img src=') !== -1)) {
                                 var regex = /<img.*?src=['"](.*?)['"]/;
-                                data = regex.exec(data)[1];                 
+                                data = regex.exec(data)[1];
                             }
                             return data;
                         }

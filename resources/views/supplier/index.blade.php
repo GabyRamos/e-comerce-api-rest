@@ -1,9 +1,9 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{!! session()->get('message') !!}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{!! session()->get('message') !!}</div>
 @endif
 <section>
     <div class="container-fluid">
@@ -32,7 +32,7 @@
                 <tr data-id="{{$supplier->id}}">
                     <td>{{$key}}</td>
                     @if($supplier->image)
-                    <td> <img src="{{url('public/images/supplier',$supplier->image)}}" height="80" width="80">
+                    <td> <img src="{{url('images/supplier',$supplier->image)}}" height="80" width="80">
                     </td>
                     @else
                     <td>No Image</td>
@@ -88,7 +88,7 @@
 	    <div class="modal-body">
 	      <p class="italic"><small>{{trans('file.The field labels marked with * are required input fields')}}.</small></p>
 	       <p>{{trans('file.The correct column order is')}} (name*, image, company_name*, vat_number, email*, phone_number*, address*, city*,state, postal_code, country) {{trans('file.and you must follow this')}}.</p>
-           <p>{{trans('file.To display Image it must be stored in')}} public/images/supplier {{trans('file.directory')}}</p>
+           <p>{{trans('file.To display Image it must be stored in')}} images/supplier {{trans('file.directory')}}</p>
 	        <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -99,7 +99,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label> {{trans('file.Sample File')}}</label>
-                        <a href="public/sample_file/sample_supplier.csv" class="btn btn-info btn-block btn-md"><i class="dripicons-download"></i> {{trans('file.Download')}}</a>
+                        <a href="sample_file/sample_supplier.csv" class="btn btn-info btn-block btn-md"><i class="dripicons-download"></i> {{trans('file.Download')}}</a>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
     var all_permission = <?php echo json_encode($all_permission) ?>;
     var supplier_id = [];
     var user_verified = <?php echo json_encode(env('USER_VERIFIED')) ?>;
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -199,7 +199,7 @@
                         body: function ( data, row, column, node ) {
                             if (column === 0 && (data.indexOf('<img src=') !== -1)) {
                                 var regex = /<img.*?src=['"](.*?)['"]/;
-                                data = regex.exec(data)[1];                 
+                                data = regex.exec(data)[1];
                             }
                             return data;
                         }
