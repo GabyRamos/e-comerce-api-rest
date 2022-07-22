@@ -89,10 +89,10 @@
     </div>
 </div> -->
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
       <div class="row">
         <div class="container-fluid">
@@ -117,91 +117,89 @@
               <div class="row">
                 <!-- Count item widget-->
                 <div class="col-sm-3">
-                  <div class="wrapper count-title text-center">
-                    <div class="icon"><i class="dripicons-graph-bar" style="color: #733686"></i></div>
-                    <div class="name"><strong style="color: #733686">{{ trans('file.revenue') }}</strong></div>
-                    <div class="count-number revenue-data">{{number_format((float)$revenue, 2, '.', '')}}</div>
-                  </div>
+{{--                  <div class="wrapper count-title text-center">--}}
+{{--                    <div class="icon"><i class="dripicons-graph-bar" style="color: #733686"></i></div>--}}
+{{--                    <div class="name"><strong style="color: #733686">{{ trans('file.revenue') }}</strong></div>--}}
+{{--                    <div class="count-number revenue-data">{{number_format((float)$revenue, 2, '.', '')}}</div>--}}
+{{--                  </div>--}}
                 </div>
                 <!-- Count item widget-->
                 <div class="col-sm-3">
                   <div class="wrapper count-title text-center">
-                    <div class="icon"><i class="dripicons-return" style="color: #ff8952"></i></div>
-                    <div class="name"><strong style="color: #ff8952">{{trans('file.Sale Return')}}</strong></div>
-                    <div class="count-number return-data">{{number_format((float)$return, 2, '.', '')}}</div>
+                      <a class="dropdown-item btn-pos btn-sm" href="http://127.0.0.1:8000/pos"><i class="dripicons-shopping-bag"></i><span> POS</span></a>
                   </div>
                 </div>
                 <!-- Count item widget-->
                 <div class="col-sm-3">
-                  <div class="wrapper count-title text-center">
-                    <div class="icon"><i class="dripicons-media-loop" style="color: #00c689"></i></div>
-                    <div class="name"><strong style="color: #00c689">{{trans('file.Purchase Return')}}</strong></div>
-                    <div class="count-number purchase_return-data">{{number_format((float)$purchase_return, 2, '.', '')}}</div>
-                  </div>
+{{--                  <div class="wrapper count-title text-center">--}}
+{{--                    <div class="icon"><i class="dripicons-media-loop" style="color: #00c689"></i></div>--}}
+{{--                    <div class="name"><strong style="color: #00c689">{{trans('file.Purchase Return')}}</strong></div>--}}
+{{--                    <div class="count-number purchase_return-data">{{number_format((float)$purchase_return, 2, '.', '')}}</div>--}}
+{{--                  </div>--}}
                 </div>
                 <!-- Count item widget-->
                 <div class="col-sm-3">
-                  <div class="wrapper count-title text-center">
-                    <div class="icon"><i class="dripicons-trophy" style="color: #297ff9"></i></div>
-                    <div class="name"><strong style="color: #297ff9">{{trans('file.profit')}}</strong></div>
-                    <div class="count-number profit-data">{{number_format((float)$profit, 2, '.', '')}}</div>
-                  </div>
+{{--                  <div class="wrapper count-title text-center">--}}
+{{--                    <div class="icon"><i class="dripicons-trophy" style="color: #297ff9"></i></div>--}}
+{{--                    <div class="name"><strong style="color: #297ff9">{{trans('file.profit')}}</strong></div>--}}
+{{--                    <div class="count-number profit-data">{{number_format((float)$profit, 2, '.', '')}}</div>--}}
+{{--                  </div>--}}
                 </div>
               </div>
             </div>
-            <div class="col-md-7 mt-4">
-              <div class="card line-chart-example">
-                <div class="card-header d-flex align-items-center">
-                  <h4>{{trans('file.Cash Flow')}}</h4>
-                </div>
-                <div class="card-body">
-                  @php
-                    if($general_setting->theme == 'default.css'){
-                      $color = '#733686';
-                      $color_rgba = 'rgba(115, 54, 134, 0.8)';
-                    }
-                    elseif($general_setting->theme == 'green.css'){
-                        $color = '#2ecc71';
-                        $color_rgba = 'rgba(46, 204, 113, 0.8)';
-                    }
-                    elseif($general_setting->theme == 'blue.css'){
-                        $color = '#3498db';
-                        $color_rgba = 'rgba(52, 152, 219, 0.8)';
-                    }
-                    elseif($general_setting->theme == 'dark.css'){
-                        $color = '#34495e';
-                        $color_rgba = 'rgba(52, 73, 94, 0.8)';
-                    }
-                  @endphp
-                  <canvas id="cashFlow" data-color = "{{$color}}" data-color_rgba = "{{$color_rgba}}" data-recieved = "{{json_encode($payment_recieved)}}" data-sent = "{{json_encode($payment_sent)}}" data-month = "{{json_encode($month)}}" data-label1="{{trans('file.Payment Recieved')}}" data-label2="{{trans('file.Payment Sent')}}"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5 mt-4">
-              <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                  <h4>{{date('F')}} {{date('Y')}}</h4>
-                </div>
-                <div class="pie-chart mb-2">
-                    <canvas id="transactionChart" data-color = "{{$color}}" data-color_rgba = "{{$color_rgba}}" data-revenue={{$revenue}} data-purchase={{$purchase}} data-expense={{$expense}} data-label1="{{trans('file.Purchase')}}" data-label2="{{trans('file.revenue')}}" data-label3="{{trans('file.Expense')}}" width="100" height="95"> </canvas>
-                </div>
-              </div>
-            </div>
+{{--            <div class="col-md-7 mt-4">--}}
+{{--              <div class="card line-chart-example">--}}
+{{--                <div class="card-header d-flex align-items-center">--}}
+{{--                  <h4>{{trans('file.Cash Flow')}}</h4>--}}
+{{--                </div>--}}
+{{--                <div class="card-body">--}}
+{{--                  @php--}}
+{{--                    if($general_setting->theme == 'default.css'){--}}
+{{--                      $color = '#733686';--}}
+{{--                      $color_rgba = 'rgba(115, 54, 134, 0.8)';--}}
+{{--                    }--}}
+{{--                    elseif($general_setting->theme == 'green.css'){--}}
+{{--                        $color = '#2ecc71';--}}
+{{--                        $color_rgba = 'rgba(46, 204, 113, 0.8)';--}}
+{{--                    }--}}
+{{--                    elseif($general_setting->theme == 'blue.css'){--}}
+{{--                        $color = '#3498db';--}}
+{{--                        $color_rgba = 'rgba(52, 152, 219, 0.8)';--}}
+{{--                    }--}}
+{{--                    elseif($general_setting->theme == 'dark.css'){--}}
+{{--                        $color = '#34495e';--}}
+{{--                        $color_rgba = 'rgba(52, 73, 94, 0.8)';--}}
+{{--                    }--}}
+{{--                  @endphp--}}
+{{--                  <canvas id="cashFlow" data-color = "{{$color}}" data-color_rgba = "{{$color_rgba}}" data-recieved = "{{json_encode($payment_recieved)}}" data-sent = "{{json_encode($payment_sent)}}" data-month = "{{json_encode($month)}}" data-label1="{{trans('file.Payment Recieved')}}" data-label2="{{trans('file.Payment Sent')}}"></canvas>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-5 mt-4">--}}
+{{--              <div class="card">--}}
+{{--                <div class="card-header d-flex justify-content-between align-items-center">--}}
+{{--                  <h4>{{date('F')}} {{date('Y')}}</h4>--}}
+{{--                </div>--}}
+{{--                <div class="pie-chart mb-2">--}}
+{{--                    <canvas id="transactionChart" data-color = "{{$color}}" data-color_rgba = "{{$color_rgba}}" data-revenue={{$revenue}} data-purchase={{$purchase}} data-expense={{$expense}} data-label1="{{trans('file.Purchase')}}" data-label2="{{trans('file.revenue')}}" data-label3="{{trans('file.Expense')}}" width="100" height="95"> </canvas>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
           </div>
         </div>
-        
+
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header d-flex align-items-center">
-                  <h4>{{trans('file.yearly report')}}</h4>
-                </div>
-                <div class="card-body">
-                  <canvas id="saleChart" data-sale_chart_value = "{{json_encode($yearly_sale_amount)}}" data-purchase_chart_value = "{{json_encode($yearly_purchase_amount)}}" data-label1="{{trans('file.Purchased Amount')}}" data-label2="{{trans('file.Sold Amount')}}"></canvas>
-                </div>
-              </div>
-            </div>
+{{--            <div class="col-md-12">--}}
+{{--              <div class="card">--}}
+{{--                <div class="card-header d-flex align-items-center">--}}
+{{--                  <h4>{{trans('file.yearly report')}}</h4>--}}
+{{--                </div>--}}
+{{--                <div class="card-body">--}}
+{{--                  <canvas id="saleChart" data-sale_chart_value = "{{json_encode($yearly_sale_amount)}}" data-purchase_chart_value = "{{json_encode($yearly_purchase_amount)}}" data-label1="{{trans('file.Purchased Amount')}}" data-label2="{{trans('file.Sold Amount')}}"></canvas>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
             <div class="col-md-7">
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -452,7 +450,7 @@
           </div>
         </div>
       </section>
-      
+
 <script type="text/javascript">
     // Show and hide color-switcher
     $(".color-switcher .switcher-button").on('click', function() {

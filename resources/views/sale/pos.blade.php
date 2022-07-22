@@ -61,14 +61,14 @@
               @endif
               @endif
               @if($print_barcode_active)
-              <li id="printBarcode-menu"><a href="{{route('product.printBarcode')}}">{{__('file.print_barcode')}}</a></li>
+{{--              <li id="printBarcode-menu"><a href="{{route('product.printBarcode')}}">{{__('file.print_barcode')}}</a></li>--}}
               @endif
               @if($adjustment_active)
                 <li id="adjustment-list-menu"><a href="{{route('qty_adjustment.index')}}">{{trans('file.Adjustment List')}}</a></li>
                 <li id="adjustment-create-menu"><a href="{{route('qty_adjustment.create')}}">{{trans('file.Add Adjustment')}}</a></li>
               @endif
               @if($stock_count_active)
-                <li id="stock-count-menu"><a href="{{route('stock-count.index')}}">{{trans('file.Stock Count')}}</a></li>
+{{--                <li id="stock-count-menu"><a href="{{route('stock-count.index')}}">{{trans('file.Stock Count')}}</a></li>--}}
               @endif
             </ul>
           </li>
@@ -92,7 +92,7 @@
               ?>
               @if($add_permission_active)
               <li id="purchase-create-menu"><a href="{{route('purchases.create')}}">{{trans('file.Add Purchase')}}</a></li>
-              <li id="purchase-import-menu"><a href="{{url('purchases/purchase_by_csv')}}">{{trans('file.Import Purchase By CSV')}}</a></li>
+{{--              <li id="purchase-import-menu"><a href="{{url('purchases/purchase_by_csv')}}">{{trans('file.Import Purchase By CSV')}}</a></li>--}}
               @endif
             </ul>
           </li>
@@ -131,16 +131,16 @@
               @if($add_permission_active)
               <li><a href="{{route('sale.pos')}}">POS</a></li>
               <li id="sale-create-menu"><a href="{{route('sales.create')}}">{{trans('file.Add Sale')}}</a></li>
-              <li id="sale-import-menu"><a href="{{url('sales/sale_by_csv')}}">{{trans('file.Import Sale By CSV')}}</a></li>
+{{--              <li id="sale-import-menu"><a href="{{url('sales/sale_by_csv')}}">{{trans('file.Import Sale By CSV')}}</a></li>--}}
               @endif
               @endif
               @if($gift_card_permission_active)
-              <li id="gift-card-menu"><a href="{{route('gift_cards.index')}}">{{trans('file.Gift Card List')}}</a> </li>
+{{--              <li id="gift-card-menu"><a href="{{route('gift_cards.index')}}">{{trans('file.Gift Card List')}}</a> </li>--}}
               @endif
               @if($coupon_permission_active)
-              <li id="coupon-menu"><a href="{{route('coupons.index')}}">{{trans('file.Coupon List')}}</a> </li>
+{{--              <li id="coupon-menu"><a href="{{route('coupons.index')}}">{{trans('file.Coupon List')}}</a> </li>--}}
               @endif
-              <li id="delivery-menu"><a href="{{route('delivery.index')}}">{{trans('file.Delivery List')}}</a></li>
+{{--              <li id="delivery-menu"><a href="{{route('delivery.index')}}">{{trans('file.Delivery List')}}</a></li>--}}
             </ul>
           </li>
           <?php
@@ -151,7 +151,7 @@
                 ])->first();
           ?>
           @if($index_permission_active)
-          <li><a href="#expense" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-wallet"></i><span>{{trans('file.Expense')}}</span></a>
+{{--          <li><a href="#expense" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-wallet"></i><span>{{trans('file.Expense')}}</span></a>--}}
             <ul id="expense" class="collapse list-unstyled ">
               <li id="exp-cat-menu"><a href="{{route('expense_categories.index')}}">{{trans('file.Expense Category')}}</a></li>
               <li id="exp-list-menu"><a href="{{route('expenses.index')}}">{{trans('file.Expense List')}}</a></li>
@@ -176,7 +176,7 @@
                 ])->first();
           ?>
           @if($index_permission_active)
-          <li><a href="#quotation" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-document"></i><span>{{trans('file.Quotation')}}</span><span></a>
+{{--          <li><a href="#quotation" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-document"></i><span>{{trans('file.Quotation')}}</span><span></a>--}}
             <ul id="quotation" class="collapse list-unstyled ">
               <li id="quotation-list-menu"><a href="{{route('quotations.index')}}">{{trans('file.Quotation List')}}</a></li>
               <?php
@@ -200,7 +200,7 @@
                 ])->first();
           ?>
           @if($index_permission_active)
-          <li><a href="#transfer" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-export"></i><span>{{trans('file.Transfer')}}</span></a>
+{{--          <li><a href="#transfer" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-export"></i><span>{{trans('file.Transfer')}}</span></a>--}}
             <ul id="transfer" class="collapse list-unstyled ">
               <li id="transfer-list-menu"><a href="{{route('transfers.index')}}">{{trans('file.Transfer List')}}</a></li>
               <?php
@@ -218,7 +218,7 @@
           </li>
           @endif
 
-          <li><a href="#return" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-return"></i><span>{{trans('file.return')}}</span></a>
+{{--          <li><a href="#return" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-return"></i><span>{{trans('file.return')}}</span></a>--}}
             <ul id="return" class="collapse list-unstyled ">
               <?php
                 $index_permission = DB::table('permissions')->where('name', 'returns-index')->first();
@@ -269,7 +269,7 @@
 
           ?>
           @if($index_permission_active || $balance_sheet_permission_active || $account_statement_permission_active)
-          <li class=""><a href="#account" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-briefcase"></i><span>{{trans('file.Accounting')}}</span></a>
+{{--          <li class=""><a href="#account" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-briefcase"></i><span>{{trans('file.Accounting')}}</span></a>--}}
             <ul id="account" class="collapse list-unstyled ">
               @if($index_permission_active)
               <li id="account-list-menu"><a href="{{route('accounts.index')}}">{{trans('file.Account List')}}</a></li>
@@ -310,7 +310,7 @@
                 ])->first();
           ?>
 
-          <li class=""><a href="#hrm" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-user-group"></i><span>HRM</span></a>
+{{--          <li class=""><a href="#hrm" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-user-group"></i><span>HRM</span></a>--}}
             <ul id="hrm" class="collapse list-unstyled ">
               @if($department_active)
               <li id="dept-menu"><a href="{{route('departments.index')}}">{{trans('file.Department')}}</a></li>
@@ -376,7 +376,7 @@
                     ])->first();
               ?>
               @if($index_permission_active)
-              <li id="biller-list-menu"><a href="{{route('biller.index')}}">{{trans('file.Biller List')}}</a></li>
+{{--              <li id="biller-list-menu"><a href="{{route('biller.index')}}">{{trans('file.Biller List')}}</a></li>--}}
               <?php
                 $add_permission = DB::table('permissions')->where('name', 'billers-add')->first();
                 $add_permission_active = DB::table('role_has_permissions')->where([
@@ -385,7 +385,7 @@
                 ])->first();
               ?>
               @if($add_permission_active)
-              <li id="biller-create-menu"><a href="{{route('biller.create')}}">{{trans('file.Add Biller')}}</a></li>
+{{--              <li id="biller-create-menu"><a href="{{route('biller.create')}}">{{trans('file.Add Biller')}}</a></li>--}}
               @endif
               @endif
               <?php
@@ -510,9 +510,9 @@
               </li>
               @endif
               @if($best_seller_active)
-              <li id="best-seller-report-menu">
-                <a href="{{url('report/best_seller')}}">{{trans('file.Best Seller')}}</a>
-              </li>
+{{--              <li id="best-seller-report-menu">--}}
+{{--                <a href="{{url('report/best_seller')}}">{{trans('file.Best Seller')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($product_report_active)
               <li id="product-report-menu">
@@ -535,9 +535,9 @@
               </li>
               @endif
               @if($daily_purchase_active)
-              <li id="daily-purchase-report-menu">
-                <a href="{{url('report/daily_purchase/'.date('Y').'/'.date('m'))}}">{{trans('file.Daily Purchase')}}</a>
-              </li>
+{{--              <li id="daily-purchase-report-menu">--}}
+{{--                <a href="{{url('report/daily_purchase/'.date('Y').'/'.date('m'))}}">{{trans('file.Daily Purchase')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($monthly_purchase_active)
               <li id="monthly-purchase-report-menu">
@@ -559,19 +559,19 @@
                 {!! Form::open(['route' => 'report.paymentByDate', 'method' => 'post', 'id' => 'payment-report-form']) !!}
                 <input type="hidden" name="start_date" value="1988-04-18" />
                 <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />
-                <a id="payment-report-link" href="">{{trans('file.Payment Report')}}</a>
+{{--                <a id="payment-report-link" href="">{{trans('file.Payment Report')}}</a>--}}
                 {!! Form::close() !!}
               </li>
               @endif
               @if($purchase_report_active)
-              <li id="purchase-report-menu">
-                {!! Form::open(['route' => 'report.purchase', 'method' => 'post', 'id' => 'purchase-report-form']) !!}
-                <input type="hidden" name="start_date" value="1988-04-18" />
-                <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />
-                <input type="hidden" name="warehouse_id" value="0" />
-                <a id="purchase-report-link" href="">{{trans('file.Purchase Report')}}</a>
-                {!! Form::close() !!}
-              </li>
+{{--              <li id="purchase-report-menu">--}}
+{{--                {!! Form::open(['route' => 'report.purchase', 'method' => 'post', 'id' => 'purchase-report-form']) !!}--}}
+{{--                <input type="hidden" name="start_date" value="1988-04-18" />--}}
+{{--                <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />--}}
+{{--                <input type="hidden" name="warehouse_id" value="0" />--}}
+{{--                <a id="purchase-report-link" href="">{{trans('file.Purchase Report')}}</a>--}}
+{{--                {!! Form::close() !!}--}}
+{{--              </li>--}}
               @endif
               @if($warehouse_report_active)
               <li id="warehouse-report-menu">
@@ -589,28 +589,28 @@
               </li>
               @endif
               @if($user_report_active)
-              <li id="user-report-menu">
-                <a id="user-report-link" href="">{{trans('file.User Report')}}</a>
-              </li>
+{{--              <li id="user-report-menu">--}}
+{{--                <a id="user-report-link" href="">{{trans('file.User Report')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($customer_report_active)
-              <li id="customer-report-menu">
-                <a id="customer-report-link" href="">{{trans('file.Customer Report')}}</a>
-              </li>
+{{--              <li id="customer-report-menu">--}}
+{{--                <a id="customer-report-link" href="">{{trans('file.Customer Report')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($supplier_report_active)
-              <li id="supplier-report-menu">
-                <a id="supplier-report-link" href="">{{trans('file.Supplier Report')}}</a>
-              </li>
+{{--              <li id="supplier-report-menu">--}}
+{{--                <a id="supplier-report-link" href="">{{trans('file.Supplier Report')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($due_report_active)
-              <li id="due-report-menu">
-                {!! Form::open(['route' => 'report.dueByDate', 'method' => 'post', 'id' => 'due-report-form']) !!}
-                <input type="hidden" name="start_date" value="1988-04-18" />
-                <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />
-                <a id="due-report-link" href="">{{trans('file.Due Report')}}</a>
-                {!! Form::close() !!}
-              </li>
+{{--              <li id="due-report-menu">--}}
+{{--                {!! Form::open(['route' => 'report.dueByDate', 'method' => 'post', 'id' => 'due-report-form']) !!}--}}
+{{--                <input type="hidden" name="start_date" value="1988-04-18" />--}}
+{{--                <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />--}}
+{{--                <a id="due-report-link" href="">{{trans('file.Due Report')}}</a>--}}
+{{--                {!! Form::close() !!}--}}
+{{--              </li>--}}
               @endif
             </ul>
           </li>
@@ -704,22 +704,22 @@
               @endif
               <li id="user-menu"><a href="{{route('user.profile', ['id' => Auth::id()])}}">{{trans('file.User Profile')}}</a></li>
               @if($create_sms_permission_active)
-              <li id="create-sms-menu"><a href="{{route('setting.createSms')}}">{{trans('file.Create SMS')}}</a></li>
+{{--              <li id="create-sms-menu"><a href="{{route('setting.createSms')}}">{{trans('file.Create SMS')}}</a></li>--}}
               @endif
               @if($general_setting_permission_active)
               <li id="general-setting-menu"><a href="{{route('setting.general')}}">{{trans('file.General Setting')}}</a></li>
               @endif
               @if($mail_setting_permission_active)
-              <li id="mail-setting-menu"><a href="{{route('setting.mail')}}">{{trans('file.Mail Setting')}}</a></li>
+{{--              <li id="mail-setting-menu"><a href="{{route('setting.mail')}}">{{trans('file.Mail Setting')}}</a></li>--}}
               @endif
               @if($sms_setting_permission_active)
-              <li id="sms-setting-menu"><a href="{{route('setting.sms')}}">{{trans('file.SMS Setting')}}</a></li>
+{{--              <li id="sms-setting-menu"><a href="{{route('setting.sms')}}">{{trans('file.SMS Setting')}}</a></li>--}}
               @endif
               @if($pos_setting_permission_active)
               <li id="pos-setting-menu"><a href="{{route('setting.pos')}}">POS {{trans('file.settings')}}</a></li>
               @endif
               @if($hrm_setting_permission_active)
-              <li id="hrm-setting-menu"><a href="{{route('setting.hrm')}}"> {{trans('file.HRM Setting')}}</a></li>
+{{--              <li id="hrm-setting-menu"><a href="{{route('setting.hrm')}}"> {{trans('file.HRM Setting')}}</a></li>--}}
               @endif
             </ul>
           </li>
@@ -898,27 +898,33 @@
                         <h2>{{trans('file.grand total')}} <span id="grand-total">0.00</span></h2>
                     </div>
                     <div class="payment-options">
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background: #0984e3" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="credit-card-btn"><i class="fa fa-credit-card"></i> Card</button>--}}
+{{--                        </div>--}}
                         <div class="column-5">
-                            <button style="background: #0984e3" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="credit-card-btn"><i class="fa fa-credit-card"></i> Card</button>
+                        </div>
+                        <div class="column-5">
+                        </div>
+                        <div class="column-5">
                         </div>
                         <div class="column-5">
                             <button style="background: #00cec9" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cash-btn"><i class="fa fa-money"></i> Cash</button>
                         </div>
-                        <div class="column-5">
-                            <button style="background-color: #213170" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="paypal-btn"><i class="fa fa-paypal"></i> Paypal</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #e28d02" type="button" class="btn btn-custom" id="draft-btn"><i class="dripicons-flag"></i> Draft</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #fd7272" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cheque-btn"><i class="fa fa-money"></i> Cheque</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #5f27cd" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="gift-card-btn"><i class="fa fa-credit-card-alt"></i> GiftCard</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #b33771" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="deposit-btn"><i class="fa fa-university"></i> Deposit</button>
-                        </div>
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #213170" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="paypal-btn"><i class="fa fa-paypal"></i> Paypal</button>--}}
+{{--                        </div>--}}
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #e28d02" type="button" class="btn btn-custom" id="draft-btn"><i class="dripicons-flag"></i> Draft</button>--}}
+{{--                        </div>--}}
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #fd7272" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cheque-btn"><i class="fa fa-money"></i> Cheque</button>--}}
+{{--                        </div>--}}
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #5f27cd" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="gift-card-btn"><i class="fa fa-credit-card-alt"></i> GiftCard</button>--}}
+{{--                        </div>--}}
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #b33771" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="deposit-btn"><i class="fa fa-university"></i> Deposit</button>--}}
+{{--                        </div>--}}
                         <div class="column-5">
                             <button style="background-color: #d63031;" type="button" class="btn btn-custom" id="cancel-btn" onclick="return confirmCancel()"><i class="fa fa-close"></i> Cancel</button>
                         </div>
@@ -957,11 +963,11 @@
                                             <label>{{trans('file.Paid By')}}</label>
                                             <select name="paid_by_id_select" class="form-control selectpicker">
                                                 <option value="1">Cash</option>
-                                                <option value="2">Gift Card</option>
-                                                <option value="3">Credit Card</option>
-                                                <option value="4">Cheque</option>
-                                                <option value="5">Paypal</option>
-                                                <option value="6">Deposit</option>
+{{--                                                <option value="2">Gift Card</option>--}}
+{{--                                                <option value="3">Credit Card</option>--}}
+{{--                                                <option value="4">Cheque</option>--}}
+{{--                                                <option value="5">Paypal</option>--}}
+{{--                                                <option value="6">Deposit</option>--}}
                                             </select>
                                         </div>
                                         <div class="form-group col-md-12 mt-3">
@@ -1115,7 +1121,7 @@
                                 ])->first();
                             ?>
                             @if($pos_setting_permission_active)
-                            <li class="nav-item"><a class="dropdown-item" href="{{route('setting.pos')}}" title="{{trans('file.POS Setting')}}"><i class="dripicons-gear"></i></a> </li>
+{{--                            <li class="nav-item"><a class="dropdown-item" href="{{route('setting.pos')}}" title="{{trans('file.POS Setting')}}"><i class="dripicons-gear"></i></a> </li>--}}
                             @endif
                             <li class="nav-item">
                                 <a href="{{route('sales.printLastReciept')}}" title="{{trans('file.Print Last Reciept')}}"><i class="dripicons-print"></i></a>
@@ -1143,30 +1149,30 @@
                             </li>
                             @endif
                             @if($today_profit_permission_active)
-                            <li class="nav-item">
-                                <a href="" id="today-profit-btn" title="{{trans('file.Today Profit')}}"><i class="dripicons-graph-line"></i></a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="" id="today-profit-btn" title="{{trans('file.Today Profit')}}"><i class="dripicons-graph-line"></i></a>--}}
+{{--                            </li>--}}
                             @endif
                             @if(($alert_product + count(\Auth::user()->unreadNotifications)) > 0)
-                            <li class="nav-item" id="notification-icon">
-                                  <a rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-item"><i class="dripicons-bell"></i><span class="badge badge-danger notification-number">{{$alert_product + count(\Auth::user()->unreadNotifications)}}</span>
-                                      <span class="caret"></span>
-                                      <span class="sr-only">Toggle Dropdown</span>
-                                  </a>
-                                  <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default notifications" user="menu">
-                                      <li class="notifications">
-                                        <a href="{{route('report.qtyAlert')}}" class="btn btn-link">{{$alert_product}} product exceeds alert quantity</a>
-                                      </li>
-                                      @foreach(\Auth::user()->unreadNotifications as $key => $notification)
-                                          <li class="notifications">
-                                              <a href="#" class="btn btn-link">{{ $notification->data['message'] }}</a>
-                                          </li>
-                                      @endforeach
-                                  </ul>
-                            </li>
+{{--                            <li class="nav-item" id="notification-icon">--}}
+{{--                                  <a rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-item"><i class="dripicons-bell"></i><span class="badge badge-danger notification-number">{{$alert_product + count(\Auth::user()->unreadNotifications)}}</span>--}}
+{{--                                      <span class="caret"></span>--}}
+{{--                                      <span class="sr-only">Toggle Dropdown</span>--}}
+{{--                                  </a>--}}
+{{--                                  <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default notifications" user="menu">--}}
+{{--                                      <li class="notifications">--}}
+{{--                                        <a href="{{route('report.qtyAlert')}}" class="btn btn-link">{{$alert_product}} product exceeds alert quantity</a>--}}
+{{--                                      </li>--}}
+{{--                                      @foreach(\Auth::user()->unreadNotifications as $key => $notification)--}}
+{{--                                          <li class="notifications">--}}
+{{--                                              <a href="#" class="btn btn-link">{{ $notification->data['message'] }}</a>--}}
+{{--                                          </li>--}}
+{{--                                      @endforeach--}}
+{{--                                  </ul>--}}
+{{--                            </li>--}}
                             @endif
                             <li class="nav-item">
-                                <a class="dropdown-item" href="https://ventas.programacionparacompartir.com/" target="_blank"><i class="dripicons-information"></i> {{trans('file.Help')}}</a>
+{{--                                <a class="dropdown-item" href="https://ventas.programacionparacompartir.com/" target="_blank"><i class="dripicons-information"></i> {{trans('file.Help')}}</a>--}}
                             </li>&nbsp;
                             <li class="nav-item">
                                   <a rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-item"><i class="dripicons-user"></i> <span>{{ucfirst(Auth::user()->name)}}</span> <i class="fa fa-angle-down"></i>
@@ -1180,12 +1186,12 @@
                                         <a href="{{route('setting.general')}}"><i class="dripicons-gear"></i> {{trans('file.settings')}}</a>
                                       </li>
                                       @endif
-                                      <li>
-                                        <a href="{{url('my-transactions/'.date('Y').'/'.date('m'))}}"><i class="dripicons-swap"></i> {{trans('file.My Transaction')}}</a>
-                                      </li>
-                                      <li>
-                                        <a href="{{url('holidays/my-holiday/'.date('Y').'/'.date('m'))}}"><i class="dripicons-vibrate"></i> {{trans('file.My Holiday')}}</a>
-                                      </li>
+{{--                                      <li>--}}
+{{--                                        <a href="{{url('my-transactions/'.date('Y').'/'.date('m'))}}"><i class="dripicons-swap"></i> {{trans('file.My Transaction')}}</a>--}}
+{{--                                      </li>--}}
+{{--                                      <li>--}}
+{{--                                        <a href="{{url('holidays/my-holiday/'.date('Y').'/'.date('m'))}}"><i class="dripicons-vibrate"></i> {{trans('file.My Holiday')}}</a>--}}
+{{--                                      </li>--}}
                                       <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
@@ -1570,38 +1576,38 @@
                                           <td>{{trans('file.Total Sale Amount')}}:</td>
                                           <td id="total_sale_amount" class="text-right"></td>
                                         </tr>
-                                        <tr>
-                                          <td>{{trans('file.Total Payment')}}:</td>
-                                          <td id="total_payment" class="text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Cash Payment')}}:</td>
-                                          <td id="cash_payment" class="text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Credit Card Payment')}}:</td>
-                                          <td id="credit_card_payment" class="text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Cheque Payment')}}:</td>
-                                          <td id="cheque_payment" class="text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Gift Card Payment')}}:</td>
-                                          <td id="gift_card_payment" class="text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Paypal Payment')}}:</td>
-                                          <td id="paypal_payment" class="text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Total Sale Return')}}:</td>
-                                          <td id="total_sale_return" class="text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Total Expense')}}:</td>
-                                          <td id="total_expense" class="text-right"></td>
-                                        </tr>
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Total Payment')}}:</td>--}}
+{{--                                          <td id="total_payment" class="text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Cash Payment')}}:</td>--}}
+{{--                                          <td id="cash_payment" class="text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Credit Card Payment')}}:</td>--}}
+{{--                                          <td id="credit_card_payment" class="text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Cheque Payment')}}:</td>--}}
+{{--                                          <td id="cheque_payment" class="text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Gift Card Payment')}}:</td>--}}
+{{--                                          <td id="gift_card_payment" class="text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Paypal Payment')}}:</td>--}}
+{{--                                          <td id="paypal_payment" class="text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Total Sale Return')}}:</td>--}}
+{{--                                          <td id="total_sale_return" class="text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Total Expense')}}:</td>--}}
+{{--                                          <td id="total_expense" class="text-right"></td>--}}
+{{--                                        </tr>--}}
                                         <tr>
                                           <td><strong>{{trans('file.Total Cash')}}:</strong></td>
                                           <td id="total_cash" class="text-right"></td>
@@ -1643,34 +1649,34 @@
                                           <td>{{trans('file.Cash Payment')}}:</td>
                                           <td class="cash_payment text-right"></td>
                                         </tr>
-                                        <tr>
-                                          <td>{{trans('file.Credit Card Payment')}}:</td>
-                                          <td class="credit_card_payment text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Cheque Payment')}}:</td>
-                                          <td class="cheque_payment text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Gift Card Payment')}}:</td>
-                                          <td class="gift_card_payment text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Paypal Payment')}}:</td>
-                                          <td class="paypal_payment text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Total Payment')}}:</td>
-                                          <td class="total_payment text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Total Sale Return')}}:</td>
-                                          <td class="total_sale_return text-right"></td>
-                                        </tr>
-                                        <tr>
-                                          <td>{{trans('file.Total Expense')}}:</td>
-                                          <td class="total_expense text-right"></td>
-                                        </tr>
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Credit Card Payment')}}:</td>--}}
+{{--                                          <td class="credit_card_payment text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Cheque Payment')}}:</td>--}}
+{{--                                          <td class="cheque_payment text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Gift Card Payment')}}:</td>--}}
+{{--                                          <td class="gift_card_payment text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Paypal Payment')}}:</td>--}}
+{{--                                          <td class="paypal_payment text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Total Payment')}}:</td>--}}
+{{--                                          <td class="total_payment text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Total Sale Return')}}:</td>--}}
+{{--                                          <td class="total_sale_return text-right"></td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                          <td>{{trans('file.Total Expense')}}:</td>--}}
+{{--                                          <td class="total_expense text-right"></td>--}}
+{{--                                        </tr>--}}
                                         <tr>
                                           <td><strong>{{trans('file.Total Cash')}}:</strong></td>
                                           <td class="total_cash text-right"></td>
@@ -1899,7 +1905,7 @@ if(keyboard_active==1){
               $('#register-details-modal #paypal_payment').text(data['paypal_payment']);
               $('#register-details-modal #total_sale_return').text(data['total_sale_return']);
               $('#register-details-modal #total_expense').text(data['total_expense']);
-              $('#register-details-modal #total_cash').text(data['total_cash']);
+               $('#register-details-modal #total_cash').text(data['total_cash']);
               $('#register-details-modal input[name=cash_register_id]').val(data['id']);
           }
       });
@@ -1914,7 +1920,7 @@ if(keyboard_active==1){
           success:function(data) {
               $('#today-sale-modal .total_sale_amount').text(data['total_sale_amount']);
               $('#today-sale-modal .total_payment').text(data['total_payment']);
-              $('#today-sale-modal .cash_payment').text(data['cash_payment']);
+               $('#today-sale-modal .cash_payment').text(data['cash_payment']);
               $('#today-sale-modal .credit_card_payment').text(data['credit_card_payment']);
               $('#today-sale-modal .cheque_payment').text(data['cheque_payment']);
               $('#today-sale-modal .gift_card_payment').text(data['gift_card_payment']);

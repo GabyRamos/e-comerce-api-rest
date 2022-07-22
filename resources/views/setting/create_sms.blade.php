@@ -1,9 +1,9 @@
 @extends('layout.main') @section('content')
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{!! session()->get('not_permitted') !!}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{!! session()->get('not_permitted') !!}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -30,7 +30,7 @@
                                         <textarea name="message" class="form-control" rows="3" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> {{trans('file.Send SMS')}}</button> 
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> {{trans('file.Send SMS')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
         }
     });
 
-    function getNumber(data) { 
+    function getNumber(data) {
         mobile_no = data.substring(data.indexOf("[")+1, data.indexOf("]") );
         if( !$('#mobile').val().includes(mobile_no) ){
             if($('#mobile').val() == '')

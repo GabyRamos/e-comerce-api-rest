@@ -1061,27 +1061,27 @@
                         <h2>{{trans('file.grand total')}} <span id="grand-total">{{number_format((float)$lims_sale_data->grand_total, 2, '.', '')}}</span></h2>
                     </div>
                     <div class="payment-options">
-                        <div class="column-5">
-                            <button style="background: #0984e3" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="credit-card-btn"><i class="fa fa-credit-card"></i> Card</button>
-                        </div>
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background: #0984e3" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="credit-card-btn"><i class="fa fa-credit-card"></i> Card</button>--}}
+{{--                        </div>--}}
                         <div class="column-5">
                             <button style="background: #00cec9" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cash-btn"><i class="fa fa-money"></i> Cash</button>
                         </div>
-                        <div class="column-5">
-                            <button style="background-color: #213170" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="paypal-btn"><i class="fa fa-paypal"></i> Paypal</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #e28d02" type="button" class="btn btn-custom" id="draft-btn"><i class="dripicons-flag"></i> Draft</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #fd7272" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cheque-btn"><i class="fa fa-money"></i> Cheque</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #5f27cd" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="gift-card-btn"><i class="fa fa-credit-card-alt"></i> GiftCard</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #b33771" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="deposit-btn"><i class="fa fa-university"></i> Deposit</button>
-                        </div>
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #213170" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="paypal-btn"><i class="fa fa-paypal"></i> Paypal</button>--}}
+{{--                        </div>--}}
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #e28d02" type="button" class="btn btn-custom" id="draft-btn"><i class="dripicons-flag"></i> Draft</button>--}}
+{{--                        </div>--}}
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #fd7272" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cheque-btn"><i class="fa fa-money"></i> Cheque</button>--}}
+{{--                        </div>--}}
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #5f27cd" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="gift-card-btn"><i class="fa fa-credit-card-alt"></i> GiftCard</button>--}}
+{{--                        </div>--}}
+{{--                        <div class="column-5">--}}
+{{--                            <button style="background-color: #b33771" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="deposit-btn"><i class="fa fa-university"></i> Deposit</button>--}}
+{{--                        </div>--}}
                         <div class="column-5">
                             <button style="background-color: #d63031;" type="button" class="btn btn-custom" id="cancel-btn" onclick="return confirmCancel()"><i class="fa fa-close"></i> Cancel</button>
                         </div>
@@ -1192,15 +1192,15 @@
                                             <p id="change" class="ml-2">0.00</p>
                                         </div>
                                         <div class="col-md-6 mt-1">
-                                            <label>{{trans('file.Paid By')}}</label>
+{{--                                            <label>{{trans('file.Paid By')}}</label>--}}
                                             <input type="hidden" name="paid_by_id">
                                             <select class="form-control payment-option">
                                                 <option value="1">Cash</option>
-                                                <option value="2">Gift Card</option>
-                                                <option value="3">Credit Card</option>
-                                                <option value="4">Cheque</option>
-                                                <option value="5">Paypal</option>
-                                                <option value="6">Deposit</option>
+{{--                                                <option value="2">Gift Card</option>--}}
+{{--                                                <option value="3">Credit Card</option>--}}
+{{--                                                <option value="4">Cheque</option>--}}
+{{--                                                <option value="5">Paypal</option>--}}
+{{--                                                <option value="6">Deposit</option>--}}
                                             </select>
                                         </div>
                                         <div class="form-group col-md-12 mt-3">
@@ -1208,16 +1208,16 @@
                                             </div>
                                             <div class="card-errors" role="alert"></div>
                                         </div>
-                                        <div class="form-group col-md-12" id="gift-card">
-                                            <label> {{trans('file.Gift Card')}} *</label>
-                                            <input type="hidden" name="gift_card_id">
-                                            <select id="gift_card_id_select" name="gift_card_id_select" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Gift Card..."></select>
-                                        </div>
+{{--                                        <div class="form-group col-md-12" id="gift-card">--}}
+{{--                                            <label> {{trans('file.Gift Card')}} *</label>--}}
+{{--                                            <input type="hidden" name="gift_card_id">--}}
+{{--                                            <select id="gift_card_id_select" name="gift_card_id_select" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Gift Card..."></select>--}}
+{{--                                        </div>--}}
                                         <div class="form-group col-md-12" id="cheque">
-                                            <div class="form-group">
-                                                <label>{{trans('file.Cheque Number')}} *</label>
-                                                <input type="text" name="cheque_no" class="form-control">
-                                            </div>
+{{--                                            <div class="form-group">--}}
+{{--                                                <label>{{trans('file.Cheque Number')}} *</label>--}}
+{{--                                                <input type="text" name="cheque_no" class="form-control">--}}
+{{--                                            </div>--}}
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label>{{trans('file.Payment Note')}}</label>
@@ -1240,6 +1240,7 @@
                                 </div>
                                 <div class="col-md-2 qc" data-initial="1">
                                     <h4><strong>{{trans('file.Quick Cash')}}</strong></h4>
+                                    <button class="btn btn-block btn-primary qc-btn sound-btn" data-amount="5" type="button">5</button>
                                     <button class="btn btn-block btn-primary qc-btn sound-btn" data-amount="10" type="button">10</button>
                                     <button class="btn btn-block btn-primary qc-btn sound-btn" data-amount="20" type="button">20</button>
                                     <button class="btn btn-block btn-primary qc-btn sound-btn" data-amount="50" type="button">50</button>
@@ -2133,27 +2134,27 @@ $("#draft-btn").on("click",function(){
     else
         $('.payment-form').submit();
 });
+//
+// $("#gift-card-btn").on("click",function(){
+//     $('input[name="paid_by_id"]').val(2);
+//     $('input[name="paid_amount"]').val($("#grand-total").text());
+//     $('input[name="paying_amount"]').val($("#grand-total").text());
+//     giftCard();
+// });
 
-$("#gift-card-btn").on("click",function(){
-    $('input[name="paid_by_id"]').val(2);
-    $('input[name="paid_amount"]').val($("#grand-total").text());
-    $('input[name="paying_amount"]').val($("#grand-total").text());
-    giftCard();
-});
+// $("#credit-card-btn").on("click",function(){
+//     $('input[name="paid_by_id"]').val(3);
+//     $('input[name="paid_amount"]').val($("#grand-total").text());
+//     $('input[name="paying_amount"]').val($("#grand-total").text());
+//     creditCard();
+// });
 
-$("#credit-card-btn").on("click",function(){
-    $('input[name="paid_by_id"]').val(3);
-    $('input[name="paid_amount"]').val($("#grand-total").text());
-    $('input[name="paying_amount"]').val($("#grand-total").text());
-    creditCard();
-});
-
-$("#cheque-btn").on("click",function(){
-    $('input[name="paid_by_id"]').val(4);
-    $('input[name="paid_amount"]').val($("#grand-total").text());
-    $('input[name="paying_amount"]').val($("#grand-total").text());
-    cheque();
-});
+// $("#cheque-btn").on("click",function(){
+//     $('input[name="paid_by_id"]').val(4);
+//     $('input[name="paid_amount"]').val($("#grand-total").text());
+//     $('input[name="paying_amount"]').val($("#grand-total").text());
+//     cheque();
+// });
 
 $("#cash-btn").on("click",function(){
     $('input[name="paid_by_id"]').val(1);
@@ -2162,20 +2163,20 @@ $("#cash-btn").on("click",function(){
     hide();
 });
 
-$("#paypal-btn").on("click",function(){
-    $('input[name="paid_by_id"]').val(5);
-    $('input[name="paid_amount"]').val($("#grand-total").text());
-    $('input[name="paying_amount"]').val($("#grand-total").text());
-    hide();
-});
+// $("#paypal-btn").on("click",function(){
+//     $('input[name="paid_by_id"]').val(5);
+//     $('input[name="paid_amount"]').val($("#grand-total").text());
+//     $('input[name="paying_amount"]').val($("#grand-total").text());
+//     hide();
+// });
 
-$("#deposit-btn").on("click",function(){
-    $('input[name="paid_by_id"]').val(6);
-    $('input[name="paid_amount"]').val($("#grand-total").text());
-    $('input[name="paying_amount"]').val($("#grand-total").text());
-    hide();
-    deposits();
-});
+// $("#deposit-btn").on("click",function(){
+//     $('input[name="paid_by_id"]').val(6);
+//     $('input[name="paid_amount"]').val($("#grand-total").text());
+//     $('input[name="paying_amount"]').val($("#grand-total").text());
+//     hide();
+//     deposits();
+// });
 
 $('.payment-option').on("change", function() {
     var id = $(this).val();

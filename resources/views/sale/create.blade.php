@@ -194,11 +194,11 @@
                                                 <label>{{trans('file.Paid By')}}</label>
                                                 <select name="paid_by_id" class="form-control">
                                                     <option value="1">Cash</option>
-                                                    <option value="2">Gift Card</option>
-                                                    <option value="3">Credit Card</option>
-                                                    <option value="4">Cheque</option>
-                                                    <option value="5">Paypal</option>
-                                                    <option value="6">Deposit</option>
+{{--                                                    <option value="2">Gift Card</option>--}}
+{{--                                                    <option value="3">Credit Card</option>--}}
+{{--                                                    <option value="4">Cheque</option>--}}
+{{--                                                    <option value="5">Paypal</option>--}}
+{{--                                                    <option value="6">Deposit</option>--}}
                                                 </select>
                                             </div>
                                         </div>

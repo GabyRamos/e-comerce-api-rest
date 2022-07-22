@@ -1,10 +1,10 @@
 @extends('layout.main') @section('content')
 
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 
 <section>
@@ -77,30 +77,30 @@
                                   <td>{{trans('file.Cash Payment')}}:</td>
                                   <td id="cash_payment" class="text-right"></td>
                                 </tr>
-                                <tr>
-                                  <td>{{trans('file.Credit Card Payment')}}:</td>
-                                  <td id="credit_card_payment" class="text-right"></td>
-                                </tr>
-                                <tr>
-                                  <td>{{trans('file.Cheque Payment')}}:</td>
-                                  <td id="cheque_payment" class="text-right"></td>
-                                </tr>
-                                <tr>
-                                  <td>{{trans('file.Gift Card Payment')}}:</td>
-                                  <td id="gift_card_payment" class="text-right"></td>
-                                </tr>
-                                <tr>
-                                  <td>{{trans('file.Paypal Payment')}}:</td>
-                                  <td id="paypal_payment" class="text-right"></td>
-                                </tr>
-                                <tr>
-                                  <td>{{trans('file.Total Sale Return')}}:</td>
-                                  <td id="total_sale_return" class="text-right"></td>
-                                </tr>
-                                <tr>
-                                  <td>{{trans('file.Total Expense')}}:</td>
-                                  <td id="total_expense" class="text-right"></td>
-                                </tr>
+{{--                                <tr>--}}
+{{--                                  <td>{{trans('file.Credit Card Payment')}}:</td>--}}
+{{--                                  <td id="credit_card_payment" class="text-right"></td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                  <td>{{trans('file.Cheque Payment')}}:</td>--}}
+{{--                                  <td id="cheque_payment" class="text-right"></td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                  <td>{{trans('file.Gift Card Payment')}}:</td>--}}
+{{--                                  <td id="gift_card_payment" class="text-right"></td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                  <td>{{trans('file.Paypal Payment')}}:</td>--}}
+{{--                                  <td id="paypal_payment" class="text-right"></td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                  <td>{{trans('file.Total Sale Return')}}:</td>--}}
+{{--                                  <td id="total_sale_return" class="text-right"></td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                  <td>{{trans('file.Total Expense')}}:</td>--}}
+{{--                                  <td id="total_expense" class="text-right"></td>--}}
+{{--                                </tr>dropdown-item-inner --}}
                                 <tr>
                                   <td><strong>{{trans('file.Total Cash')}}:</strong></td>
                                   <td id="total_cash" class="text-right"></td>
@@ -146,7 +146,7 @@
               $('#register-details-modal #total_sale_amount').text(data['total_sale_amount']);
               $('#register-details-modal #total_payment').text(data['total_payment']);
               $('#register-details-modal #cash_payment').text(data['cash_payment']);
-              $('#register-details-modal #credit_card_payment').text(data['credit_card_payment']);
+              // $('#register-details-modal #credit_card_payment').text(data['credit_card_payment']);
               $('#register-details-modal #cheque_payment').text(data['cheque_payment']);
               $('#register-details-modal #gift_card_payment').text(data['gift_card_payment']);
               $('#register-details-modal #paypal_payment').text(data['paypal_payment']);
