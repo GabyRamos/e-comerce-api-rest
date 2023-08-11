@@ -75,9 +75,9 @@
                                     <label>{{trans('file.add_product')}}</label>
                                     <div class="search-box input-group mb-3">
                                         <button class="btn btn-secondary"><i class="fa fa-barcode"></i></button>
-                                        <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                        <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                     </div>
-                                    <label>{{trans('file.Combo Products')}}</label>
+                                    <label>{{trans('Productos combinados')}}</label>
                                     <div class="table-responsive">
                                         <table id="myTable" class="table table-hover order-list">
                                             <thead>
@@ -115,7 +115,7 @@
                                         <label>{{trans('file.Brand')}}</strong> </label>
                                         <div class="input-group">
                                             <input type="hidden" name="brand" value="{{ $lims_product_data->brand_id}}">
-                                          <select name="brand_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Brand...">
+                                          <select name="brand_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar marca...">
                                             @foreach($lims_brand_list as $brand)
                                                 <option value="{{$brand->id}}">{{$brand->title}}</option>
                                             @endforeach
@@ -247,7 +247,7 @@
                                                 <?php $images = explode(",", $lims_product_data->image)?>
                                                 @foreach($images as $key => $image)
                                                 <tr>
-                                                    <td><button type="button" class="btn btn-sm"><i class="fa fa-trash"></i></button></i></td>
+                                                    <td><button type="button" class="btn btn-sm"></button></td>
                                                     <td>
                                                         <img src="{{url('images/product', $image)}}" height="60" width="60">
                                                         <input type="hidden" name="prev_img[]" value="{{$image}}">
@@ -677,7 +677,7 @@
     jQuery.validator.setDefaults({
         errorPlacement: function (error, element) {
             if(error.html() == 'Select Category...')
-                error.html('This field is required.');
+                error.html('Este campo es requerido.');
             $(element).closest('div.form-group').find('.validation-msg').html(error.html());
         },
         highlight: function (element) {

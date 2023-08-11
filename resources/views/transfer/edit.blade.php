@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -34,12 +34,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">  
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{trans('file.From Warehouse')}} *</label>
                                             <input type="hidden" name="from_warehouse_id_hidden" value="{{ $lims_transfer_data->from_warehouse_id }}" />
-                                            <select required name="from_warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required name="from_warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -50,7 +50,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.To Warehouse')}} *</label>
                                             <input type="hidden" name="to_warehouse_id_hidden" value="{{ $lims_transfer_data->to_warehouse_id }}" />
-                                            <select required name="to_warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required name="to_warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -63,13 +63,13 @@
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button type="button" class="btn btn-secondary btn-lg"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-md-12">
-                                        
+
                                         <h5>{{trans('file.Order Table')}} *</h5>
                                         <div class="table-responsive mt-3">
                                             <table id="myTable" class="table table-hover order-list">
@@ -85,14 +85,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php 
+                                                    <?php
                                                     $temp_unit_name = [];
                                                     $temp_unit_operator = [];
                                                     $temp_unit_operation_value = [];
                                                     ?>
                                                     @foreach($lims_product_transfer_data as $product_transfer)
                                                     <tr>
-                                                    <?php 
+                                                    <?php
                                                         $product_data = DB::table('products')->find($product_transfer->product_id);
 
                                                         if($product_transfer->variant_id) {
@@ -128,9 +128,9 @@
                                                             $product_cost = $product_transfer->net_unit_cost / $unit_operation_value[0];
                                                         }
                                                         else{
-                                                           $product_cost = ($product_transfer->total / $product_transfer->qty) / $unit_operation_value[0]; 
+                                                           $product_cost = ($product_transfer->total / $product_transfer->qty) / $unit_operation_value[0];
                                                         }
-                                                        
+
 
                                                         $temp_unit_name = $unit_name = implode(",",$unit_name) . ',';
 
@@ -218,7 +218,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Attach Document')}}</label>
-                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i> 
+                                            <i class="dripicons-question" data-toggle="tooltip" title="Solo soporta archivos jpg, jpeg, png, gif, pdf, csv, docx, xlsx y txt"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -291,7 +291,7 @@
             </div>
         </div>
     </div>
-    
+
 </section>
 <script type="text/javascript">
     $("ul#transfer").siblings('a').attr('aria-expanded','true');
@@ -529,7 +529,7 @@ function productSearch(data){
                 unit_operation_value.push(data[8]);
                 rowindex = newRow.index();
                 checkQuantity(1, true);
-            }  
+            }
         }
     });
 }
@@ -711,7 +711,7 @@ $('#transfer-form').on('submit',function(e){
     $('select[name="from_warehouse_id"]').prop('disabled', false);
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
         e.preventDefault();
         $('select[name="from_warehouse_id"]').prop('disabled', true);
     }

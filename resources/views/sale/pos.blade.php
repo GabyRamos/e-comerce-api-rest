@@ -129,7 +129,7 @@
                 ])->first();
               ?>
               @if($add_permission_active)
-              <li><a href="{{route('sale.pos')}}">POS</a></li>
+              <li><a href="{{route('sale.pos')}}">PDV</a></li>
               <li id="sale-create-menu"><a href="{{route('sales.create')}}">{{trans('file.Add Sale')}}</a></li>
 {{--              <li id="sale-import-menu"><a href="{{url('sales/sale_by_csv')}}">{{trans('file.Import Sale By CSV')}}</a></li>--}}
               @endif
@@ -525,14 +525,14 @@
               </li>
               @endif
               @if($daily_sale_active)
-              <li id="daily-sale-report-menu">
-                <a href="{{url('report/daily_sale/'.date('Y').'/'.date('m'))}}">{{trans('file.Daily Sale')}}</a>
-              </li>
+{{--              <li id="daily-sale-report-menu">--}}
+{{--                <a href="{{url('report/daily_sale/'.date('Y').'/'.date('m'))}}">{{trans('file.Daily Sale')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($monthly_sale_active)
-              <li id="monthly-sale-report-menu">
-                <a href="{{url('report/monthly_sale/'.date('Y'))}}">{{trans('file.Monthly Sale')}}</a>
-              </li>
+{{--              <li id="monthly-sale-report-menu">--}}
+{{--                <a href="{{url('report/monthly_sale/'.date('Y'))}}">{{trans('file.Monthly Sale')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($daily_purchase_active)
 {{--              <li id="daily-purchase-report-menu">--}}
@@ -540,9 +540,9 @@
 {{--              </li>--}}
               @endif
               @if($monthly_purchase_active)
-              <li id="monthly-purchase-report-menu">
-                <a href="{{url('report/monthly_purchase/'.date('Y'))}}">{{trans('file.Monthly Purchase')}}</a>
-              </li>
+{{--              <li id="monthly-purchase-report-menu">--}}
+{{--                <a href="{{url('report/monthly_purchase/'.date('Y'))}}">{{trans('file.Monthly Purchase')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($sale_report_active)
               <li id="sale-report-menu">
@@ -579,14 +579,14 @@
               </li>
               @endif
               @if($warehouse_stock_report_active)
-              <li id="warehouse-stock-report-menu">
-                <a href="{{route('report.warehouseStock')}}">{{trans('file.Warehouse Stock Chart')}}</a>
-              </li>
+{{--              <li id="warehouse-stock-report-menu">--}}
+{{--                <a href="{{route('report.warehouseStock')}}">{{trans('file.Warehouse Stock Chart')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($product_qty_alert_active)
-              <li id="qtyAlert-report-menu">
-                <a href="{{route('report.qtyAlert')}}">{{trans('file.Product Quantity Alert')}}</a>
-              </li>
+{{--              <li id="qtyAlert-report-menu">--}}
+{{--                <a href="{{route('report.qtyAlert')}}">{{trans('file.Product Quantity Alert')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($user_report_active)
 {{--              <li id="user-report-menu">--}}
@@ -707,7 +707,7 @@
 {{--              <li id="create-sms-menu"><a href="{{route('setting.createSms')}}">{{trans('file.Create SMS')}}</a></li>--}}
               @endif
               @if($general_setting_permission_active)
-              <li id="general-setting-menu"><a href="{{route('setting.general')}}">{{trans('file.General Setting')}}</a></li>
+{{--              <li id="general-setting-menu"><a href="{{route('setting.general')}}">{{trans('file.General Setting')}}</a></li>--}}
               @endif
               @if($mail_setting_permission_active)
 {{--              <li id="mail-setting-menu"><a href="{{route('setting.mail')}}">{{trans('file.Mail Setting')}}</a></li>--}}
@@ -716,7 +716,7 @@
 {{--              <li id="sms-setting-menu"><a href="{{route('setting.sms')}}">{{trans('file.SMS Setting')}}</a></li>--}}
               @endif
               @if($pos_setting_permission_active)
-              <li id="pos-setting-menu"><a href="{{route('setting.pos')}}">POS {{trans('file.settings')}}</a></li>
+{{--              <li id="pos-setting-menu"><a href="{{route('setting.pos')}}">POS {{trans('file.settings')}}</a></li>--}}
               @endif
               @if($hrm_setting_permission_active)
 {{--              <li id="hrm-setting-menu"><a href="{{route('setting.hrm')}}"> {{trans('file.HRM Setting')}}</a></li>--}}
@@ -760,7 +760,7 @@
                                             @if($lims_pos_setting_data)
                                             <input type="hidden" name="warehouse_id_hidden" value="{{$lims_pos_setting_data->warehouse_id}}">
                                             @endif
-                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -786,7 +786,7 @@
                                             @endif
                                             <div class="input-group pos">
                                                 @if($customer_active)
-                                                <select required name="customer_id" id="customer_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select customer..." style="width: 100px">
+                                                <select required name="customer_id" id="customer_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar cliente..." style="width: 100px">
                                                 <?php $deposit = [] ?>
                                                 @foreach($lims_customer_list as $customer)
                                                     @php $deposit[$customer->id] = $customer->deposit - $customer->expense; @endphp
@@ -796,7 +796,7 @@
                                                 <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addCustomer"><i class="dripicons-plus"></i></button>
                                                 @else
                                                 <?php $deposit = [] ?>
-                                                <select required name="customer_id" id="customer_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select customer...">
+                                                <select required name="customer_id" id="customer_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar cliente...">
                                                 @foreach($lims_customer_list as $customer)
                                                     @php $deposit[$customer->id] = $customer->deposit - $customer->expense; @endphp
                                                     <option value="{{$customer->id}}">{{$customer->name . ' (' . $customer->phone_number . ')'}}</option>
@@ -808,7 +808,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="search-box form-group">
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Scan/Search product by name/code" class="form-control"  />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Buscar por código o nombre del producto" class="form-control"  />
                                         </div>
                                     </div>
                                 </div>
@@ -880,15 +880,15 @@
                                         <div class="col-sm-4">
                                             <span class="totals-title">{{trans('file.Discount')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#order-discount"> <i class="dripicons-document-edit"></i></button></span><span id="discount">0.00</span>
                                         </div>
-                                        <div class="col-sm-4">
-                                            <span class="totals-title">{{trans('file.Coupon')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#coupon-modal"><i class="dripicons-document-edit"></i></button></span><span id="coupon-text">0.00</span>
-                                        </div>
+{{--                                        <div class="col-sm-4">--}}
+{{--                                            <span class="totals-title">{{trans('file.Coupon')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#coupon-modal"><i class="dripicons-document-edit"></i></button></span><span id="coupon-text">0.00</span>--}}
+{{--                                        </div>--}}
                                         <div class="col-sm-4">
                                             <span class="totals-title">{{trans('file.Tax')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#order-tax"><i class="dripicons-document-edit"></i></button></span><span id="tax">0.00</span>
                                         </div>
-                                        <div class="col-sm-4">
-                                            <span class="totals-title">{{trans('file.Shipping')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#shipping-cost-modal"><i class="dripicons-document-edit"></i></button></span><span id="shipping-cost">0.00</span>
-                                        </div>
+{{--                                        <div class="col-sm-4">--}}
+{{--                                            <span class="totals-title">{{trans('file.Shipping')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#shipping-cost-modal"><i class="dripicons-document-edit"></i></button></span><span id="shipping-cost">0.00</span>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -908,14 +908,14 @@
                         <div class="column-5">
                         </div>
                         <div class="column-5">
-                            <button style="background: #00cec9" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cash-btn"><i class="fa fa-money"></i> Cash</button>
+                            <button style="background: #00cec9" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cash-btn"><i class="fa fa-money"></i> Efectivo</button>
                         </div>
 {{--                        <div class="column-5">--}}
 {{--                            <button style="background-color: #213170" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="paypal-btn"><i class="fa fa-paypal"></i> Paypal</button>--}}
 {{--                        </div>--}}
-{{--                        <div class="column-5">--}}
-{{--                            <button style="background-color: #e28d02" type="button" class="btn btn-custom" id="draft-btn"><i class="dripicons-flag"></i> Draft</button>--}}
-{{--                        </div>--}}
+                        <div class="column-5">
+                            <button style="background-color: #e28d02" type="button" class="btn btn-custom" id="draft-btn"><i class="dripicons-flag"></i>Borrador</button>
+                        </div>
 {{--                        <div class="column-5">--}}
 {{--                            <button style="background-color: #fd7272" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cheque-btn"><i class="fa fa-money"></i> Cheque</button>--}}
 {{--                        </div>--}}
@@ -926,10 +926,10 @@
 {{--                            <button style="background-color: #b33771" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="deposit-btn"><i class="fa fa-university"></i> Deposit</button>--}}
 {{--                        </div>--}}
                         <div class="column-5">
-                            <button style="background-color: #d63031;" type="button" class="btn btn-custom" id="cancel-btn" onclick="return confirmCancel()"><i class="fa fa-close"></i> Cancel</button>
+                            <button style="background-color: #d63031;" type="button" class="btn btn-custom" id="cancel-btn" onclick="return confirmCancel()"><i class="fa fa-close"></i> Cancelar</button>
                         </div>
                         <div class="column-5">
-                            <button style="background-color: #ffc107;" type="button" class="btn btn-custom" data-toggle="modal" data-target="#recentTransaction"><i class="dripicons-clock"></i> Recent transaction</button>
+                            <button style="background-color: #ffc107;" type="button" class="btn btn-custom" data-toggle="modal" data-target="#recentTransaction"><i class="dripicons-clock"></i> Transacciones recientes</button>
                         </div>
                     </div>
                 </div>
@@ -1182,9 +1182,9 @@
                                         <a href="{{route('user.profile', ['id' => Auth::id()])}}"><i class="dripicons-user"></i> {{trans('file.profile')}}</a>
                                       </li>
                                       @if($general_setting_permission_active)
-                                      <li>
-                                        <a href="{{route('setting.general')}}"><i class="dripicons-gear"></i> {{trans('file.settings')}}</a>
-                                      </li>
+{{--                                      <li>--}}
+{{--                                        <a href="{{route('setting.general')}}"><i class="dripicons-gear"></i> {{trans('file.settings')}}</a>--}}
+{{--                                      </li>--}}
                                       @endif
 {{--                                      <li>--}}
 {{--                                        <a href="{{url('my-transactions/'.date('Y').'/'.date('m'))}}"><i class="dripicons-swap"></i> {{trans('file.My Transaction')}}</a>--}}
@@ -1212,7 +1212,7 @@
                 <div class="filter-window">
                     <div class="category mt-3">
                         <div class="row ml-2 mr-2 px-2">
-                            <div class="col-7">Choose category</div>
+                            <div class="col-7">Elegir la categoría</div>
                             <div class="col-5 text-right">
                                 <span class="btn btn-default btn-sm">
                                     <i class="dripicons-cross"></i>
@@ -1234,7 +1234,7 @@
                     </div>
                     <div class="brand mt-3">
                         <div class="row ml-2 mr-2 px-2">
-                            <div class="col-7">Choose brand</div>
+                            <div class="col-7">Elegir marca</div>
                             <div class="col-5 text-right">
                                 <span class="btn btn-default btn-sm">
                                     <i class="dripicons-cross"></i>
@@ -1535,7 +1535,7 @@
                         <div class="row">
                           <div class="col-md-6 form-group warehouse-section">
                               <label>{{trans('file.Warehouse')}} *</strong> </label>
-                              <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                              <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                   @foreach($lims_warehouse_list as $warehouse)
                                   <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                   @endforeach
@@ -2252,7 +2252,7 @@ $(document).on('click', '.product-img', function() {
         data = data.split(" ");
         pos = product_code.indexOf(data[0]);
         if(pos < 0)
-            alert('Product is not avaialable in the selected warehouse');
+            alert('El producto no está disponible en el almacén seleccionado');
         else{
             productSearch(data[0]);
         }
@@ -2288,14 +2288,14 @@ $('button[name="update_btn"]').on("click", function() {
     var edit_unit_price = $('input[name="edit_unit_price"]').val();
 
     if (parseFloat(edit_discount) > parseFloat(edit_unit_price)) {
-        alert('Invalid Discount Input!');
+        alert('¡Entrada de descuento no válida!');
         return;
     }
 
     if(edit_qty < 1) {
         $('input[name="edit_qty"]').val(1);
         edit_qty = 1;
-        alert("Quantity can't be less than 1");
+        alert("La cantidad no puede ser inferior a 1");
     }
 
     var tax_rate_all = <?php echo json_encode($tax_rate_all) ?>;
@@ -2363,7 +2363,7 @@ $("#draft-btn").on("click",function(){
     $('input[name="paid_amount"]').prop('required',false);
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Seleccione un producto")
     }
     else
         $('.payment-form').submit();
@@ -2450,7 +2450,7 @@ $('#add-payment input[name="paying_amount"]').on("input", function() {
 
 $('input[name="paid_amount"]').on("input", function() {
     if( $(this).val() > parseFloat($('input[name="paying_amount"]').val()) ) {
-        alert('Paying amount cannot be bigger than recieved amount');
+        alert('El monto recibido no puede ser menor que el monto a pagar');
         $(this).val('');
     }
     else if( $(this).val() > parseFloat($('#grand-total').text()) ){
@@ -2511,7 +2511,7 @@ function change(paying_amount, paid_amount) {
 }
 
 function confirmDelete() {
-    if (confirm("Are you sure want to delete?")) {
+    if (confirm("¿Estás seguro de eliminar?")) {
         return true;
     }
     return false;
@@ -2626,7 +2626,7 @@ function edit(){
 function couponDiscount() {
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
     }
     else if($("#coupon-code").val() != ''){
         valid = 0;
@@ -2650,7 +2650,7 @@ function couponDiscount() {
                         $("#coupon-modal").modal('hide');
                         $('input[name="coupon_id"]').val(value['id']);
                         $('input[name="coupon_discount"]').val(value['amount']);
-                        $('#coupon-text').text(parseFloat(value['amount']).toFixed(2));
+                        // $('#coupon-text').coupon-texttext(parseFloat(value['amount']).toFixed(2));
                     }
                     else
                         alert('Grand Total is not sufficient for discount! Required '+value['minimum_amount']+' '+currency);
@@ -2669,7 +2669,7 @@ function couponDiscount() {
                     $("#coupon-modal").modal('hide');
                     $('input[name="coupon_id"]').val(value['id']);
                     $('input[name="coupon_discount"]').val(coupon_discount);
-                    $('#coupon-text').text(parseFloat(coupon_discount).toFixed(2));
+                    // $('#coupon-text').text(parseFloat(coupon_discount).toFixed(2));
                 }
             }
         });
@@ -2931,7 +2931,7 @@ function cancel(rownumber) {
 function confirmCancel() {
     var audio = $("#mysoundclip2")[0];
     audio.play();
-    if (confirm("Are you sure want to cancel?")) {
+    if (confirm("¿Seguro que quieres cancelar?")) {
         cancel($('table.order-list tbody tr:last').index());
     }
     return false;
@@ -2940,11 +2940,11 @@ function confirmCancel() {
 $(document).on('submit', '.payment-form', function(e) {
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
         e.preventDefault();
     }
     else if( parseFloat( $('input[name="paying_amount"]').val() ) < parseFloat( $('input[name="paid_amount"]').val() ) ){
-        alert('Paying amount cannot be bigger than recieved amount');
+        alert('El monto recibido no puede ser menor que el monto a pagar');
         e.preventDefault();
     }
     $('input[name="paid_by_id"]').val($('select[name="paid_by_id_select"]').val());

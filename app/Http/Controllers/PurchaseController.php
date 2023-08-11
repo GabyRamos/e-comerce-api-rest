@@ -411,7 +411,7 @@ class PurchaseController extends Controller
             ProductPurchase::create($product_purchase);
         }
 
-        return redirect('purchases')->with('message', 'Purchase created successfully');
+        return redirect('purchases')->with('message', 'Compra creada con éxito');
     }
 
     public function productPurchaseData($id)
@@ -456,7 +456,7 @@ class PurchaseController extends Controller
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         //checking if this is a CSV file
         if($ext != 'csv')
-            return redirect()->back()->with('message', 'Please upload a CSV file');
+            return redirect()->back()->with('message', 'Necesitas cargar un archivo CSV');
 
         $filePath=$upload->getRealPath();
         $file_handle = fopen($filePath, 'r');
@@ -732,7 +732,7 @@ class PurchaseController extends Controller
         }
 
         $lims_purchase_data->update($data);
-        return redirect('purchases')->with('message', 'Purchase updated successfully');
+        return redirect('purchases')->with('message', 'Compra actualizada con éxito');
     }
 
     public function addPayment(Request $request)
@@ -789,7 +789,7 @@ class PurchaseController extends Controller
         elseif ($paying_method == 'Cheque') {
             PaymentWithCheque::create($data);
         }
-        return redirect('purchases')->with('message', 'Payment created successfully');
+        return redirect('purchases')->with('message', 'Pago creado con éxito');
     }
 
     public function getPayment($id)
@@ -913,7 +913,7 @@ class PurchaseController extends Controller
             }
         }
         $lims_payment_data->save();
-        return redirect('purchases')->with('message', 'Payment updated successfully');
+        return redirect('purchases')->with('message', 'Pago actualizado con éxito');
     }
 
     public function deletePayment(Request $request)
@@ -943,7 +943,7 @@ class PurchaseController extends Controller
             $lims_payment_cheque_data->delete();
         }
         $lims_payment_data->delete();
-        return redirect('purchases')->with('not_permitted', 'Payment deleted successfully');
+        return redirect('purchases')->with('not_permitted', 'Pago eliminado con éxito');
     }
 
     public function deleteBySelection(Request $request)
@@ -1000,7 +1000,7 @@ class PurchaseController extends Controller
 
             $lims_purchase_data->delete();
         }
-        return 'Purchase deleted successfully!';
+        return 'Compra eliminada con éxito';
     }
 
     public function destroy($id)
@@ -1056,7 +1056,7 @@ class PurchaseController extends Controller
             }
 
             $lims_purchase_data->delete();
-            return redirect('purchases')->with('not_permitted', 'Purchase deleted successfully');;
+            return redirect('purchases')->with('not_permitted', 'Compra eliminada con éxito');;
         }
 
     }

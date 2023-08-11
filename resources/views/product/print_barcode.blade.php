@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <style>
     /*.barcodelist {
@@ -26,7 +26,7 @@
         }
         .barcodelist img {
             max-width: 150px;
-        } 
+        }
     }
 
 </style>
@@ -46,9 +46,9 @@
                                     <div class="col-md-6">
                                         <label>{{trans('file.add_product')}} *</label>
                                         <div class="search-box input-group">
-                                            
+
                                             <button type="button" class="btn btn-secondary btn-lg"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>

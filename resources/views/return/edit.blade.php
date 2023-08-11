@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -26,7 +26,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.customer')}} *</label>
                                             <input type="hidden" name="customer_id_hidden" value="{{ $lims_return_data->customer_id }}" />
-                                            <select required name="customer_id" class="selectpicker form-control" data-live-search="true" id="customer-id" data-live-search-style="begins" title="Select customer...">
+                                            <select required name="customer_id" class="selectpicker form-control" data-live-search="true" id="customer-id" data-live-search-style="begins" title="Seleccionar cliente...">
                                                 @foreach($lims_customer_list as $customer)
                                                 <option value="{{$customer->id}}">{{$customer->name . ' (' . $customer->phone_number . ')'}}</option>
                                                 @endforeach
@@ -39,7 +39,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
                                             <input type="hidden" name="warehouse_id_hidden" value="{{$lims_return_data->warehouse_id}}" />
-                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -50,7 +50,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Biller')}} *</label>
                                             <input type="hidden" name="biller_id_hidden" value="{{$lims_return_data->biller_id}}" />
-                                            <select required name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Biller...">
+                                            <select required name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccione Facturador...">
                                                 @foreach($lims_biller_list as $biller)
                                                 <option value="{{$biller->id}}">{{$biller->name . ' (' . $biller->company_name . ')'}}</option>
                                                 @endforeach
@@ -63,7 +63,7 @@
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button type="button" class="btn btn-secondary btn-lg"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -85,14 +85,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php 
+                                                    <?php
                                                     $temp_unit_name = [];
                                                     $temp_unit_operator = [];
                                                     $temp_unit_operation_value = [];
                                                     ?>
                                                     @foreach($lims_product_return_data as $product_return)
                                                     <tr>
-                                                    <?php 
+                                                    <?php
                                                         $product_data = DB::table('products')->find($product_return->product_id);
                                                         if($product_return->variant_id) {
                                                             $product_variant_data = \App\ProductVariant::select('id', 'item_code')->FindExactProduct($product_data->id, $product_return->variant_id)->first();
@@ -133,16 +133,16 @@
                                                             elseif($unit_operator[0] == '/'){
                                                                 $product_price = $product_price * $unit_operation_value[0];
                                                             }
-                                                            
+
                                                         }
                                                         else {
                                                             $unit_name[] = 'n/a'. ',';
                                                             $unit_operator[] = 'n/a'. ',';
-                                                            $unit_operation_value[] = 'n/a'. ',';       
+                                                            $unit_operation_value[] = 'n/a'. ',';
                                                         }
                                                         $temp_unit_name = $unit_name = implode(",",$unit_name) . ',';
                                                         $temp_unit_operator = $unit_operator = implode(",",$unit_operator) .',';
-                                                        $temp_unit_operation_value = $unit_operation_value =  implode(",",$unit_operation_value) . ',';  
+                                                        $temp_unit_operation_value = $unit_operation_value =  implode(",",$unit_operation_value) . ',';
                                                     ?>
                                                         <td>{{$product_data->name}} <button type="button" class="edit-product btn btn-link" data-toggle="modal" data-target="#editModal"> <i class="dripicons-document-edit"></i></button> </td>
                                                         <td>{{$product_data->code}}</td>
@@ -235,7 +235,7 @@
                                 	<div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Attach Document')}}</label>
-                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i> 
+                                            <i class="dripicons-question" data-toggle="tooltip" title="Solo soporta archivos jpg, jpeg, png, gif, pdf, csv, docx, xlsx y txt"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -348,7 +348,7 @@
                 <div class="row">
                   <div class="col-md-6 form-group warehouse-section">
                       <label>{{trans('file.Warehouse')}} *</strong> </label>
-                      <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                      <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                           @foreach($lims_warehouse_list as $warehouse)
                           <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                           @endforeach
@@ -833,7 +833,7 @@ $(window).keydown(function(e){
 $('#payment-form').on('submit',function(e){
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
         e.preventDefault();
     }
 });

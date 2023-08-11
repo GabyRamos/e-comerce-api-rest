@@ -101,70 +101,70 @@ class SaleController extends Controller
         if(empty($request->input('search.value'))){
             if(Auth::user()->role_id > 2 && config('staff_access') == 'own')
                 $sales = Sale::with('biller', 'customer', 'warehouse', 'user')->offset($start)
-                            ->where('user_id', Auth::id())
-                            ->limit($limit)
-                            ->orderBy($order, $dir)
-                            ->get();
+                    ->where('user_id', Auth::id())
+                    ->limit($limit)
+                    ->orderBy($order, $dir)
+                    ->get();
             else
                 $sales = Sale::with('biller', 'customer', 'warehouse', 'user')->offset($start)
-                            ->limit($limit)
-                            ->orderBy($order, $dir)
-                            ->get();
+                    ->limit($limit)
+                    ->orderBy($order, $dir)
+                    ->get();
         }
         else
         {
             $search = $request->input('search.value');
             if(Auth::user()->role_id > 2 && config('staff_access') == 'own') {
                 $sales =  Sale::select('sales.*')
-                            ->with('biller', 'customer', 'warehouse', 'user')
-                            ->join('customers', 'sales.customer_id', '=', 'customers.id')
-                            ->whereDate('sales.created_at', '=' , date('Y-m-d', strtotime(str_replace('/', '-', $search))))
-                            ->where('sales.user_id', Auth::id())
-                            ->orwhere([
-                                ['sales.reference_no', 'LIKE', "%{$search}%"],
-                                ['sales.user_id', Auth::id()]
-                            ])
-                            ->orwhere([
-                                ['customers.name', 'LIKE', "%{$search}%"],
-                                ['sales.user_id', Auth::id()]
-                            ])
-                            ->offset($start)
-                            ->limit($limit)
-                            ->orderBy($order,$dir)->get();
+                    ->with('biller', 'customer', 'warehouse', 'user')
+                    ->join('customers', 'sales.customer_id', '=', 'customers.id')
+                    ->whereDate('sales.created_at', '=' , date('Y-m-d', strtotime(str_replace('/', '-', $search))))
+                    ->where('sales.user_id', Auth::id())
+                    ->orwhere([
+                        ['sales.reference_no', 'LIKE', "%{$search}%"],
+                        ['sales.user_id', Auth::id()]
+                    ])
+                    ->orwhere([
+                        ['customers.name', 'LIKE', "%{$search}%"],
+                        ['sales.user_id', Auth::id()]
+                    ])
+                    ->offset($start)
+                    ->limit($limit)
+                    ->orderBy($order,$dir)->get();
 
                 $totalFiltered = Sale::
-                            join('customers', 'sales.customer_id', '=', 'customers.id')
-                            ->whereDate('sales.created_at', '=' , date('Y-m-d', strtotime(str_replace('/', '-', $search))))
-                            ->where('sales.user_id', Auth::id())
-                            ->orwhere([
-                                ['sales.reference_no', 'LIKE', "%{$search}%"],
-                                ['sales.user_id', Auth::id()]
-                            ])
-                            ->orwhere([
-                                ['customers.name', 'LIKE', "%{$search}%"],
-                                ['sales.user_id', Auth::id()]
-                            ])
-                            ->count();
+                join('customers', 'sales.customer_id', '=', 'customers.id')
+                    ->whereDate('sales.created_at', '=' , date('Y-m-d', strtotime(str_replace('/', '-', $search))))
+                    ->where('sales.user_id', Auth::id())
+                    ->orwhere([
+                        ['sales.reference_no', 'LIKE', "%{$search}%"],
+                        ['sales.user_id', Auth::id()]
+                    ])
+                    ->orwhere([
+                        ['customers.name', 'LIKE', "%{$search}%"],
+                        ['sales.user_id', Auth::id()]
+                    ])
+                    ->count();
             }
             else {
                 $sales =  Sale::select('sales.*')
-                            ->with('biller', 'customer', 'warehouse', 'user')
-                            ->join('customers', 'sales.customer_id', '=', 'customers.id')
-                            ->whereDate('sales.created_at', '=' , date('Y-m-d', strtotime(str_replace('/', '-', $search))))
-                            ->where('sales.user_id', Auth::id())
-                            ->orwhere('sales.reference_no', 'LIKE', "%{$search}%")
-                            ->orwhere('customers.name', 'LIKE', "%{$search}%")
-                            ->offset($start)
-                            ->limit($limit)
-                            ->orderBy($order,$dir)->get();
+                    ->with('biller', 'customer', 'warehouse', 'user')
+                    ->join('customers', 'sales.customer_id', '=', 'customers.id')
+                    ->whereDate('sales.created_at', '=' , date('Y-m-d', strtotime(str_replace('/', '-', $search))))
+                    ->where('sales.user_id', Auth::id())
+                    ->orwhere('sales.reference_no', 'LIKE', "%{$search}%")
+                    ->orwhere('customers.name', 'LIKE', "%{$search}%")
+                    ->offset($start)
+                    ->limit($limit)
+                    ->orderBy($order,$dir)->get();
 
                 $totalFiltered = Sale::
-                            join('customers', 'sales.customer_id', '=', 'customers.id')
-                            ->whereDate('sales.created_at', '=' , date('Y-m-d', strtotime(str_replace('/', '-', $search))))
-                            ->where('sales.user_id', Auth::id())
-                            ->orwhere('sales.reference_no', 'LIKE', "%{$search}%")
-                            ->orwhere('customers.name', 'LIKE', "%{$search}%")
-                            ->count();
+                join('customers', 'sales.customer_id', '=', 'customers.id')
+                    ->whereDate('sales.created_at', '=' , date('Y-m-d', strtotime(str_replace('/', '-', $search))))
+                    ->where('sales.user_id', Auth::id())
+                    ->orwhere('sales.reference_no', 'LIKE', "%{$search}%")
+                    ->orwhere('customers.name', 'LIKE', "%{$search}%")
+                    ->count();
             }
         }
         $data = array();
@@ -230,9 +230,6 @@ class SaleController extends Controller
                     </li>
                     <li>
                         <button type="button" class="get-payment btn btn-link" data-id = "'.$sale->id.'"><i class="fa fa-money"></i> '.trans('file.View Payment').'</button>
-                    </li>
-                    <li>
-                        <button type="button" class="add-delivery btn btn-link" data-id = "'.$sale->id.'"><i class="fa fa-truck"></i> '.trans('file.Add Delivery').'</button>
                     </li>';
                 if(in_array("sales-delete", $request['all_permission']))
                     $nestedData['options'] .= \Form::open(["route" => ["sales.destroy", $sale->id], "method" => "DELETE"] ).'
@@ -389,7 +386,7 @@ class SaleController extends Controller
                     $child_warehouse_data = Product_Warehouse::where([
                         ['product_id', $child_id],
                         ['warehouse_id', $data['warehouse_id'] ],
-                        ])->first();
+                    ])->first();
 
                     $child_data->qty -= $qty[$i] * $qty_list[$key];
                     $child_warehouse_data->qty -= $qty[$i] * $qty_list[$key];
@@ -458,9 +455,9 @@ class SaleController extends Controller
             Product_Sale::create($product_sale);
         }
         if($data['sale_status'] == 3)
-            $message = 'Sale successfully added to draft';
+            $message = 'Venta añadida correctamente al borrador';
         else
-            $message = ' Sale created successfully';
+            $message = ' Venta creada con éxito';
         if($mail_data['email'] && $data['sale_status'] == 1) {
             try {
                 Mail::send( 'mail.sale_details', $mail_data, function( $message ) use ($mail_data)
@@ -598,7 +595,7 @@ class SaleController extends Controller
 
                 $paypal_data['total'] = $total;
                 $response = $provider->setExpressCheckout($paypal_data);
-                 // This will redirect user to PayPal
+                // This will redirect user to PayPal
                 return redirect($response['paypal_link']);
             }
             elseif($paying_method == 'Deposit'){
@@ -763,24 +760,24 @@ class SaleController extends Controller
         $data['payment_id'] = $lims_payment_data->id;
         $data['transaction_id'] = $response['PAYMENTINFO_0_TRANSACTIONID'];
         PaymentWithPaypal::create($data);
-        return redirect('sales')->with('message', 'Payment created successfully');
+        return redirect('sales')->with('message', 'Pago creado con éxito');
     }
 
     public function getProduct($id)
     {
         $lims_product_warehouse_data = Product::join('product_warehouse', 'products.id', '=', 'product_warehouse.product_id')
-        ->where([
-            ['products.is_active', true],
-            ['product_warehouse.warehouse_id', $id],
-            ['product_warehouse.qty', '>', 0]
-        ])->whereNull('product_warehouse.variant_id')->select('product_warehouse.*')->get();
+            ->where([
+                ['products.is_active', true],
+                ['product_warehouse.warehouse_id', $id],
+                ['product_warehouse.qty', '>', 0]
+            ])->whereNull('product_warehouse.variant_id')->select('product_warehouse.*')->get();
 
         $lims_product_with_variant_warehouse_data = Product::join('product_warehouse', 'products.id', '=', 'product_warehouse.product_id')
-        ->where([
-            ['products.is_active', true],
-            ['product_warehouse.warehouse_id', $id],
-            ['product_warehouse.qty', '>', 0]
-        ])->whereNotNull('product_warehouse.variant_id')->select('product_warehouse.*')->get();
+            ->where([
+                ['products.is_active', true],
+                ['product_warehouse.warehouse_id', $id],
+                ['product_warehouse.qty', '>', 0]
+            ])->whereNotNull('product_warehouse.variant_id')->select('product_warehouse.*')->get();
 
         $product_code = [];
         $product_name = [];
@@ -895,35 +892,35 @@ class SaleController extends Controller
         $data = [];
         if(($category_id != 0) && ($brand_id != 0)){
             $lims_product_list = DB::table('products')
-                                ->join('categories', 'products.category_id', '=', 'categories.id')
-                                ->where([
-                                    ['products.is_active', true],
-                                    ['products.category_id', $category_id],
-                                    ['brand_id', $brand_id]
-                                ])->orWhere([
-                                    ['categories.parent_id', $category_id],
-                                    ['products.is_active', true],
-                                    ['brand_id', $brand_id]
-                                ])->select('products.name', 'products.code', 'products.image')->get();
+                ->join('categories', 'products.category_id', '=', 'categories.id')
+                ->where([
+                    ['products.is_active', true],
+                    ['products.category_id', $category_id],
+                    ['brand_id', $brand_id]
+                ])->orWhere([
+                    ['categories.parent_id', $category_id],
+                    ['products.is_active', true],
+                    ['brand_id', $brand_id]
+                ])->select('products.name', 'products.code', 'products.image')->get();
         }
         elseif(($category_id != 0) && ($brand_id == 0)){
             $lims_product_list = DB::table('products')
-                                ->join('categories', 'products.category_id', '=', 'categories.id')
-                                ->where([
-                                    ['products.is_active', true],
-                                    ['products.category_id', $category_id],
-                                ])->orWhere([
-                                    ['categories.parent_id', $category_id],
-                                    ['products.is_active', true]
-                                ])->select('products.id', 'products.name', 'products.code', 'products.image', 'products.is_variant')->get();
+                ->join('categories', 'products.category_id', '=', 'categories.id')
+                ->where([
+                    ['products.is_active', true],
+                    ['products.category_id', $category_id],
+                ])->orWhere([
+                    ['categories.parent_id', $category_id],
+                    ['products.is_active', true]
+                ])->select('products.id', 'products.name', 'products.code', 'products.image', 'products.is_variant')->get();
         }
         elseif(($category_id == 0) && ($brand_id != 0)){
             $lims_product_list = Product::where([
-                                ['brand_id', $brand_id],
-                                ['is_active', true]
-                            ])
-                            ->select('products.id', 'products.name', 'products.code', 'products.image', 'products.is_variant')
-                            ->get();
+                ['brand_id', $brand_id],
+                ['is_active', true]
+            ])
+                ->select('products.id', 'products.name', 'products.code', 'products.image', 'products.is_variant')
+                ->get();
         }
         else
             $lims_product_list = Product::where('is_active', true)->get();
@@ -986,9 +983,9 @@ class SaleController extends Controller
 
     public function getCustomerGroup($id)
     {
-         $lims_customer_data = Customer::find($id);
-         $lims_customer_group_data = CustomerGroup::find($lims_customer_data->customer_group_id);
-         return $lims_customer_group_data->percentage;
+        $lims_customer_data = Customer::find($id);
+        $lims_customer_group_data = CustomerGroup::find($lims_customer_data->customer_group_id);
+        return $lims_customer_group_data->percentage;
     }
 
     public function limsProductSearch(Request $request)
@@ -1032,8 +1029,8 @@ class SaleController extends Controller
         $product[] = $lims_product_data->tax_method;
         if($lims_product_data->type == 'standard'){
             $units = Unit::where("base_unit", $lims_product_data->unit_id)
-                    ->orWhere('id', $lims_product_data->unit_id)
-                    ->get();
+                ->orWhere('id', $lims_product_data->unit_id)
+                ->get();
             $unit_name = array();
             $unit_operator = array();
             $unit_operation_value = array();
@@ -1118,7 +1115,7 @@ class SaleController extends Controller
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         //checking if this is a CSV file
         if($ext != 'csv')
-            return redirect()->back()->with('message', 'Please upload a CSV file');
+            return redirect()->back()->with('message', 'Necesitas cargar un archivo CSV');
 
         $filePath=$upload->getRealPath();
         $file_handle = fopen($filePath, 'r');
@@ -1505,7 +1502,7 @@ class SaleController extends Controller
         }
         $lims_sale_data->update($data);
         $lims_customer_data = Customer::find($data['customer_id']);
-        $message = 'Sale updated successfully';
+        $message = 'Venta actualizada con éxito';
         //collecting mail data
         if($lims_customer_data->email){
             $mail_data['email'] = $lims_customer_data->email;
@@ -1528,7 +1525,7 @@ class SaleController extends Controller
                     });
                 }
                 catch(\Exception $e){
-                    $message = 'Sale updated successfully. Please setup your <a href="setting/mail_setting">mail setting</a> to send mail.';
+                    $message = 'Venta actualizada con éxito';
                 }
             }
         }
@@ -1915,7 +1912,7 @@ class SaleController extends Controller
         $lims_payment_data->change = $data['edit_paying_amount'] - $data['edit_amount'];
         $lims_payment_data->payment_note = $data['edit_payment_note'];
         $lims_payment_data->save();
-        $message = 'Payment updated successfully';
+        $message = 'Pago actualizado con éxito';
         //collecting male data
         if($lims_customer_data->email){
             $mail_data['email'] = $lims_customer_data->email;
@@ -1984,7 +1981,7 @@ class SaleController extends Controller
             $lims_customer_data->save();
         }
         $lims_payment_data->delete();
-        return redirect('sales')->with('not_permitted', 'Payment deleted successfully');
+        return redirect('sales')->with('not_permitted', 'Pago eliminado con éxito');
     }
 
     public function todaySale()
@@ -2073,9 +2070,9 @@ class SaleController extends Controller
             $lims_product_sale_data = Product_Sale::where('sale_id', $id)->get();
             $lims_delivery_data = Delivery::where('sale_id',$id)->first();
             if($lims_sale_data->sale_status == 3)
-                $message = 'Draft deleted successfully';
+                $message = 'Borrador eliminado con éxito';
             else
-                $message = 'Sale deleted successfully';
+                $message = 'Venta eliminada con éxito';
             foreach ($lims_product_sale_data as $product_sale) {
                 $lims_product_data = Product::find($product_sale->product_id);
                 //adjust product quantity
@@ -2158,7 +2155,7 @@ class SaleController extends Controller
             }
             $lims_sale_data->delete();
         }
-        return 'Sale deleted successfully!';
+        return 'Venta eliminada con éxito';
     }
 
     public function destroy($id)
@@ -2168,9 +2165,9 @@ class SaleController extends Controller
         $lims_product_sale_data = Product_Sale::where('sale_id', $id)->get();
         $lims_delivery_data = Delivery::where('sale_id',$id)->first();
         if($lims_sale_data->sale_status == 3)
-            $message = 'Draft deleted successfully';
+            $message = 'Borrador eliminado con éxito';
         else
-            $message = 'Sale deleted successfully';
+            $message = 'Venta eliminada con éxito';
         foreach ($lims_product_sale_data as $product_sale) {
             $lims_product_data = Product::find($product_sale->product_id);
             //adjust product quantity

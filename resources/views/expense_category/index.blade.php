@@ -184,7 +184,7 @@
     })
 
 function confirmDelete() {
-    if (confirm("Are you sure want to delete?")) {
+    if (confirm("¿Estás seguro de eliminar?")) {
         return true;
     }
     return false;
@@ -291,7 +291,7 @@ function confirmDelete() {
                                 expense_category_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(expense_category_id.length && confirm("Are you sure want to delete?")) {
+                        if(expense_category_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'expense_categories/deletebyselection',

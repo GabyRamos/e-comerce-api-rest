@@ -85,7 +85,7 @@ class StockCountController extends Controller
         $ext = pathinfo($request->final_file->getClientOriginalName(), PATHINFO_EXTENSION);
         //checking if this is a CSV file
         if($ext != 'csv')
-            return redirect()->back()->with('not_permitted', 'Please upload a CSV file');
+            return redirect()->back()->with('not_permitted', 'Necesitas cargar un archivo CSV');
 
         $data = $request->all();
         $document = $request->final_file;

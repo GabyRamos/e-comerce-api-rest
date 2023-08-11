@@ -12,7 +12,7 @@
                     <label class="d-tc mt-2"><strong>{{trans('file.Choose Your Date')}}</strong> &nbsp;</label>
                     <div class="d-tc">
                         <div class="input-group">
-                            <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} To {{$end_date}}" required />
+                            <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} a {{$end_date}}" required />
                             <input type="hidden" name="start_date" />
                             <input type="hidden" name="end_date" />
                             <div class="input-group-append">
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
             {!! Form::close() !!}
         </div>
@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 @foreach($lims_payment_data as $payment)
-                <?php 
+                <?php
                     $sale = DB::table('sales')->find($payment->sale_id);
                     $purchase = DB::table('purchases')->find($payment->purchase_id);
                     $user = DB::table('users')->find($payment->user_id);

@@ -71,16 +71,16 @@ class TaxController extends Controller
         $input = $request->all();
         $lims_tax_data = Tax::where('id', $input['tax_id'])->first();
         $lims_tax_data->update($input);
-        return redirect('tax')->with('message', 'Data updated successfully');
+        return redirect('tax')->with('message', 'Datos actualizados con éxito');
     }
 
     public function importTax(Request $request)
-    {  
+    {
         //get file
         $upload=$request->file('file');
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         if($ext != 'csv')
-            return redirect()->back()->with('not_permitted', 'Please upload a CSV file');
+            return redirect()->back()->with('not_permitted', 'Necesitas cargar un archivo CSV');
         $filename =  $upload->getClientOriginalName();
         $filePath=$upload->getRealPath();
         //open and read

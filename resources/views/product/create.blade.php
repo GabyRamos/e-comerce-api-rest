@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>{{trans('file.Product Type')}} *</strong> </label>
+                                        <label>{{trans('file.Product Type')}} *</label>
                                         <div class="input-group">
                                             <select name="type" required class="form-control selectpicker" id="type">
                                                 <option value="standard">Standard</option>
@@ -27,14 +27,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>{{trans('file.Product Name')}} *</strong> </label>
+                                        <label>{{trans('file.Product Name')}} * </label>
                                         <input type="text" name="name" class="form-control" id="name" aria-describedby="name" required>
                                         <span class="validation-msg" id="name-error"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>{{trans('file.Product Code')}} *</strong> </label>
+                                        <label>{{trans('file.Product Code')}} *</label>
                                         <div class="input-group">
                                             <input type="text" name="code" class="form-control" id="code" aria-describedby="code" required>
                                             <div class="input-group-append">
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>{{trans('file.Barcode Symbology')}} *</strong> </label>
+                                        <label>{{trans('file.Barcode Symbology')}} * </label>
                                         <div class="input-group">
                                             <select name="barcode_symbology" required class="form-control selectpicker">
                                                 <option value="C128">Code 128</option>
@@ -61,18 +61,18 @@
                                 </div>
                                 <div id="digital" class="col-md-4">
                                     <div class="form-group">
-                                        <label>{{trans('file.Attach File')}} *</strong> </label>
+                                        <label>{{trans('file.Attach File')}} * </label>
                                         <div class="input-group">
                                             <input type="file" name="file" class="form-control">
                                         </div>
                                         <span class="validation-msg"></span>
-                                    </div>                                
+                                    </div>
                                 </div>
                                 <div id="combo" class="col-md-9 mb-1">
                                     <label>{{trans('file.add_product')}}</label>
                                     <div class="search-box input-group mb-3">
                                         <button class="btn btn-secondary"><i class="fa fa-barcode"></i></button>
-                                        <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                        <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                     </div>
                                     <label>{{trans('file.Combo Products')}}</label>
                                     <div class="table-responsive">
@@ -94,7 +94,7 @@
                                     <div class="form-group">
                                         <label>{{trans('file.Brand')}}</strong> </label>
                                         <div class="input-group">
-                                          <select name="brand_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Brand...">
+                                          <select name="brand_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar marca...">
                                             @foreach($lims_brand_list as $brand)
                                                 <option value="{{$brand->id}}">{{$brand->title}}</option>
                                             @endforeach
@@ -104,9 +104,9 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>{{trans('file.category')}} *</strong> </label>
+                                        <label>{{trans('file.category')}} * </label>
                                         <div class="input-group">
-                                          <select name="category_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Category...">
+                                          <select name="category_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Selecciona categoría...">
                                             @foreach($lims_category_list as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
@@ -118,10 +118,10 @@
                                 <div id="unit" class="col-md-12">
                                     <div class="row ">
                                         <div class="col-md-4 form-group">
-                                                <label>{{trans('file.Product Unit')}} *</strong> </label>
+                                                <label>{{trans('file.Product Unit')}} * </label>
                                                 <div class="input-group">
                                                   <select required class="form-control selectpicker" name="unit_id">
-                                                    <option value="" disabled selected>Select Product Unit...</option>
+                                                    <option value="" disabled selected>Seleccionar unidad de producto...</option>
                                                     @foreach($lims_unit_list as $unit)
                                                         @if($unit->base_unit==null)
                                                             <option value="{{$unit->id}}">{{$unit->unit_name}}</option>
@@ -134,7 +134,7 @@
                                         <div class="col-md-4">
                                                 <label>{{trans('file.Sale Unit')}}</strong> </label>
                                                 <div class="input-group">
-                                                  <select class="form-control selectpicker" name="sale_unit_id"> 
+                                                  <select class="form-control selectpicker" name="sale_unit_id" title="Seleccione Unidad...">
                                                   </select>
                                               </div>
                                         </div>
@@ -142,24 +142,24 @@
                                                 <div class="form-group">
                                                     <label>{{trans('file.Purchase Unit')}}</strong> </label>
                                                     <div class="input-group">
-                                                      <select class="form-control selectpicker" name="purchase_unit_id"> 
+                                                      <select class="form-control selectpicker" name="purchase_unit_id" title="Seleccione Unidad...">
                                                       </select>
                                                   </div>
                                                 </div>
-                                        </div>                                
-                                    </div>                                
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="cost" class="col-md-4">
                                      <div class="form-group">
-                                        <label>{{trans('file.Product Cost')}} *</strong> </label>
-                                        <input type="number" name="cost" required class="form-control" step="any">
+                                        <label>{{trans('file.Product Cost')}} * </label>
+                                        <input type="number" name="cost" min="0" required class="form-control" step="any">
                                         <span class="validation-msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>{{trans('file.Product Price')}} *</strong> </label>
-                                        <input type="number" name="price" required class="form-control" step="any">
+                                        <label>{{trans('file.Product Price')}} * </label>
+                                        <input type="number" name="price" min="0" required class="form-control" step="any">
                                         <span class="validation-msg"></span>
                                     </div>
                                     <div class="form-group">
@@ -169,7 +169,7 @@
                                 <div id="alert-qty" class="col-md-4">
                                     <div class="form-group">
                                         <label>{{trans('file.Alert Quantity')}}</strong> </label>
-                                        <input type="number" name="alert_quantity" class="form-control" step="any">
+                                        <input type="number" name="alert_quantity" min="0" class="form-control" step="any">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -185,7 +185,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>{{trans('file.Tax Method')}}</strong> </label> <i class="dripicons-question" data-toggle="tooltip" title="{{trans('file.Exclusive: Poduct price = Actual product price + Tax. Inclusive: Actual product price = Product price - Tax')}}"></i>
+                                        <label>{{trans('file.Tax Method')}}</strong> </label> <i class="dripicons-question" data-toggle="tooltip" title="{{trans('Exclusive: Precio del producto = Precio real del producto + Impuestos. Inclusive: Precio real del producto = Precio del producto - Impuestos')}}"></i>
                                         <select name="tax_method" class="form-control selectpicker">
                                             <option value="1">{{trans('file.Exclusive')}}</option>
                                             <option value="2">{{trans('file.Inclusive')}}</option>
@@ -197,15 +197,15 @@
                                         <input type="checkbox" name="featured" value="1">&nbsp;
                                         <label>{{trans('file.Featured')}}</label>
                                         <p class="italic">{{trans('file.Featured product will be displayed in POS')}}</p>
-                                    </div> 
-                                </div>                             
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{trans('file.Product Image')}}</strong> </label> <i class="dripicons-question" data-toggle="tooltip" title="{{trans('file.You can upload multiple image. Only .jpeg, .jpg, .png, .gif file can be uploaded. First image will be base image.')}}"></i>
                                         <div id="imageUpload" class="dropzone"></div>
                                         <span class="validation-msg" id="image-error"></span>
                                     </div>
-                                </div>                            
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{trans('file.Product Details')}}</label>
@@ -267,8 +267,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>  
-                                </div> 
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="button" value="{{trans('file.submit')}}" id="submit-btn" class="btn btn-primary">
@@ -294,7 +294,7 @@
     $("#start_date").hide();
     $("#last_date").hide();
 
-    $('[data-toggle="tooltip"]').tooltip(); 
+    $('[data-toggle="tooltip"]').tooltip();
 
     $.ajaxSetup({
         headers: {
@@ -308,7 +308,7 @@
       });
     });
 
-    
+
 
     tinymce.init({
       selector: 'textarea',
@@ -322,50 +322,50 @@
       branding:false
     });
 
-    $('select[name="type"]').on('change', function() {
-        if($(this).val() == 'combo'){
-            $("input[name='cost']").prop('required',false);
-            $("select[name='unit_id']").prop('required',false);
-            hide();
-            $("#combo").show(300);
-            $("input[name='price']").prop('disabled',true);
-            $("#is-variant").prop("checked", false);
-            $("#variant-section, #variant-option").hide(300);
-        }
-        else if($(this).val() == 'digital'){
-            $("input[name='cost']").prop('required',false);
-            $("select[name='unit_id']").prop('required',false);
-            $("input[name='file']").prop('required',true);
-            hide();
-            $("#digital").show(300);
-            $("#combo").hide(300);
-            $("input[name='price']").prop('disabled',false);
-            $("#is-variant").prop("checked", false);
-            $("#variant-section, #variant-option").hide(300);
-        }
-        else if($(this).val() == 'standard'){
-            $("input[name='cost']").prop('required',true);
-            $("select[name='unit_id']").prop('required',true);
-            $("input[name='file']").prop('required',false);
-            $("#cost").show(300);
-            $("#unit").show(300);
-            $("#alert-qty").show(300);
-            $("#variant-option").show(300);
-            $("#digital").hide(300);
-            $("#combo").hide(300);
-            $("input[name='price']").prop('disabled',false);
-        }
-    });
+        $('select[name="type"]').on('change', function() {
+            if($(this).val() == 'combo'){
+                $("input[name='cost']").prop('required',false);
+                $("select[name='unit_id']").prop('required',false);
+                hide();
+                $("#combo").show(300);
+                $("input[name='price']").prop('disabled',true);
+                $("#is-variant").prop("checked", false);
+                $("#variant-section, #variant-option").hide(300);
+            }
+            else if($(this).val() == 'digital'){
+                $("input[name='cost']").prop('required',false);
+                $("select[name='unit_id']").prop('required',false);
+                $("input[name='file']").prop('required',true);
+                hide();
+                $("#digital").show(300);
+                $("#combo").hide(300);
+                $("input[name='price']").prop('disabled',false);
+                $("#is-variant").prop("checked", false);
+                $("#variant-section, #variant-option").hide(300);
+            }
+            else if($(this).val() == 'standard'){
+                $("input[name='cost']").prop('required',true);
+                $("select[name='unit_id']").prop('required',true);
+                $("input[name='file']").prop('required',false);
+                $("#cost").show(300);
+                $("#unit").show(300);
+                $("#alert-qty").show(300);
+                $("#variant-option").show(300);
+                $("#digital").hide(300);
+                $("#combo").hide(300);
+                $("input[name='price']").prop('disabled',false);
+            }
+        });
 
     $('select[name="unit_id"]').on('change', function() {
-        
+
         unitID = $(this).val();
         if(unitID) {
             populate_category(unitID);
-        }else{    
+        }else{
             $('select[name="sale_unit_id"]').empty();
             $('select[name="purchase_unit_id"]').empty();
-        }                        
+        }
     });
     <?php $productArray = []; ?>
     var lims_product_code = [ @foreach($lims_product_list as $product)
@@ -398,7 +398,7 @@
                     var flag = 1;
                     $(".product-id").each(function() {
                         if ($(this).val() == data[4]) {
-                            alert('Duplicate input is not allowed!')
+                            alert('¡No se permiten entradas duplicadas!')
                             flag = 0;
                         }
                     });
@@ -477,7 +477,7 @@
     $("input[name='variant']").on("input", function () {
         if($("#code").val() == ''){
             $("input[name='variant']").val('');
-            alert('Please fillup above information first.');
+            alert('Primero complete la información anterior.');
         }
         else if($(this).val().indexOf(',') > -1) {
             var variant_name = $(this).val().slice(0, -1);
@@ -507,7 +507,7 @@
             $("#promotion_price").show(300);
             $("#start_date").show(300);
             $("#last_date").show(300);
-        } 
+        }
         else {
             $("#promotion_price").hide(300);
             $("#start_date").hide(300);
@@ -556,8 +556,8 @@
 
     jQuery.validator.setDefaults({
         errorPlacement: function (error, element) {
-            if(error.html() == 'Select Category...')
-                error.html('This field is required.');
+            if(error.html() == 'Selecciona categoría...')
+                error.html('Este campo es requerido.');
             $(element).closest('div.form-group').find('.validation-msg').html(error.html());
         },
         highlight: function (element) {
@@ -575,20 +575,20 @@
         var exp = /^\d+$/;
 
         if(!(product_code.match(exp)) && (barcode_symbology == 'UPCA' || barcode_symbology == 'UPCE' || barcode_symbology == 'EAN8' || barcode_symbology == 'EAN13') ) {
-            alert('Product code must be numeric.');
+            alert('El código del producto debe ser numérico.');
             return false;
         }
         else if(product_code.match(exp)) {
             if(barcode_symbology == 'UPCA' && product_code.length > 11){
-                alert('Product code length must be less than 12');
+                alert('La longitud del código del producto debe ser inferior a 12');
                 return false;
             }
             else if(barcode_symbology == 'EAN8' && product_code.length > 7){
-                alert('Product code length must be less than 8');
+                alert('La longitud del código del producto debe ser inferior a 8');
                 return false;
             }
             else if(barcode_symbology == 'EAN13' && product_code.length > 12){
-                alert('Product code length must be less than 13');
+                alert('La longitud del código del producto debe ser inferior a 13');
                 return false;
             }
         }
@@ -596,14 +596,14 @@
         if( $("#type").val() == 'combo' ) {
             var rownumber = $('table.order-list tbody tr:last').index();
             if (rownumber < 0) {
-                alert("Please insert product to table!")
+                alert("¡Por favor inserte un producto para el combo!")
                 return false;
             }
         }
         if($("#is-variant").is(":checked")) {
             rowindex = $("table#variant-table tbody tr:last").index();
             if (rowindex < 0) {
-                alert('This product has variant. Please insert variant to table');
+                alert('Este producto tiene variante. Por favor, inserte la variante en la tabla');
                 return false;
             }
         }
@@ -627,7 +627,7 @@
         stop: function () {
           var queue = myDropzone.getAcceptedFiles();
           newQueue = [];
-          $('#imageUpload .dz-preview .dz-filename [data-dz-name]').each(function (count, el) {           
+          $('#imageUpload .dz-preview .dz-filename [data-dz-name]').each(function (count, el) {
                 var name = el.innerHTML;
                 queue.forEach(function(file) {
                     if (file.name === name) {

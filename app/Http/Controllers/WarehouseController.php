@@ -37,7 +37,7 @@ class WarehouseController extends Controller
         $lims_warehouse_data = Warehouse::findOrFail($id);
         return $lims_warehouse_data;
     }
-   
+
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -51,7 +51,7 @@ class WarehouseController extends Controller
         $input = $request->all();
         $lims_warehouse_data = Warehouse::find($input['warehouse_id']);
         $lims_warehouse_data->update($input);
-        return redirect('warehouse')->with('message', 'Data updated successfully');
+        return redirect('warehouse')->with('message', 'Datos actualizados con éxito');
     }
 
     public function importWarehouse(Request $request)
@@ -60,7 +60,7 @@ class WarehouseController extends Controller
         $upload=$request->file('file');
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         if($ext != 'csv')
-            return redirect()->back()->with('not_permitted', 'Please upload a CSV file');
+            return redirect()->back()->with('not_permitted', 'Necesitas cargar un archivo CSV');
         $filename =  $upload->getClientOriginalName();
         $upload=$request->file('file');
         $filePath=$upload->getRealPath();

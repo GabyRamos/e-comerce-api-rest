@@ -19,7 +19,7 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"],
+            labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
             datasets: [
                 {
                     label: "My First dataset",

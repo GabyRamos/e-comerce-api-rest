@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -19,7 +19,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
-                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -29,7 +29,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Supplier')}}</label>
-                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select supplier...">
+                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar proveedor...">
                                                 @foreach($lims_supplier_list as $supplier)
                                                 <option value="{{$supplier->id}}">{{$supplier->name . ' (' . $supplier->company_name . ')'}}</option>
                                                 @endforeach
@@ -56,7 +56,7 @@
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button type="button" class="btn btn-secondary btn-lg"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                                 	<div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Attach Document')}}</label>
-                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i> 
+                                            <i class="dripicons-question" data-toggle="tooltip" title="Solo soporta archivos jpg, jpeg, png, gif, pdf, csv, docx, xlsx y txt"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -422,7 +422,7 @@ function productSearch(data) {
                         var qty = parseFloat(pre_qty) + 1;
                     else
                         var qty = 1;
-                    
+
                     $('table.order-list tbody tr:nth-child(' + (rowindex + 1) + ') .qty').val(qty);
                     checkQuantity(String(qty), true);
                     flag = 0;
@@ -555,7 +555,7 @@ function calculateRowProductData(quantity) {
         var net_unit_cost = (100 / (100 + tax_rate[rowindex])) * sub_total_unit;
         var tax = (sub_total_unit - net_unit_cost) * quantity;
         var sub_total = sub_total_unit * quantity;
-    
+
         $('table.order-list tbody tr:nth-child(' + (rowindex + 1) + ')').find('td:nth-child(5)').text(net_unit_cost.toFixed(2));
         $('table.order-list tbody tr:nth-child(' + (rowindex + 1) + ')').find('.net_unit_cost').val(net_unit_cost.toFixed(2));
         $('table.order-list tbody tr:nth-child(' + (rowindex + 1) + ')').find('td:nth-child(7)').text(tax.toFixed(2));
@@ -671,7 +671,7 @@ $(window).keydown(function(e){
 $('.payment-form').on('submit',function(e){
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
         e.preventDefault();
     }
 });

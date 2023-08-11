@@ -286,7 +286,7 @@ class TransferController extends Controller
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         //checking if this is a CSV file
         if($ext != 'csv')
-            return redirect()->back()->with('message', 'Please upload a CSV file');
+            return redirect()->back()->with('message', 'Necesitas cargar un archivo CSV');
 
         $filePath=$upload->getRealPath();
         $file_handle = fopen($filePath, 'r');

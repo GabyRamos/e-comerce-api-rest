@@ -23,7 +23,7 @@ class ExpenseController extends Controller
             if(empty($all_permission))
                 $all_permission[] = 'dummy text';
             $lims_account_list = Account::where('is_active', true)->get();
-            
+
             if(Auth::user()->role_id > 2 && config('staff_access') == 'own')
                 $lims_expense_all = Expense::orderBy('id', 'desc')->where('user_id', Auth::id())->get();
             else
@@ -76,7 +76,7 @@ class ExpenseController extends Controller
         $data = $request->all();
         $lims_expense_data = Expense::find($data['expense_id']);
         $lims_expense_data->update($data);
-        return redirect('expenses')->with('message', 'Data updated successfully');
+        return redirect('expenses')->with('message', 'Datos actualizados con éxito');
     }
 
     public function deleteBySelection(Request $request)

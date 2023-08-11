@@ -39,7 +39,7 @@ class ExpenseCategoryController extends Controller
 
         $data = $request->all();
         ExpenseCategory::create($data);
-        return redirect('expense_categories')->with('message', 'Data inserted successfully');
+        return redirect('expense_categories')->with('message', 'Datos insertados con éxito');
     }
 
     public function show($id)
@@ -67,7 +67,7 @@ class ExpenseCategoryController extends Controller
         $data = $request->all();
         $lims_expense_category_data = ExpenseCategory::find($data['expense_category_id']);
         $lims_expense_category_data->update($data);
-        return redirect('expense_categories')->with('message', 'Data updated successfully');
+        return redirect('expense_categories')->with('message', 'Datos actualizados con éxito');
     }
 
     public function import(Request $request)
@@ -76,7 +76,7 @@ class ExpenseCategoryController extends Controller
         $upload=$request->file('file');
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         if($ext != 'csv')
-            return redirect()->back()->with('not_permitted', 'Please upload a CSV file');
+            return redirect()->back()->with('not_permitted', 'Cargue un archivo CSV');
         $filename =  $upload->getClientOriginalName();
         $filePath=$upload->getRealPath();
         //open and read
@@ -104,7 +104,7 @@ class ExpenseCategoryController extends Controller
            $expense_category->is_active = true;
            $expense_category->save();
         }
-        return redirect('expense_categories')->with('message', 'ExpenseCategory imported successfully');
+        return redirect('expense_categories')->with('message', 'Categoría de gastos importada con éxito');
     }
 
     public function deleteBySelection(Request $request)
@@ -115,7 +115,7 @@ class ExpenseCategoryController extends Controller
             $lims_expense_category_data->is_active = false;
             $lims_expense_category_data->save();
         }
-        return 'Expense Category deleted successfully!';
+        return '¡Categoría de gastos eliminada con éxito!';
     }
 
     public function destroy($id)
@@ -123,6 +123,6 @@ class ExpenseCategoryController extends Controller
         $lims_expense_category_data = ExpenseCategory::find($id);
         $lims_expense_category_data->is_active = false;
         $lims_expense_category_data->save();
-        return redirect('expense_categories')->with('not_permitted', 'Data deleted successfully');
+        return redirect('expense_categories')->with('not_permitted', 'Datos eliminados con éxito');
     }
 }

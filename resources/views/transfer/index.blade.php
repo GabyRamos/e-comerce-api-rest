@@ -153,7 +153,7 @@
     });
 
     function confirmDelete() {
-        if (confirm("Are you sure want to delete?")) {
+        if (confirm("¿Estás seguro de eliminar?")) {
             return true;
         }
         return false;
@@ -267,7 +267,7 @@
                                 transfer_id[i-1] = transfer[3];
                             }
                         });
-                        if(transfer_id.length && confirm("Are you sure want to delete?")) {
+                        if(transfer_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'transfers/deletebyselection',

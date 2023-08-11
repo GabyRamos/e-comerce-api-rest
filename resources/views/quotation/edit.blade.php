@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -26,7 +26,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Biller')}} *</label>
                                             <input type="hidden" name="biller_id_hidden" value="{{$lims_quotation_data->biller_id}}" />
-                                            <select required name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Biller...">
+                                            <select required name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccione Facturador...">
                                                 @foreach($lims_biller_list as $biller)
                                                 <option value="{{$biller->id}}">{{$biller->name . ' (' . $biller->company_name . ')'}}</option>
                                                 @endforeach
@@ -37,7 +37,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Supplier')}}</label>
                                             <input type="hidden" name="supplier_id_hidden" value="{{ $lims_quotation_data->supplier_id }}" />
-                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" id="supplier-id" data-live-search-style="begins" title="Select supplier...">
+                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" id="supplier-id" data-live-search-style="begins" title="Seleccionar proveedor...">
                                                 @foreach($lims_supplier_list as $supplier)
                                                 <option value="{{$supplier->id}}">{{$supplier->name . ' (' . $supplier->company_name . ')'}}</option>
                                                 @endforeach
@@ -50,7 +50,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.customer')}} *</label>
                                             <input type="hidden" name="customer_id_hidden" value="{{ $lims_quotation_data->customer_id }}" />
-                                            <select required id="customer_id" name="customer_id" class="selectpicker form-control" data-live-search="true" id="customer-id" data-live-search-style="begins" title="Select customer...">
+                                            <select required id="customer_id" name="customer_id" class="selectpicker form-control" data-live-search="true" id="customer-id" data-live-search-style="begins" title="Seleccionar cliente...">
                                                 @foreach($lims_customer_list as $customer)
                                                 <option value="{{$customer->id}}">{{$customer->name . ' (' . $customer->phone_number . ')'}}</option>
                                                 @endforeach
@@ -61,7 +61,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
                                             <input type="hidden" name="warehouse_id_hidden" value="{{$lims_quotation_data->warehouse_id}}" />
-                                            <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -74,7 +74,7 @@
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button type="button" class="btn btn-secondary btn-lg"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -96,14 +96,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php 
+                                                    <?php
                                                     $temp_unit_name = [];
                                                     $temp_unit_operator = [];
                                                     $temp_unit_operation_value = [];
                                                     ?>
                                                     @foreach($lims_product_quotation_data as $product_quotation)
                                                     <tr>
-                                                    <?php 
+                                                    <?php
                                                         $product_data = DB::table('products')->find($product_quotation->product_id);
                                                         if($product_quotation->variant_id) {
                                                             $product_variant_data = \App\ProductVariant::select('id', 'item_code')->FindExactProduct($product_data->id, $product_quotation->variant_id)->first();
@@ -149,7 +149,7 @@
                                                             }
                                                             elseif($unit_operator[0] == '/'){
                                                                 $product_price = $product_price * $unit_operation_value[0];
-                                                            } 
+                                                            }
                                                         }
                                                         else {
                                                             $unit_name[] = 'n/a'. ',';
@@ -271,7 +271,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Attach Document')}}</label>
-                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i> 
+                                            <i class="dripicons-question" data-toggle="tooltip" title="Solo soporta archivos jpg, jpeg, png, gif, pdf, csv, docx, xlsx y txt"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -385,7 +385,7 @@
 <script type="text/javascript">
     $("ul#quotation").siblings('a').attr('aria-expanded','true');
     $("ul#quotation").addClass("show");
-    
+
 // array data depend on warehouse
 var lims_product_array = [];
 var product_code = [];
@@ -480,7 +480,7 @@ $.get('../getproduct/' + id, function(data) {
     product_list = data[5];
     qty_list = data[6];
 
-    $.each(product_code, function(index) {        
+    $.each(product_code, function(index) {
         lims_product_array.push(product_code[index] + ' (' + product_name[index] + ')');
     });
 });
@@ -608,7 +608,7 @@ $('button[name="update_btn"]').on("click", function() {
             product_price[rowindex] = $('input[name="edit_unit_price"]').val() * row_unit_operation_value;
         }
 
-        
+
         var position = $('select[name="edit_unit"]').val();
         var temp_operator = temp_unit_operator[position];
         var temp_operation_value = temp_unit_operation_value[position];
@@ -651,7 +651,7 @@ $(window).keydown(function(e){
 $('#quotation-form').on('submit',function(e){
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
         e.preventDefault();
     }
 });
@@ -769,7 +769,7 @@ function checkQuantity(sale_qty, flag) {
             if (flag) {
                 sale_qty = sale_qty.substring(0, sale_qty.length - 1);
                 $('table.order-list tbody tr:nth-child(' + (rowindex + 1) + ')').find('.qty').val(sale_qty);
-            } 
+            }
             else {
                 edit();
                 return;

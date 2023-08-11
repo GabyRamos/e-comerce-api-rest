@@ -97,15 +97,15 @@ input.form-control-custom:checked+label::before {
 }
 
 .btn-primary {
-    color: color-yiq(#436ab4);
-    background-color: #436ab4;
-    border-color: #436ab4;
+    color: color-yiq(#7c5cc4);
+    background-color: #7c5cc4;
+    border-color: #7c5cc4;
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-    background-color: #436ab4;
-    border-color: #436ab4;
+    background-color: #7c5cc4;
+    border-color: #7c5cc4;
 }
 
 .btn-outline-primary {
@@ -408,9 +408,9 @@ a:focus,button:focus,.btn:focus {
 
 .btn-primary.active {
 	background-color: transparent !important;
-	border: 2px solid #436ab4 !important;
+	border: 2px solid #7c5cc4 !important;
 	box-shadow: none !important;
-	color: #436ab4 !important;
+	color: #7c5cc4 !important;
 }
 
 .count-title {
@@ -531,13 +531,13 @@ th span.number-in-words{
 /*--------Written by Tarik -----------*/
 
 .btn-primary {
-    background-color: #436ab4;
-    border-color: #436ab4;
+    background-color: #7c5cc4;
+    border-color: #7c5cc4;
 }
 
 .btn-primary:hover {
-    background-color: #436ab4;
-    border-color: #436ab4;
+    background-color: #7c5cc4;
+    border-color: #7c5cc4;
 }
 
 a:hover {
@@ -734,7 +734,7 @@ nav.navbar .nav-item li.notifications a i{
 }
 
 .buttons-print {
-	background: #2196f3;
+	background: #7c5cc4;
 	border: none;
 }
 

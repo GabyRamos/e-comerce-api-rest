@@ -9,7 +9,7 @@
     <div class="container-fluid">
         @if(in_array("suppliers-add", $all_permission))
         <a href="{{route('supplier.create')}}" class="btn btn-info"><i class="dripicons-plus"></i> {{trans('file.Add Supplier')}}</a>
-        <a href="#" data-toggle="modal" data-target="#importSupplier" class="btn btn-primary"><i class="dripicons-copy"></i> {{trans('file.Import Supplier')}}</a>
+{{--        <a href="#" data-toggle="modal" data-target="#importSupplier" class="btn btn-primary"><i class="dripicons-copy"></i> {{trans('file.Import Supplier')}}</a>--}}
         @endif
     </div>
     <div class="table-responsive">
@@ -127,7 +127,7 @@
     });
 
 	function confirmDelete() {
-	    if (confirm("Are you sure want to delete?")) {
+	    if (confirm("¿Estás seguro de eliminar?")) {
 	        return true;
 	    }
 	    return false;
@@ -226,7 +226,7 @@
                                 supplier_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(supplier_id.length && confirm("Are you sure want to delete?")) {
+                        if(supplier_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'supplier/deletebyselection',

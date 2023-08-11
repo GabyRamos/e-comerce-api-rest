@@ -3,7 +3,7 @@
 <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{'No Data exist between this date range!'}}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 
 <section class="forms">
@@ -19,7 +19,7 @@
                         <label class="d-tc mt-2"><strong>{{trans('file.Choose Your Date')}}</strong> &nbsp;</label>
                         <div class="d-tc">
                             <div class="input-group">
-                                <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} To {{$end_date}}" required />
+                                <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} a {{$end_date}}" required />
                                 <input type="hidden" name="start_date" value="{{$start_date}}" />
                                 <input type="hidden" name="end_date" value="{{$end_date}}" />
                             </div>
@@ -56,9 +56,9 @@
                     <th class="not-exported"></th>
                     <th>{{trans('file.Product Name')}}</th>
                     <th>{{trans('file.Purchased Amount')}}</th>
-                    <th>{{trans('file.Purchased')}} {{trans('file.qty')}}</th>
+                    <th>{{trans('file.qty')}} {{trans('file.Purchased')}} </th>
                     <th>{{trans('file.Sold Amount')}}</th>
-                    <th>{{trans('file.Sold')}} {{trans('file.qty')}}</th>
+                    <th>{{trans('file.qty')}} {{trans('file.Sold')}} </th>
                     <th>{{trans('file.profit')}}</th>
                     <th>{{trans('file.In Stock')}}</th>
                 </tr>

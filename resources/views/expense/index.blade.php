@@ -1,9 +1,9 @@
 @extends('layout.main') @section('content')
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 
 <section>
@@ -88,7 +88,7 @@
             <div class="modal-body">
               <p class="italic"><small>{{trans('file.The field labels marked with * are required input fields')}}.</small></p>
                 {!! Form::open(['route' => ['expenses.update', 1], 'method' => 'put']) !!}
-                <?php 
+                <?php
                     $lims_expense_category_list = DB::table('expense_categories')->where('is_active', true)->get();
                     if(Auth::user()->role_id > 2)
                         $lims_warehouse_list = DB::table('warehouses')->where([
@@ -114,7 +114,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label>{{trans('file.Warehouse')}} *</label>
-                            <select name="warehouse_id" class="selectpicker form-control" required data-live-search="true" data-live-search-style="begins" title="Select Warehouse...">
+                            <select name="warehouse_id" class="selectpicker form-control" required data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                 @foreach($lims_warehouse_list as $warehouse)
                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                 @endforeach
@@ -159,7 +159,7 @@
     var expense_id = [];
     var user_verified = <?php echo json_encode(env('USER_VERIFIED')) ?>;
     var all_permission = <?php echo json_encode($all_permission) ?>;
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -185,7 +185,7 @@
     })
 
 function confirmDelete() {
-    if (confirm("Are you sure want to delete?")) {
+    if (confirm("¿Estás seguro de eliminar?")) {
         return true;
     }
     return false;
@@ -279,7 +279,7 @@ function confirmDelete() {
                                 expense_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(expense_id.length && confirm("Are you sure want to delete?")) {
+                        if(expense_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'expenses/deletebyselection',

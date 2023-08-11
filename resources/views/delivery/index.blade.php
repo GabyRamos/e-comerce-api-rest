@@ -208,7 +208,7 @@
     });
 
     function confirmDelete() {
-      if (confirm("Are you sure want to delete?")) {
+      if (confirm("¿Estás seguro de eliminar?")) {
           return true;
       }
       return false;
@@ -359,7 +359,7 @@
                                 delivery_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(delivery_id.length && confirm("Are you sure want to delete?")) {
+                        if(delivery_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'delivery/deletebyselection',

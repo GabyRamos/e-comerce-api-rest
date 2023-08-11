@@ -419,7 +419,7 @@ var Dropzone = function (_Emitter) {
         /**
          * The text used before any files are dropped.
          */
-        dictDefaultMessage: "Drop files here to upload",
+        dictDefaultMessage: "Arrastra los archivos aquí para subirlos",
 
         /**
          * The text that replaces the default message text it the browser is not supported.
@@ -468,7 +468,7 @@ var Dropzone = function (_Emitter) {
         /**
          * If `addRemoveLinks` is true, the text to be used to remove a file.
          */
-        dictRemoveFile: "Remove file",
+        dictRemoveFile: "Remover archivo",
 
         /**
          * If this is not null, then the user will be prompted before removing a file.

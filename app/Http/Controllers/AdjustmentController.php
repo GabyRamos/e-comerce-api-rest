@@ -194,7 +194,7 @@ class AdjustmentController extends Controller
                 ProductAdjustment::create($product_adjustment);
         }
         $lims_adjustment_data->update($data);
-        return redirect('qty_adjustment')->with('message', 'Data updated successfully');
+        return redirect('qty_adjustment')->with('message', 'Datos actualizados con éxito');
     }
 
     public function deleteBySelection(Request $request)

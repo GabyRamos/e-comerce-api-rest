@@ -59,7 +59,7 @@ class CustomerGroupController extends Controller
         $lims_customer_group_data = CustomerGroup::find($input['customer_group_id']);
 
         $lims_customer_group_data->update($input);
-        return redirect('customer_group')->with('message', 'Data updated successfully');
+        return redirect('customer_group')->with('message', 'Datos actualizados con éxito');
     }
 
     public function importCustomerGroup(Request $request)
@@ -68,7 +68,7 @@ class CustomerGroupController extends Controller
         $upload=$request->file('file');
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         if($ext != 'csv')
-            return redirect()->back()->with('not_permitted', 'Please upload a CSV file');
+            return redirect()->back()->with('not_permitted', 'Necesitas cargar un archivo CSV');
         $filename =  $upload->getClientOriginalName();
         $upload=$request->file('file');
         $filePath=$upload->getRealPath();
@@ -99,7 +99,7 @@ class CustomerGroupController extends Controller
            $customer_group->save();
         }
         return redirect('customer_group')->with('message', 'Customer Group imported successfully');
-        
+
     }
 
     public function exportCustomerGroup(Request $request)
@@ -110,15 +110,15 @@ class CustomerGroupController extends Controller
             if($customer_group > 0) {
                 $data = CustomerGroup::where('id', $customer_group)->first();
                 $csvData[]=$data->name. ',' . $data->percentage;
-            }   
-        }        
+            }
+        }
         $filename="customer_group- " .date('d-m-Y').".csv";
         $file_path=public_path().'/downloads/'.$filename;
-        $file_url=url('/').'/downloads/'.$filename;   
+        $file_url=url('/').'/downloads/'.$filename;
         $file = fopen($file_path,"w+");
         foreach ($csvData as $exp_data){
           fputcsv($file,explode(',',$exp_data));
-        }   
+        }
         fclose($file);
         return $file_url;
     }

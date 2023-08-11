@@ -58,14 +58,14 @@
               @endif
               @endif
               @if($print_barcode_active)
-              <li id="printBarcode-menu"><a href="{{route('product.printBarcode')}}">{{__('file.print_barcode')}}</a></li>
+             <li id="printBarcode-menu"><a href="{{route('product.printBarcode')}}">{{__('file.print_barcode')}}</a></li>--}}
               @endif
               @if($adjustment_active)
                 <li id="adjustment-list-menu"><a href="{{route('qty_adjustment.index')}}">{{trans('file.Adjustment List')}}</a></li>
                 <li id="adjustment-create-menu"><a href="{{route('qty_adjustment.create')}}">{{trans('file.Add Adjustment')}}</a></li>
               @endif
               @if($stock_count_active)
-                <li id="stock-count-menu"><a href="{{route('stock-count.index')}}">{{trans('file.Stock Count')}}</a></li>
+{{--                <li id="stock-count-menu"><a href="{{route('stock-count.index')}}">{{trans('file.Stock Count')}}</a></li>--}}
               @endif
             </ul>
           </li>
@@ -89,7 +89,7 @@
               ?>
               @if($add_permission_active)
               <li id="purchase-create-menu"><a href="{{route('purchases.create')}}">{{trans('file.Add Purchase')}}</a></li>
-              <li id="purchase-import-menu"><a href="{{url('purchases/purchase_by_csv')}}">{{trans('file.Import Purchase By CSV')}}</a></li>
+{{--              <li id="purchase-import-menu"><a href="{{url('purchases/purchase_by_csv')}}">{{trans('file.Import Purchase By CSV')}}</a></li>--}}
               @endif
             </ul>
           </li>
@@ -128,16 +128,16 @@
               @if($add_permission_active)
               <li><a href="{{route('sale.pos')}}">POS</a></li>
               <li id="sale-create-menu"><a href="{{route('sales.create')}}">{{trans('file.Add Sale')}}</a></li>
-              <li id="sale-import-menu"><a href="{{url('sales/sale_by_csv')}}">{{trans('file.Import Sale By CSV')}}</a></li>
+{{--              <li id="sale-import-menu"><a href="{{url('sales/sale_by_csv')}}">{{trans('file.Import Sale By CSV')}}</a></li>--}}
               @endif
               @endif
               @if($gift_card_permission_active)
-              <li id="gift-card-menu"><a href="{{route('gift_cards.index')}}">{{trans('file.Gift Card List')}}</a> </li>
+{{--              <li id="gift-card-menu"><a href="{{route('gift_cards.index')}}">{{trans('file.Gift Card List')}}</a> </li>--}}
               @endif
               @if($coupon_permission_active)
-              <li id="coupon-menu"><a href="{{route('coupons.index')}}">{{trans('file.Coupon List')}}</a> </li>
+{{--              <li id="coupon-menu"><a href="{{route('coupons.index')}}">{{trans('file.Coupon List')}}</a> </li>--}}
               @endif
-              <li id="delivery-menu"><a href="{{route('delivery.index')}}">{{trans('file.Delivery List')}}</a></li>
+{{--              <li id="delivery-menu"><a href="{{route('delivery.index')}}">{{trans('file.Delivery List')}}</a></li>--}}
             </ul>
           </li>
           <?php
@@ -148,22 +148,22 @@
                 ])->first();
           ?>
           @if($index_permission_active)
-          <li><a href="#expense" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-wallet"></i><span>{{trans('file.Expense')}}</span></a>
-            <ul id="expense" class="collapse list-unstyled ">
-              <li id="exp-cat-menu"><a href="{{route('expense_categories.index')}}">{{trans('file.Expense Category')}}</a></li>
-              <li id="exp-list-menu"><a href="{{route('expenses.index')}}">{{trans('file.Expense List')}}</a></li>
-              <?php
-                $add_permission = DB::table('permissions')->where('name', 'expenses-add')->first();
-                $add_permission_active = DB::table('role_has_permissions')->where([
-                    ['permission_id', $add_permission->id],
-                    ['role_id', $role->id]
-                ])->first();
-              ?>
-              @if($add_permission_active)
-              <li><a id="add-expense" href=""> {{trans('file.Add Expense')}}</a></li>
-              @endif
-            </ul>
-          </li>
+{{--          <li><a href="#expense" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-wallet"></i><span>{{trans('file.Expense')}}</span></a>--}}
+{{--            <ul id="expense" class="collapse list-unstyled ">--}}
+{{--              <li id="exp-cat-menu"><a href="{{route('expense_categories.index')}}">{{trans('file.Expense Category')}}</a></li>--}}
+{{--              <li id="exp-list-menu"><a href="{{route('expenses.index')}}">{{trans('file.Expense List')}}</a></li>--}}
+{{--              <?php--}}
+{{--                $add_permission = DB::table('permissions')->where('name', 'expenses-add')->first();--}}
+{{--                $add_permission_active = DB::table('role_has_permissions')->where([--}}
+{{--                    ['permission_id', $add_permission->id],--}}
+{{--                    ['role_id', $role->id]--}}
+{{--                ])->first();--}}
+{{--              ?>--}}
+{{--              @if($add_permission_active)--}}
+{{--              <li><a id="add-expense" href=""> {{trans('file.Add Expense')}}</a></li>--}}
+{{--              @endif--}}
+{{--            </ul>--}}
+{{--          </li>--}}
           @endif
           <?php
             $index_permission = DB::table('permissions')->where('name', 'quotes-index')->first();
@@ -173,21 +173,21 @@
                 ])->first();
           ?>
           @if($index_permission_active)
-          <li><a href="#quotation" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-document"></i><span>{{trans('file.Quotation')}}</span><span></a>
-            <ul id="quotation" class="collapse list-unstyled ">
-              <li id="quotation-list-menu"><a href="{{route('quotations.index')}}">{{trans('file.Quotation List')}}</a></li>
-              <?php
-                $add_permission = DB::table('permissions')->where('name', 'quotes-add')->first();
-                $add_permission_active = DB::table('role_has_permissions')->where([
-                    ['permission_id', $add_permission->id],
-                    ['role_id', $role->id]
-                ])->first();
-              ?>
-              @if($add_permission_active)
-              <li id="quotation-create-menu"><a href="{{route('quotations.create')}}">{{trans('file.Add Quotation')}}</a></li>
-              @endif
-            </ul>
-          </li>
+{{--          <li><a href="#quotation" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-document"></i><span>{{trans('file.Quotation')}}</span><span></a>--}}
+{{--            <ul id="quotation" class="collapse list-unstyled ">--}}
+{{--              <li id="quotation-list-menu"><a href="{{route('quotations.index')}}">{{trans('file.Quotation List')}}</a></li>--}}
+{{--              <?php--}}
+{{--                $add_permission = DB::table('permissions')->where('name', 'quotes-add')->first();--}}
+{{--                $add_permission_active = DB::table('role_has_permissions')->where([--}}
+{{--                    ['permission_id', $add_permission->id],--}}
+{{--                    ['role_id', $role->id]--}}
+{{--                ])->first();--}}
+{{--              ?>--}}
+{{--              @if($add_permission_active)--}}
+{{--              <li id="quotation-create-menu"><a href="{{route('quotations.create')}}">{{trans('file.Add Quotation')}}</a></li>--}}
+{{--              @endif--}}
+{{--            </ul>--}}
+{{--          </li>--}}
           @endif
           <?php
             $index_permission = DB::table('permissions')->where('name', 'transfers-index')->first();
@@ -197,48 +197,48 @@
                 ])->first();
           ?>
           @if($index_permission_active)
-          <li><a href="#transfer" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-export"></i><span>{{trans('file.Transfer')}}</span></a>
-            <ul id="transfer" class="collapse list-unstyled ">
-              <li id="transfer-list-menu"><a href="{{route('transfers.index')}}">{{trans('file.Transfer List')}}</a></li>
-              <?php
-                $add_permission = DB::table('permissions')->where('name', 'transfers-add')->first();
-                $add_permission_active = DB::table('role_has_permissions')->where([
-                    ['permission_id', $add_permission->id],
-                    ['role_id', $role->id]
-                ])->first();
-              ?>
-              @if($add_permission_active)
-              <li id="transfer-create-menu"><a href="{{route('transfers.create')}}">{{trans('file.Add Transfer')}}</a></li>
-              <li id="transfer-import-menu"><a href="{{url('transfers/transfer_by_csv')}}">{{trans('file.Import Transfer By CSV')}}</a></li>
-              @endif
-            </ul>
-          </li>
+{{--          <li><a href="#transfer" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-export"></i><span>{{trans('file.Transfer')}}</span></a>--}}
+{{--            <ul id="transfer" class="collapse list-unstyled ">--}}
+{{--              <li id="transfer-list-menu"><a href="{{route('transfers.index')}}">{{trans('file.Transfer List')}}</a></li>--}}
+{{--              <?php--}}
+{{--                $add_permission = DB::table('permissions')->where('name', 'transfers-add')->first();--}}
+{{--                $add_permission_active = DB::table('role_has_permissions')->where([--}}
+{{--                    ['permission_id', $add_permission->id],--}}
+{{--                    ['role_id', $role->id]--}}
+{{--                ])->first();--}}
+{{--              ?>--}}
+{{--              @if($add_permission_active)--}}
+{{--              <li id="transfer-create-menu"><a href="{{route('transfers.create')}}">{{trans('file.Add Transfer')}}</a></li>--}}
+{{--              <li id="transfer-import-menu"><a href="{{url('transfers/transfer_by_csv')}}">{{trans('file.Import Transfer By CSV')}}</a></li>--}}
+{{--              @endif--}}
+{{--            </ul>--}}
+{{--          </li>--}}
           @endif
 
-          <li><a href="#return" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-archive"></i><span>{{trans('file.return')}}</span></a>
-            <ul id="return" class="collapse list-unstyled ">
-              <?php
-                $index_permission = DB::table('permissions')->where('name', 'returns-index')->first();
-                $index_permission_active = DB::table('role_has_permissions')->where([
-                        ['permission_id', $index_permission->id],
-                        ['role_id', $role->id]
-                    ])->first();
-              ?>
-              @if($index_permission_active)
-              <li id="sale-return-menu"><a href="{{route('return-sale.index')}}">{{trans('file.Sale')}}</a></li>
-              @endif
-              <?php
-                $index_permission = DB::table('permissions')->where('name', 'purchase-return-index')->first();
-                $index_permission_active = DB::table('role_has_permissions')->where([
-                        ['permission_id', $index_permission->id],
-                        ['role_id', $role->id]
-                    ])->first();
-              ?>
-              @if($index_permission_active)
-              <li id="purchase-return-menu"><a href="{{route('return-purchase.index')}}">{{trans('file.Purchase')}}</a></li>
-              @endif
-            </ul>
-          </li>
+{{--          <li><a href="#return" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-archive"></i><span>{{trans('file.return')}}</span></a>--}}
+{{--            <ul id="return" class="collapse list-unstyled ">--}}
+{{--              <?php--}}
+{{--                $index_permission = DB::table('permissions')->where('name', 'returns-index')->first();--}}
+{{--                $index_permission_active = DB::table('role_has_permissions')->where([--}}
+{{--                        ['permission_id', $index_permission->id],--}}
+{{--                        ['role_id', $role->id]--}}
+{{--                    ])->first();--}}
+{{--              ?>--}}
+{{--              @if($index_permission_active)--}}
+{{--              <li id="sale-return-menu"><a href="{{route('return-sale.index')}}">{{trans('file.Sale')}}</a></li>--}}
+{{--              @endif--}}
+{{--              <?php--}}
+{{--                $index_permission = DB::table('permissions')->where('name', 'purchase-return-index')->first();--}}
+{{--                $index_permission_active = DB::table('role_has_permissions')->where([--}}
+{{--                        ['permission_id', $index_permission->id],--}}
+{{--                        ['role_id', $role->id]--}}
+{{--                    ])->first();--}}
+{{--              ?>--}}
+{{--              @if($index_permission_active)--}}
+{{--              <li id="purchase-return-menu"><a href="{{route('return-purchase.index')}}">{{trans('file.Purchase')}}</a></li>--}}
+{{--              @endif--}}
+{{--            </ul>--}}
+{{--          </li>--}}
           <?php
             $index_permission = DB::table('permissions')->where('name', 'account-index')->first();
             $index_permission_active = DB::table('role_has_permissions')->where([
@@ -266,23 +266,23 @@
 
           ?>
           @if($index_permission_active || $balance_sheet_permission_active || $account_statement_permission_active)
-          <li class=""><a href="#account" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-briefcase"></i><span>{{trans('file.Accounting')}}</span></a>
-            <ul id="account" class="collapse list-unstyled ">
-              @if($index_permission_active)
-              <li id="account-list-menu"><a href="{{route('accounts.index')}}">{{trans('file.Account List')}}</a></li>
-              <li><a id="add-account" href="">{{trans('file.Add Account')}}</a></li>
-              @endif
-              @if($money_transfer_permission_active)
-              <li id="money-transfer-menu"><a href="{{route('money-transfers.index')}}">{{trans('file.Money Transfer')}}</a></li>
-              @endif
-              @if($balance_sheet_permission_active)
-              <li id="balance-sheet-menu"><a href="{{route('accounts.balancesheet')}}">{{trans('file.Balance Sheet')}}</a></li>
-              @endif
-              @if($account_statement_permission_active)
-              <li id="account-statement-menu"><a id="account-statement" href="">{{trans('file.Account Statement')}}</a></li>
-              @endif
-            </ul>
-          </li>
+{{--          <li class=""><a href="#account" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-briefcase"></i><span>{{trans('file.Accounting')}}</span></a>--}}
+{{--            <ul id="account" class="collapse list-unstyled ">--}}
+{{--              @if($index_permission_active)--}}
+{{--              <li id="account-list-menu"><a href="{{route('accounts.index')}}">{{trans('file.Account List')}}</a></li>--}}
+{{--              <li><a id="add-account" href="">{{trans('file.Add Account')}}</a></li>--}}
+{{--              @endif--}}
+{{--              @if($money_transfer_permission_active)--}}
+{{--              <li id="money-transfer-menu"><a href="{{route('money-transfers.index')}}">{{trans('file.Money Transfer')}}</a></li>--}}
+{{--              @endif--}}
+{{--              @if($balance_sheet_permission_active)--}}
+{{--              <li id="balance-sheet-menu"><a href="{{route('accounts.balancesheet')}}">{{trans('file.Balance Sheet')}}</a></li>--}}
+{{--              @endif--}}
+{{--              @if($account_statement_permission_active)--}}
+{{--              <li id="account-statement-menu"><a id="account-statement" href="">{{trans('file.Account Statement')}}</a></li>--}}
+{{--              @endif--}}
+{{--            </ul>--}}
+{{--          </li>--}}
           @endif
           <?php
             $department = DB::table('permissions')->where('name', 'department')->first();
@@ -307,23 +307,23 @@
                 ])->first();
           ?>
 
-          <li class=""><a href="#hrm" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-user-group"></i><span>HRM</span></a>
-            <ul id="hrm" class="collapse list-unstyled ">
-              @if($department_active)
-              <li id="dept-menu"><a href="{{route('departments.index')}}">{{trans('file.Department')}}</a></li>
-              @endif
-              @if($index_employee_active)
-              <li id="employee-menu"><a href="{{route('employees.index')}}">{{trans('file.Employee')}}</a></li>
-              @endif
-              @if($attendance_active)
-              <li id="attendance-menu"><a href="{{route('attendance.index')}}">{{trans('file.Attendance')}}</a></li>
-              @endif
-              @if($payroll_active)
-              <li id="payroll-menu"><a href="{{route('payroll.index')}}">{{trans('file.Payroll')}}</a></li>
-              @endif
-              <li id="holiday-menu"><a href="{{route('holidays.index')}}">{{trans('file.Holiday')}}</a></li>
-            </ul>
-          </li>
+{{--          <li class=""><a href="#hrm" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-user-group"></i><span>HRM</span></a>--}}
+{{--            <ul id="hrm" class="collapse list-unstyled ">--}}
+{{--              @if($department_active)--}}
+{{--              <li id="dept-menu"><a href="{{route('departments.index')}}">{{trans('file.Department')}}</a></li>--}}
+{{--              @endif--}}
+{{--              @if($index_employee_active)--}}
+{{--              <li id="employee-menu"><a href="{{route('employees.index')}}">{{trans('file.Employee')}}</a></li>--}}
+{{--              @endif--}}
+{{--              @if($attendance_active)--}}
+{{--              <li id="attendance-menu"><a href="{{route('attendance.index')}}">{{trans('file.Attendance')}}</a></li>--}}
+{{--              @endif--}}
+{{--              @if($payroll_active)--}}
+{{--              <li id="payroll-menu"><a href="{{route('payroll.index')}}">{{trans('file.Payroll')}}</a></li>--}}
+{{--              @endif--}}
+{{--              <li id="holiday-menu"><a href="{{route('holidays.index')}}">{{trans('file.Holiday')}}</a></li>--}}
+{{--            </ul>--}}
+{{--          </li>--}}
 
           <li><a href="#people" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-user"></i><span>{{trans('file.People')}}</span></a>
             <ul id="people" class="collapse list-unstyled ">
@@ -373,7 +373,7 @@
                     ])->first();
               ?>
               @if($index_permission_active)
-              <li id="biller-list-menu"><a href="{{route('biller.index')}}">{{trans('file.Biller List')}}</a></li>
+{{--              <li id="biller-list-menu"><a href="{{route('biller.index')}}">{{trans('file.Biller List')}}</a></li>--}}
               <?php
                 $add_permission = DB::table('permissions')->where('name', 'billers-add')->first();
                 $add_permission_active = DB::table('role_has_permissions')->where([
@@ -382,7 +382,7 @@
                 ])->first();
               ?>
               @if($add_permission_active)
-              <li id="biller-create-menu"><a href="{{route('biller.create')}}">{{trans('file.Add Biller')}}</a></li>
+{{--              <li id="biller-create-menu"><a href="{{route('biller.create')}}">{{trans('file.Add Biller')}}</a></li>--}}
               @endif
               @endif
               <?php
@@ -507,9 +507,9 @@
               </li>
               @endif
               @if($best_seller_active)
-              <li id="best-seller-report-menu">
-                <a href="{{url('report/best_seller')}}">{{trans('file.Best Seller')}}</a>
-              </li>
+{{--              <li id="best-seller-report-menu">--}}
+{{--                <a href="{{url('report/best_seller')}}">{{trans('file.Best Seller')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($product_report_active)
               <li id="product-report-menu">
@@ -522,24 +522,24 @@
               </li>
               @endif
               @if($daily_sale_active)
-              <li id="daily-sale-report-menu">
-                <a href="{{url('report/daily_sale/'.date('Y').'/'.date('m'))}}">{{trans('file.Daily Sale')}}</a>
-              </li>
+{{--              <li id="daily-sale-report-menu">--}}
+{{--                <a href="{{url('report/daily_sale/'.date('Y').'/'.date('m'))}}">{{trans('file.Daily Sale')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($monthly_sale_active)
-              <li id="monthly-sale-report-menu">
-                <a href="{{url('report/monthly_sale/'.date('Y'))}}">{{trans('file.Monthly Sale')}}</a>
-              </li>
+{{--              <li id="monthly-sale-report-menu">--}}
+{{--                <a href="{{url('report/monthly_sale/'.date('Y'))}}">{{trans('file.Monthly Sale')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($daily_purchase_active)
-              <li id="daily-purchase-report-menu">
-                <a href="{{url('report/daily_purchase/'.date('Y').'/'.date('m'))}}">{{trans('file.Daily Purchase')}}</a>
-              </li>
+{{--              <li id="daily-purchase-report-menu">--}}
+{{--                <a href="{{url('report/daily_purchase/'.date('Y').'/'.date('m'))}}">{{trans('file.Daily Purchase')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($monthly_purchase_active)
-              <li id="monthly-purchase-report-menu">
-                <a href="{{url('report/monthly_purchase/'.date('Y'))}}">{{trans('file.Monthly Purchase')}}</a>
-              </li>
+{{--              <li id="monthly-purchase-report-menu">--}}
+{{--                <a href="{{url('report/monthly_purchase/'.date('Y'))}}">{{trans('file.Monthly Purchase')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($sale_report_active)
               <li id="sale-report-menu">
@@ -552,13 +552,13 @@
               </li>
               @endif
               @if($payment_report_active)
-              <li id="payment-report-menu">
-                {!! Form::open(['route' => 'report.paymentByDate', 'method' => 'post', 'id' => 'payment-report-form']) !!}
-                <input type="hidden" name="start_date" value="1988-04-18" />
-                <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />
-                <a id="payment-report-link" href="">{{trans('file.Payment Report')}}</a>
-                {!! Form::close() !!}
-              </li>
+{{--              <li id="payment-report-menu">--}}
+{{--                {!! Form::open(['route' => 'report.paymentByDate', 'method' => 'post', 'id' => 'payment-report-form']) !!}--}}
+{{--                <input type="hidden" name="start_date" value="1988-04-18" />--}}
+{{--                <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />--}}
+{{--                <a id="payment-report-link" href="">{{trans('file.Payment Report')}}</a>--}}
+{{--                {!! Form::close() !!}--}}
+{{--              </li>--}}
               @endif
               @if($purchase_report_active)
               <li id="purchase-report-menu">
@@ -566,7 +566,7 @@
                 <input type="hidden" name="start_date" value="1988-04-18" />
                 <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />
                 <input type="hidden" name="warehouse_id" value="0" />
-                <a id="purchase-report-link" href="">{{trans('file.Purchase Report')}}</a>
+{{--                <a id="purchase-report-link" href="">{{trans('file.Purchase Report')}}</a>--}}
                 {!! Form::close() !!}
               </li>
               @endif
@@ -576,36 +576,36 @@
               </li>
               @endif
               @if($warehouse_stock_report_active)
-              <li id="warehouse-stock-report-menu">
-                <a href="{{route('report.warehouseStock')}}">{{trans('file.Warehouse Stock Chart')}}</a>
-              </li>
+{{--              <li id="warehouse-stock-report-menu">--}}
+{{--                <a href="{{route('report.warehouseStock')}}">{{trans('file.Warehouse Stock Chart')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($product_qty_alert_active)
-              <li id="qtyAlert-report-menu">
-                <a href="{{route('report.qtyAlert')}}">{{trans('file.Product Quantity Alert')}}</a>
-              </li>
+{{--              <li id="qtyAlert-report-menu">--}}
+{{--                <a href="{{route('report.qtyAlert')}}">{{trans('file.Product Quantity Alert')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($user_report_active)
-              <li id="user-report-menu">
-                <a id="user-report-link" href="">{{trans('file.User Report')}}</a>
-              </li>
+{{--              <li id="user-report-menu">--}}
+{{--                <a id="user-report-link" href="">{{trans('file.User Report')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($customer_report_active)
-              <li id="customer-report-menu">
-                <a id="customer-report-link" href="">{{trans('file.Customer Report')}}</a>
-              </li>
+{{--              <li id="customer-report-menu">--}}
+{{--                <a id="customer-report-link" href="">{{trans('file.Customer Report')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($supplier_report_active)
-              <li id="supplier-report-menu">
-                <a id="supplier-report-link" href="">{{trans('file.Supplier Report')}}</a>
-              </li>
+{{--              <li id="supplier-report-menu">--}}
+{{--                <a id="supplier-report-link" href="">{{trans('file.Supplier Report')}}</a>--}}
+{{--              </li>--}}
               @endif
               @if($due_report_active)
               <li id="due-report-menu">
                 {!! Form::open(['route' => 'report.dueByDate', 'method' => 'post', 'id' => 'due-report-form']) !!}
                 <input type="hidden" name="start_date" value="1988-04-18" />
                 <input type="hidden" name="end_date" value="{{date('Y-m-d')}}" />
-                <a id="due-report-link" href="">{{trans('file.Due Report')}}</a>
+{{--                <a id="due-report-link" href="">{{trans('file.Due Report')}}</a>--}}
                 {!! Form::close() !!}
               </li>
               @endif
@@ -701,22 +701,22 @@
               @endif
               <li id="user-menu"><a href="{{route('user.profile', ['id' => Auth::id()])}}">{{trans('file.User Profile')}}</a></li>
               @if($create_sms_permission_active)
-              <li id="create-sms-menu"><a href="{{route('setting.createSms')}}">{{trans('file.Create SMS')}}</a></li>
+{{--              <li id="create-sms-menu"><a href="{{route('setting.createSms')}}">{{trans('file.Create SMS')}}</a></li>--}}
               @endif
               @if($general_setting_permission_active)
-              <li id="general-setting-menu"><a href="{{route('setting.general')}}">{{trans('file.General Setting')}}</a></li>
+{{--              <li id="general-setting-menu"><a href="{{route('setting.general')}}">{{trans('file.General Setting')}}</a></li>--}}
               @endif
               @if($mail_setting_permission_active)
-              <li id="mail-setting-menu"><a href="{{route('setting.mail')}}">{{trans('file.Mail Setting')}}</a></li>
+{{--              <li id="mail-setting-menu"><a href="{{route('setting.mail')}}">{{trans('file.Mail Setting')}}</a></li>--}}
               @endif
               @if($sms_setting_permission_active)
-              <li id="sms-setting-menu"><a href="{{route('setting.sms')}}">{{trans('file.SMS Setting')}}</a></li>
+{{--              <li id="sms-setting-menu"><a href="{{route('setting.sms')}}">{{trans('file.SMS Setting')}}</a></li>--}}
               @endif
               @if($pos_setting_permission_active)
-              <li id="pos-setting-menu"><a href="{{route('setting.pos')}}">POS {{trans('file.settings')}}</a></li>
+{{--              <li id="pos-setting-menu"><a href="{{route('setting.pos')}}">POS {{trans('file.settings')}}</a></li>--}}
               @endif
               @if($hrm_setting_permission_active)
-              <li id="hrm-setting-menu"><a href="{{route('setting.hrm')}}"> {{trans('file.HRM Setting')}}</a></li>
+{{--              <li id="hrm-setting-menu"><a href="{{route('setting.hrm')}}"> {{trans('file.HRM Setting')}}</a></li>--}}
               @endif
             </ul>
           </li>
@@ -760,7 +760,7 @@
                                             @if($lims_pos_setting_data)
                                             <input type="hidden" name="warehouse_id_hidden" value="{{$lims_sale_data->warehouse_id}}">
                                             @endif
-                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -772,7 +772,7 @@
                                             @if($lims_pos_setting_data)
                                             <input type="hidden" name="biller_id_hidden" value="{{$lims_sale_data->biller_id}}">
                                             @endif
-                                            <select required id="biller_id" name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Biller...">
+                                            <select required id="biller_id" name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccione Facturador...">
                                             @foreach($lims_biller_list as $biller)
                                             <option value="{{$biller->id}}">{{$biller->name . ' (' . $biller->company_name . ')'}}</option>
                                             @endforeach
@@ -785,7 +785,7 @@
                                             <input type="hidden" name="customer_id_hidden" value="{{$lims_sale_data->customer_id}}">
                                             @endif
                                             <div class="input-group pos">
-                                                <select required name="customer_id" id="customer_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select customer...">
+                                                <select required name="customer_id" id="customer_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar cliente...">
                                                 @foreach($lims_customer_list as $customer)
                                                     @php $deposit[$customer->id] = $customer->deposit - $customer->expense; @endphp
                                                     <option value="{{$customer->id}}">{{$customer->name . ' (' . $customer->phone_number . ')'}}</option>
@@ -969,14 +969,14 @@
                                             <span id="discount">0.00</span>
                                             @endif
                                         </div>
-                                        <div class="col-sm-4">
-                                            <span class="totals-title">{{trans('file.Coupon')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#coupon-modal"><i class="dripicons-document-edit"></i></button></span>
-                                            @if($lims_sale_data->coupon_discount)
-                                              <span id="coupon-text">{{number_format((float)$lims_sale_data->coupon_discount, 2, '.', '')}}</span>
-                                            @else
-                                              <span id="coupon-text">0.00</span>
-                                            @endif
-                                        </div>
+{{--                                        <div class="col-sm-4">--}}
+{{--                                            <span class="totals-title">{{trans('file.Coupon')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#coupon-modal"><i class="dripicons-document-edit"></i></button></span>--}}
+{{--                                            @if($lims_sale_data->coupon_discount)--}}
+{{--                                              <span id="coupon-text">{{number_format((float)$lims_sale_data->coupon_discount, 2, '.', '')}}</span>--}}
+{{--                                            @else--}}
+{{--                                              <span id="coupon-text">0.00</span>--}}
+{{--                                            @endif--}}
+{{--                                        </div>--}}
                                         <div class="col-sm-4">
                                             <span class="totals-title">{{trans('file.Tax')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#order-tax"><i class="dripicons-document-edit"></i></button></span>
                                             @if($lims_sale_data->order_tax)
@@ -985,14 +985,14 @@
                                               <span id="tax">0.00</span>
                                             @endif
                                         </div>
-                                        <div class="col-sm-4">
-                                            <span class="totals-title">{{trans('file.Shipping')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#shipping-cost-modal"><i class="dripicons-document-edit"></i></button></span>
-                                            @if($lims_sale_data->shipping_cost)
-                                              <span id="shipping-cost">{{number_format((float)$lims_sale_data->shipping_cost, 2, '.', '')}}</span>
-                                            @else
-                                              <span id="shipping-cost">0.00</span>
-                                            @endif
-                                        </div>
+{{--                                        <div class="col-sm-4">--}}
+{{--                                            <span class="totals-title">{{trans('file.Shipping')}} <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#shipping-cost-modal"><i class="dripicons-document-edit"></i></button></span>--}}
+{{--                                            @if($lims_sale_data->shipping_cost)--}}
+{{--                                              <span id="shipping-cost">{{number_format((float)$lims_sale_data->shipping_cost, 2, '.', '')}}</span>--}}
+{{--                                            @else--}}
+{{--                                              <span id="shipping-cost">0.00</span>--}}
+{{--                                            @endif--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                                 <!-- <div class="form-group">
@@ -1065,7 +1065,7 @@
 {{--                            <button style="background: #0984e3" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="credit-card-btn"><i class="fa fa-credit-card"></i> Card</button>--}}
 {{--                        </div>--}}
                         <div class="column-5">
-                            <button style="background: #00cec9" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cash-btn"><i class="fa fa-money"></i> Cash</button>
+                            <button style="background: #00cec9" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cash-btn"><i class="fa fa-money"></i> Efectivo</button>
                         </div>
 {{--                        <div class="column-5">--}}
 {{--                            <button style="background-color: #213170" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="paypal-btn"><i class="fa fa-paypal"></i> Paypal</button>--}}
@@ -1083,7 +1083,7 @@
 {{--                            <button style="background-color: #b33771" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="deposit-btn"><i class="fa fa-university"></i> Deposit</button>--}}
 {{--                        </div>--}}
                         <div class="column-5">
-                            <button style="background-color: #d63031;" type="button" class="btn btn-custom" id="cancel-btn" onclick="return confirmCancel()"><i class="fa fa-close"></i> Cancel</button>
+                            <button style="background-color: #d63031;" type="button" class="btn btn-custom" id="cancel-btn" onclick="return confirmCancel()"><i class="fa fa-close"></i> Cancelar</button>
                         </div>
 
                     </div>
@@ -1282,24 +1282,24 @@
                                 ])->first();
                             ?>
                             @if($pos_setting_permission_active)
-                            <li class="nav-item"><a class="dropdown-item" href="{{route('setting.pos')}}"><i class="dripicons-gear"></i>  <span>{{trans('file.POS Setting')}}</span></a> </li>
+{{--                            <li class="nav-item"><a class="dropdown-item" href="{{route('setting.pos')}}"><i class="dripicons-gear"></i>  <span>{{trans('file.POS Setting')}}</span></a> </li>--}}
                             @endif
                             @if($alert_product > 0)
-                            <li class="nav-item">
-                                  <a rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-item"><i class="dripicons-bell"></i><span class="badge badge-danger">{{$alert_product}}</span>
-                                      <span class="caret"></span>
-                                      <span class="sr-only">Toggle Dropdown</span>
-                                  </a>
-                                  <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default notifications" user="menu">
-                                      <li class="notifications">
-                                        <a href="{{route('report.qtyAlert')}}" class="btn btn-link">{{$alert_product}} producto excede la cantidad de alerta</a>
-                                      </li>
-                                  </ul>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                  <a rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-item"><i class="dripicons-bell"></i><span class="badge badge-danger">{{$alert_product}}</span>--}}
+{{--                                      <span class="caret"></span>--}}
+{{--                                      <span class="sr-only">Toggle Dropdown</span>--}}
+{{--                                  </a>--}}
+{{--                                  <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default notifications" user="menu">--}}
+{{--                                      <li class="notifications">--}}
+{{--                                        <a href="{{route('report.qtyAlert')}}" class="btn btn-link">{{$alert_product}} producto excede la cantidad de alerta</a>--}}
+{{--                                      </li>--}}
+{{--                                  </ul>--}}
+{{--                            </li>--}}
                             @endif
-                            <li class="nav-item">
-                                <a class="dropdown-item" href="{{ url('read_me') }}" target="_blank"><i class="dripicons-information"></i> {{trans('file.Help')}}</a>
-                            </li>&nbsp;
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="dropdown-item" href="{{ url('read_me') }}" target="_blank"><i class="dripicons-information"></i> {{trans('file.Help')}}</a>--}}
+{{--                            </li>&nbsp;--}}
                             <li class="nav-item">
                                   <a rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-item"><i class="dripicons-user"></i> <span>{{ucfirst(Auth::user()->name)}}</span> <i class="fa fa-angle-down"></i>
                                   </a>
@@ -1308,16 +1308,16 @@
                                         <a href="{{route('user.profile', ['id' => Auth::id()])}}"><i class="dripicons-user"></i> {{trans('file.profile')}}</a>
                                       </li>
                                       @if($general_setting_permission_active)
-                                      <li>
-                                        <a href="{{route('setting.general')}}"><i class="dripicons-gear"></i> {{trans('file.settings')}}</a>
-                                      </li>
+{{--                                      <li>--}}
+{{--                                        <a href="{{route('setting.general')}}"><i class="dripicons-gear"></i> {{trans('file.settings')}}</a>--}}
+{{--                                      </li>--}}
                                       @endif
-                                      <li>
-                                        <a href="{{url('my-transactions/'.date('Y').'/'.date('m'))}}"><i class="dripicons-swap"></i> {{trans('file.My Transaction')}}</a>
-                                      </li>
-                                      <li>
-                                        <a href="{{url('holidays/my-holiday/'.date('Y').'/'.date('m'))}}"><i class="dripicons-vibrate"></i> {{trans('file.My Holiday')}}</a>
-                                      </li>
+{{--                                      <li>--}}
+{{--                                        <a href="{{url('my-transactions/'.date('Y').'/'.date('m'))}}"><i class="dripicons-swap"></i> {{trans('file.My Transaction')}}</a>--}}
+{{--                                      </li>--}}
+{{--                                      <li>--}}
+{{--                                        <a href="{{url('holidays/my-holiday/'.date('Y').'/'.date('m'))}}"><i class="dripicons-vibrate"></i> {{trans('file.My Holiday')}}</a>--}}
+{{--                                      </li>--}}
                                       <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
@@ -1338,7 +1338,7 @@
                 <div class="filter-window">
                     <div class="category mt-3">
                         <div class="row ml-2 mr-2 px-2">
-                            <div class="col-7">Choose category</div>
+                            <div class="col-7">Elegir la categoría</div>
                             <div class="col-5 text-right">
                                 <span class="btn btn-default btn-sm">
                                     <i class="dripicons-cross"></i>
@@ -1360,7 +1360,7 @@
                     </div>
                     <div class="brand mt-3">
                         <div class="row ml-2 mr-2 px-2">
-                            <div class="col-7">Choose brand</div>
+                            <div class="col-7">Elegir marca</div>
                             <div class="col-5 text-right">
                                 <span class="btn btn-default btn-sm">
                                     <i class="dripicons-cross"></i>
@@ -2129,7 +2129,7 @@ $("#draft-btn").on("click",function(){
     $('input[name="paid_amount"]').prop('required',false);
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
     }
     else
         $('.payment-form').submit();
@@ -2212,7 +2212,7 @@ $('#add-payment select[name="gift_card_id_select"]').on("change", function() {
 
 $('input[name="paid_amount"]').on("input", function() {
     if( $(this).val() > parseFloat($('input[name="paying_amount"]').val()) ) {
-        alert('Paying amount cannot be bigger than recieved amount');
+        alert('El monto recibido no puede ser menor que el monto a pagar');
         $(this).val('');
     }
     else if( $(this).val() > parseFloat($('#grand-total').text()) ){
@@ -2263,7 +2263,7 @@ function change(paying_amount, paid_amount) {
 }
 
 function confirmDelete() {
-    if (confirm("Are you sure want to delete?")) {
+    if (confirm("¿Estás seguro de eliminar?")) {
         return true;
     }
     return false;
@@ -2374,7 +2374,7 @@ function edit(){
 function couponDiscount() {
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
     }
     else if($("#coupon-code").val() != ''){
         valid = 0;
@@ -2678,7 +2678,7 @@ function cancel(rownumber) {
 function confirmCancel() {
     var audio = $("#mysoundclip2")[0];
     audio.play();
-    if (confirm("Are you sure want to cancel?")){
+    if (confirm("¿Seguro que quieres cancelar?")){
         cancel($('table.order-list tbody tr:last').index());
     }
     return false;
@@ -2687,11 +2687,11 @@ function confirmCancel() {
 $(document).on('submit', '.payment-form', function(e) {
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!");
+        alert("Inserte un producto en la tabla de pedidos");
         e.preventDefault();
     }
     else if( parseFloat( $('input[name="paying_amount"]').val() ) < parseFloat( $('input[name="paid_amount"]').val()) ){
-        alert('Paying amount cannot be bigger than recieved amount');
+        alert('El monto recibido no puede ser menor que el monto a pagar');
         e.preventDefault();
     }
 });

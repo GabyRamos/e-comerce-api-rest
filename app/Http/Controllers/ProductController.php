@@ -129,7 +129,7 @@ class ProductController extends Controller
                 $nestedData['key'] = $key;
                 $product_image = explode(",", $product->image);
                 $product_image = htmlspecialchars($product_image[0]);
-                $nestedData['image'] = '<img src="'.url('images/product', $product_image).'" height="80" width="80">';
+                $nestedData['image'] = '<img src="'.url('public/images/product', $product_image).'" height="80" width="80">';
                 $nestedData['name'] = $product->name;
                 $nestedData['code'] = $product->code;
                 if($product->brand_id)
@@ -355,7 +355,7 @@ class ProductController extends Controller
             if($images) {
                 foreach ($images as $key => $image) {
                     $imageName = $image->getClientOriginalName();
-                    $image->move('images/product', $imageName);
+                    $image->move('public/images/product', $imageName);
                     $image_names[] = $imageName;
                 }
                 if($lims_product_data->image != 'zummXD2dvAtI.png') {
@@ -374,7 +374,7 @@ class ProductController extends Controller
                 $ext = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
                 $fileName = strtotime(date('Y-m-d H:i:s'));
                 $fileName = $fileName . '.' . $ext;
-                $file->move('product/files', $fileName);
+                $file->move('public/product/files', $fileName);
                 $data['file'] = $fileName;
             }
 
@@ -589,12 +589,12 @@ class ProductController extends Controller
     {
         $lims_product_data = Product::findOrFail($id);
         $lims_product_data->is_active = false;
-        /*if($lims_product_data->image != 'zummXD2dvAtI.png') {
+        if($lims_product_data->image != 'zummXD2dvAtI.png') {
             $images = explode(",", $lims_product_data->image);
             foreach ($images as $key => $image) {
-                unlink('images/product/'.$image);
+                unlink('public/images/product/'.$image);
             }
-        }*/
+        }
         $lims_product_data->save();
         return redirect('products')->with('message', 'Product deleted successfully');
     }

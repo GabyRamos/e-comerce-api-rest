@@ -22,10 +22,10 @@ class RoleController extends Controller
             return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
     }
 
-    
+
     public function create()
     {
-        
+
     }
 
     public function store(Request $request)
@@ -68,7 +68,7 @@ class RoleController extends Controller
         $input = $request->all();
         $lims_role_data = Roles::where('id', $input['role_id'])->first();
         $lims_role_data->update($input);
-        return redirect('role')->with('message', 'Data updated successfully');
+        return redirect('role')->with('message', 'Datos actualizados con éxito');
     }
 
     public function permission($id)

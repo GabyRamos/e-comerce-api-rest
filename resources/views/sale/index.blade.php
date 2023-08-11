@@ -551,7 +551,7 @@
 
     $('input[name="amount"]').on("input", function() {
         if( $(this).val() > parseFloat($('input[name="paying_amount"]').val()) ) {
-            alert('Paying amount cannot be bigger than recieved amount');
+            alert('El monto recibido no puede ser menor que el monto a pagar');
             $(this).val('');
         }
         else if( $(this).val() > parseFloat($('input[name="balance"]').val()) ) {
@@ -619,7 +619,7 @@
 
     $('input[name="edit_amount"]').on("input", function() {
         if( $(this).val() > parseFloat($('input[name="edit_paying_amount"]').val()) ) {
-            alert('Paying amount cannot be bigger than recieved amount');
+            alert('El monto recibido no puede ser menor que el monto a pagar');
             $(this).val('');
         }
         $(".change").text(parseFloat($('input[name="edit_paying_amount"]').val() - $(this).val()).toFixed(2));
@@ -773,7 +773,7 @@
                                 sale_id[i-1] = sale[13];
                             }
                         });
-                        if(sale_id.length && confirm("Are you sure want to delete?")) {
+                        if(sale_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'sales/deletebyselection',
@@ -917,13 +917,13 @@
 
     $(document).on('submit', '.payment-form', function(e) {
         if( $('input[name="paying_amount"]').val() < parseFloat($('#amount').val()) ) {
-            alert('Paying amount cannot be bigger than recieved amount');
+            alert('El monto recibido no puede ser menor que el monto a pagar');
             $('input[name="amount"]').val('');
             $(".change").text(parseFloat( $('input[name="paying_amount"]').val() - $('#amount').val() ).toFixed(2));
             e.preventDefault();
         }
         else if( $('input[name="edit_paying_amount"]').val() < parseFloat($('input[name="edit_amount"]').val()) ) {
-            alert('Paying amount cannot be bigger than recieved amount');
+            alert('El monto recibido no puede ser menor que el monto a pagar');
             $('input[name="edit_amount"]').val('');
             $(".change").text(parseFloat( $('input[name="edit_paying_amount"]').val() - $('input[name="edit_amount"]').val() ).toFixed(2));
             e.preventDefault();
@@ -936,14 +936,14 @@
         $('.buttons-delete').addClass('d-none');
 
         function confirmDelete() {
-            if (confirm("Are you sure want to delete?")) {
+            if (confirm("¿Estás seguro de eliminar?")) {
                 return true;
             }
             return false;
         }
 
     function confirmPaymentDelete() {
-        if (confirm("Are you sure want to delete? If you delete this money will be refunded.")) {
+        if (confirm("¿Seguro que quieres eliminar? Si elimina este dinero será reembolsado.")) {
             return true;
         }
         return false;

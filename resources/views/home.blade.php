@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Información</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -16,7 +16,7 @@
                     @if(Auth::user()->is_active)
                     You are logged in!
                     @else
-                    You are logged in but id is not activated! Please contact with admin.
+                    You are logged in but id is not activated! Please contact with admin. gaby
                     @endif
                 </div>
             </div>

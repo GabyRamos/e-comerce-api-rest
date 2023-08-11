@@ -42,7 +42,7 @@ return [
     'exists'               => 'The selected :attribute is invalid.',
     'file'                 => 'The :attribute must be a file.',
     'filled'               => 'The :attribute field must have a value.',
-    'image'                => 'Only jpg, jpeg, png, gif file will be supported',
+    'image'                => 'Solo puede soportar archivos jpg, jpeg, png',
     'in'                   => 'The selected :attribute is invalid.',
     'in_array'             => 'The :attribute field does not exist in :other.',
     'integer'              => 'The :attribute must be an integer.',

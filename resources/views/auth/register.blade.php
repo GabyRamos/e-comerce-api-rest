@@ -83,7 +83,7 @@
                 <label for="register-company" class="label-material">{{trans('file.Company Name')}}</label>
               </div>
               <div class="form-group-material">
-                <select name="role_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Role...">
+                <select name="role_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar rol...">
                   @foreach($lims_role_list as $role)
                       <option value="{{$role->id}}">{{$role->name}}</option>
                   @endforeach
@@ -116,7 +116,7 @@
                 <input id="password-confirm" type="password" name="password_confirmation" required class="input-material">
                 <label for="password-confirm" class="label-material">{{trans('file.Confirm Password')}} *</label>
               </div>
-              <input id="register" type="submit" value="Register" class="btn btn-primary">
+              <input id="register" type="submit" value="Registrar V2" class="btn btn-primary">
             </form><p>{{trans('file.Already have an account')}}? </p><a href="{{url('login')}}" class="signup">{{trans('file.LogIn')}}</a>
           </div>
         </div>

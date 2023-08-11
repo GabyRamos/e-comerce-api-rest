@@ -17,7 +17,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
-                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -36,7 +36,7 @@
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button type="button" class="btn btn-secondary btn-lg"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 </section>
 <script type="text/javascript">
 	$("ul#product").siblings('a').attr('aria-expanded','true');
@@ -184,7 +184,7 @@ var product_qty = [];
 	$('#adjustment-form').on('submit',function(e){
 	    var rownumber = $('table.order-list tbody tr:last').index();
 	    if (rownumber < 0) {
-	        alert("Please insert product to order table!")
+	        alert("¡Inserte un producto en la tabla de pedidos!")
 	        e.preventDefault();
 	    }
 	});
@@ -223,7 +223,7 @@ var product_qty = [];
                     $("table.order-list tbody").append(newRow);
                     rowindex = newRow.index();
                     calculateTotal();
-                }  
+                }
             }
         });
 	}

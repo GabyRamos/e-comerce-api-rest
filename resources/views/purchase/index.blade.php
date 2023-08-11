@@ -52,7 +52,7 @@
         <div class="container mt-3 pb-2 border-bottom">
             <div class="row">
                 <div class="col-md-3">
-                    <button id="print-btn" type="button" class="btn btn-default btn-sm d-print-none"><i class="dripicons-print"></i> {{trans('file.Print')}}</button>
+{{--                    <button id="print-btn" type="button" class="btn btn-default btn-sm d-print-none"><i class="dripicons-print"></i> {{trans('file.Print')}}</button>--}}
                 </div>
                 <div class="col-md-6">
                     <h3 id="exampleModalLabel" class="modal-title text-center container-fluid">{{$general_setting->site_title}}</h3>
@@ -71,7 +71,7 @@
                 <thead>
                     <th>#</th>
                     <th>{{trans('file.product')}}</th>
-                    <th>Qty</th>
+                    <th>Cantidad</th>
                     <th>{{trans('file.Unit Cost')}}</th>
                     <th>{{trans('file.Tax')}}</th>
                     <th>{{trans('file.Discount')}}</th>
@@ -263,14 +263,14 @@
     });
 
     function confirmDelete() {
-        if (confirm("Are you sure want to delete?")) {
+        if (confirm("¿Estás seguro de eliminar?")) {
             return true;
         }
         return false;
     }
 
     function confirmDeletePayment() {
-        if (confirm("Are you sure want to delete? If you delete this money will be refunded")) {
+        if (confirm("¿Seguro que quieres eliminar? Si eliminas este dinero se te reembolsará")) {
             return true;
         }
         return false;
@@ -335,7 +335,7 @@
                 cols += '<td>' + account_name[index] + '</td>';
                 cols += '<td>' + paid_amount[index] + '</td>';
                 cols += '<td>' + paying_method[index] + '</td>';
-                cols += '<td><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action<span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button><ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu"><li><button type="button" class="btn btn-link edit-btn" data-id="' + payment_id[index] +'" data-clicked=false data-toggle="modal" data-target="#edit-payment"><i class="dripicons-document-edit"></i> Edit</button></li><li class="divider"></li>{{ Form::open(['route' => 'purchase.delete-payment', 'method' => 'post'] ) }}<li><input type="hidden" name="id" value="' + payment_id[index] + '" /> <button type="submit" class="btn btn-link" onclick="return confirmDeletePayment()"><i class="dripicons-trash"></i> Delete</button></li>{{ Form::close() }}</ul></div></td>'
+                cols += '<td><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action<span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button><ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu"><li><button type="button" class="btn btn-link edit-btn" data-id="' + payment_id[index] +'" data-clicked=false data-toggle="modal" data-target="#edit-payment"><i class="dripicons-document-edit"></i> Editar</button></li><li class="divider"></li>{{ Form::open(['route' => 'purchase.delete-payment', 'method' => 'post'] ) }}<li><input type="hidden" name="id" value="' + payment_id[index] + '" /> <button type="submit" class="btn btn-link" onclick="return confirmDeletePayment()"><i class="dripicons-trash"></i> Eliminar</button></li>{{ Form::close() }}</ul></div></td>'
                 newRow.append(cols);
                 newBody.append(newRow);
                 $("table.payment-list").append(newBody);
@@ -406,7 +406,7 @@
 
     $('input[name="amount"]').on("input", function() {
         if( $(this).val() > parseFloat($('input[name="paying_amount"]').val()) ) {
-            alert('Paying amount cannot be bigger than recieved amount');
+            alert('El monto recibido no puede ser menor que el monto a pagar');
             $(this).val('');
         }
         else if( $(this).val() > parseFloat($('input[name="balance"]').val()) ) {
@@ -437,7 +437,7 @@
 
     $('input[name="edit_amount"]').on("input", function() {
         if( $(this).val() > parseFloat($('input[name="edit_paying_amount"]').val()) ) {
-            alert('Paying amount cannot be bigger than recieved amount');
+            alert('El monto recibido no puede ser menor que el monto a pagar');
             $(this).val('');
         }
         $(".change").text(parseFloat($('input[name="edit_paying_amount"]').val() - $(this).val()).toFixed(2));
@@ -566,7 +566,7 @@
                                 purchase_id[i-1] = purchase[3];
                             }
                         });
-                        if(purchase_id.length && confirm("Are you sure want to delete?")) {
+                        if(purchase_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'purchases/deletebyselection',
@@ -703,13 +703,13 @@
 
     $(document).on('submit', '.payment-form', function(e) {
         if( $('input[name="paying_amount"]').val() < parseFloat($('#amount').val()) ) {
-            alert('Paying amount cannot be bigger than recieved amount');
+            alert('El monto recibido no puede ser menor que el monto a pagar');
             $('input[name="amount"]').val('');
             $(".change").text(parseFloat( $('input[name="paying_amount"]').val() - $('#amount').val() ).toFixed(2));
             e.preventDefault();
         }
         else if( $('input[name="edit_paying_amount"]').val() < parseFloat($('input[name="edit_amount"]').val()) ) {
-            alert('Paying amount cannot be bigger than recieved amount');
+            alert('El monto recibido no puede ser menor que el monto a pagar');
             $('input[name="edit_amount"]').val('');
             $(".change").text(parseFloat( $('input[name="edit_paying_amount"]').val() - $('input[name="edit_amount"]').val() ).toFixed(2));
             e.preventDefault();

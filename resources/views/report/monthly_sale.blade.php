@@ -1,8 +1,8 @@
 @extends('layout.main') @section('content')
 <section>
 	<div class="container-fluid">
-		<div class="card"> 
-			<div class="card-body"> 
+		<div class="card">
+			<div class="card-body">
 				{{ Form::open(['route' => ['report.monthlySaleByWarehouse', $year], 'method' => 'post', 'id' => 'report-form']) }}
 				<input type="hidden" name="warehouse_id_hidden" value="{{$warehouse_id}}">
 				<h4 class="text-center">{{trans('file.Monthly Sale Report')}} &nbsp;&nbsp;
@@ -25,18 +25,18 @@
 						</thead>
 					    <tbody>
 						    <tr>
-						      <td><strong>January</strong></td>
-						      <td><strong>February</strong></td>
-						      <td><strong>March</strong></td>
-						      <td><strong>April</strong></td>
-						      <td><strong>May</strong></td>
-						      <td><strong>June</strong></td>
-						      <td><strong>July</strong></td>
-						      <td><strong>August</strong></td>
-						      <td><strong>September</strong></td>
-						      <td><strong>October</strong></td>
-						      <td><strong>November</strong></td>
-						      <td><strong>December</strong></td>
+                                <td><strong>Enero</strong></td>
+                                <td><strong>Febrero</strong></td>
+                                <td><strong>Marzo</strong></td>
+                                <td><strong>Abril</strong></td>
+                                <td><strong>Mayo</strong></td>
+                                <td><strong>Junio</strong></td>
+                                <td><strong>Julio</strong></td>
+                                <td><strong>Agosto</strong></td>
+                                <td><strong>Septiembre</strong></td>
+                                <td><strong>Octubre</strong></td>
+                                <td><strong>Noviembre</strong></td>
+                                <td><strong>Deciembre</strong></td>
 						    </tr>
 						    <tr>
 						    	@foreach($total_discount as $key => $discount)
@@ -73,7 +73,7 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 </section>
 
 <script type="text/javascript">

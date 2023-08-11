@@ -120,12 +120,12 @@
           </div>
         </div>
     </div>
-</seaction>
+</section>
 
 <script type="text/javascript">
 
     function confirmClose() {
-      if (confirm("Are you sure want to close?")) {
+      if (confirm("¿Estás seguro de que quieres cerrar?")) {
           return true;
       }
       return false;

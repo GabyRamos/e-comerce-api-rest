@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -26,7 +26,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
                                             <input type="hidden" name="warehouse_id_hidden" value="{{$lims_purchase_data->warehouse_id}}" />
-                                            <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -37,7 +37,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Supplier')}}</label>
                                             <input type="hidden" name="supplier_id_hidden" value="{{ $lims_purchase_data->supplier_id }}" />
-                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" id="supplier-id" data-live-search-style="begins" title="Select supplier...">
+                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" id="supplier-id" data-live-search-style="begins" title="Seleccionar proveedor...">
                                                 @foreach($lims_supplier_list as $supplier)
                                                 <option value="{{$supplier->id}}">{{$supplier->name .' ('. $supplier->company_name .')'}}</option>
                                                 @endforeach
@@ -59,21 +59,21 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>{{trans('file.Attach Document')}}</label> <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i>
-                                            <input type="file" name="document" class="form-control" >
-                                            @if($errors->has('extension'))
-                                                <span>
-                                                   <strong>{{ $errors->first('extension') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+{{--                                        <div class="form-group">--}}
+{{--                                            <label>{{trans('file.Attach Document')}}</label> <i class="dripicons-question" data-toggle="tooltip" title="Solo soporta archivos jpg, jpeg, png, gif, pdf, csv, docx, xlsx y txt"></i>--}}
+{{--                                            <input type="file" name="document" class="form-control" >--}}
+{{--                                            @if($errors->has('extension'))--}}
+{{--                                                <span>--}}
+{{--                                                   <strong>{{ $errors->first('extension') }}</strong>--}}
+{{--                                                </span>--}}
+{{--                                            @endif--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="col-md-12 mt-3">
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button type="button" class="btn btn-secondary"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -96,14 +96,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php 
+                                                    <?php
                                                     $temp_unit_name = [];
                                                     $temp_unit_operator = [];
                                                     $temp_unit_operation_value = [];
                                                     ?>
                                                     @foreach($lims_product_purchase_data as $product_purchase)
                                                     <tr>
-                                                    <?php 
+                                                    <?php
                                                         $product_data = DB::table('products')->find($product_purchase->product_id);
                                                         if($product_purchase->variant_id) {
                                                             $product_variant_data = \App\ProductVariant::FindExactProduct($product_data->id, $product_purchase->variant_id)->select('item_code')->first();
@@ -136,7 +136,7 @@
                                                         else{
                                                             $product_cost = (($product_purchase->total + ($product_purchase->discount / $product_purchase->qty)) / $product_purchase->qty) / $unit_operation_value[0];
                                                         }
-                                                        
+
 
                                                         $temp_unit_name = $unit_name = implode(",",$unit_name) . ',';
 
@@ -181,7 +181,7 @@
                                                     <th id="total-discount">{{ number_format((float)$lims_purchase_data->total_discount, 2, '.', '') }}</th>
                                                     <th id="total-tax">{{ number_format((float)$lims_purchase_data->total_tax, 2, '.', '')}}</th>
                                                     <th id="total">{{ number_format((float)$lims_purchase_data->total_cost, 2, '.', '') }}</th>
-                                                    <th><i class="dripicons-trash"></i></th>
+{{--                                                    <th><i class="dripicons-trash"></i></th>--}}
                                                 </tfoot>
                                             </table>
                                         </div>
@@ -239,7 +239,7 @@
                                             <label>
                                                 <strong>{{trans('file.Discount')}}</strong>
                                             </label>
-                                            <input type="number" name="order_discount" class="form-control" value="{{$lims_purchase_data->order_discount}}" step="any" />
+                                            <input type="number" min="0" name="order_discount" class="form-control" value="{{$lims_purchase_data->order_discount}}" step="any" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -409,7 +409,7 @@ $('#subtotal').text(parseFloat($('input[name="total_cost"]').val()).toFixed(2));
 $('#order_tax').text(parseFloat($('input[name="order_tax"]').val()).toFixed(2));
 if($('select[name="status"]').val() == 2){
     $(".recieved-product-qty").removeClass("d-none");
-    
+
 }
 if(!$('input[name="order_discount"]').val())
     $('input[name="order_discount"]').val('0.00');
@@ -457,7 +457,7 @@ var lims_product_code = [
     @endforeach
         <?php
         echo  '"'.implode('","', $productArray).'"';
-        ?> 
+        ?>
 ];
 
     var lims_productcodeSearch = $('#lims_productcodeSearch');
@@ -826,7 +826,7 @@ $(window).keydown(function(e){
 $('#purchase-form').on('submit',function(e){
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
         e.preventDefault();
     }
 

@@ -165,7 +165,7 @@
     });
 
     function confirmDelete() {
-      if (confirm("Are you sure want to delete?")) {
+      if (confirm("¿Estás seguro de eliminar?")) {
           return true;
       }
       return false;
@@ -255,7 +255,7 @@
                                 customer_group_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(customer_group_id.length && confirm("Are you sure want to delete?")) {
+                        if(customer_group_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'customer_group/deletebyselection',

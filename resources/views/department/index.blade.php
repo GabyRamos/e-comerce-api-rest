@@ -4,10 +4,10 @@
 <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ $errors->first('name') }}</div>
 @endif
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 
 <section>
@@ -41,7 +41,7 @@
                                 <li class="divider"></li>
                                 {{ Form::open(['route' => ['departments.destroy', $department->id], 'method' => 'DELETE'] ) }}
                                 <li>
-                                  <button type="submit" class="btn btn-link" onclick="return confirmDelete()"><i class="dripicons-trash"></i> {{trans('file.delete')}}</button> 
+                                  <button type="submit" class="btn btn-link" onclick="return confirmDelete()"><i class="dripicons-trash"></i> {{trans('file.delete')}}</button>
                                 </li>
                                 {{ Form::close() }}
                             </ul>
@@ -69,8 +69,8 @@
             <div class="form-group">
                 <label>{{trans('file.name')}} *</label>
                 {{Form::text('name',null,array('required' => 'required', 'class' => 'form-control', 'placeholder' => 'Type department name...'))}}
-            </div>               
-            <div class="form-group">       
+            </div>
+            <div class="form-group">
               <input type="submit" value="{{trans('file.submit')}}" class="btn btn-primary">
             </div>
           </form>
@@ -95,7 +95,7 @@
                 {{Form::text('name',null, array('required' => 'required', 'class' => 'form-control'))}}
             </div>
             <input type="hidden" name="department_id">
-            <div class="form-group">       
+            <div class="form-group">
                 <input type="submit" value="{{trans('file.submit')}}" class="btn btn-primary">
               </div>
             </div>
@@ -111,7 +111,7 @@
 
     var department_id = [];
     var user_verified = <?php echo json_encode(env('USER_VERIFIED')) ?>;
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -119,7 +119,7 @@
     });
 
     function confirmDelete() {
-      if (confirm("Are you sure want to delete?")) {
+      if (confirm("¿Estás seguro de eliminar?")) {
           return true;
       }
       return false;
@@ -204,7 +204,7 @@ $(document).ready(function() {
                                 department_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(department_id.length && confirm("Are you sure want to delete?")) {
+                        if(department_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'departments/deletebyselection',

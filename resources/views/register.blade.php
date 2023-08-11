@@ -53,7 +53,7 @@
                 <input id="license" type="checkbox" class="form-control-custom">
                 <label for="license">Agree the terms and policy</label>
               </div>
-              <input id="register" type="submit" value="Register" class="btn btn-primary">
+              <input id="register" type="submit" value="Registrar V1" class="btn btn-primary">
             </form><small>Already have an account? </small><a href="login.html" class="signup">Login</a>
           </div>
           <div class="copyrights text-center">

@@ -162,7 +162,7 @@
     });
 
 	function confirmDelete() {
-        if (confirm("Are you sure want to delete?")) {
+        if (confirm("¿Estás seguro de eliminar?")) {
             return true;
         }
         return false;
@@ -276,7 +276,7 @@
                                 quotation_id[i-1] = quotation[13];
                             }
                         });
-                        if(quotation_id.length && confirm("Are you sure want to delete?")) {
+                        if(quotation_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'quotations/deletebyselection',

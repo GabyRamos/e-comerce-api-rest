@@ -123,7 +123,7 @@ class SupplierController extends Controller
 
         $lims_supplier_data = Supplier::findOrFail($id);
         $lims_supplier_data->update($input);
-        return redirect('supplier')->with('message','Data updated successfully');
+        return redirect('supplier')->with('message','Datos actualizados con éxito');
     }
 
     public function deleteBySelection(Request $request)
@@ -150,7 +150,7 @@ class SupplierController extends Controller
         $upload=$request->file('file');
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         if($ext != 'csv')
-            return redirect()->back()->with('not_permitted', 'Please upload a CSV file');
+            return redirect()->back()->with('not_permitted', 'Necesitas cargar un archivo CSV');
         $filename =  $upload->getClientOriginalName();
         $filePath=$upload->getRealPath();
         //open and read

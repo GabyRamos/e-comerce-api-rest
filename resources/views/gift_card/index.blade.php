@@ -165,7 +165,7 @@
                   </div>
                   <div class="form-group customer_list">
                       <label>{{trans('file.customer')}} *</label>
-                      <select name="customer_id" class="selectpicker form-control" required data-live-search="true" data-live-search-style="begins" title="Select Customer...">
+                      <select name="customer_id" class="selectpicker form-control" required data-live-search="true" data-live-search-style="begins" title="Seleccionar cliente...">
                           @foreach($lims_customer_list as $customer)
                           <option value="{{$customer->id}}">{{$customer->name .' ('.$customer->phone_number.')'}}</option>
                           @endforeach
@@ -225,7 +225,7 @@
                 </div>
                 <div class="form-group customer_list_edit">
                     <label>{{trans('file.customer')}} *</label>
-                    <select name="customer_id_edit" class="selectpicker form-control" required data-live-search="true" data-live-search-style="begins" title="Select Customer...">
+                    <select name="customer_id_edit" class="selectpicker form-control" required data-live-search="true" data-live-search-style="begins" title="Seleccionar cliente...">
                         @foreach($lims_customer_list as $customer)
                         <option value="{{$customer->id}}">{{$customer->name .' ('.$customer->phone_number.')'}}</option>
                         @endforeach
@@ -405,7 +405,7 @@
     })
 
 function confirmDelete() {
-    if (confirm("Are you sure want to delete?")) {
+    if (confirm("¿Estás seguro de eliminar?")) {
         return true;
     }
     return false;
@@ -499,7 +499,7 @@ function confirmDelete() {
                                 gift_card_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(gift_card_id.length && confirm("Are you sure want to delete?")) {
+                        if(gift_card_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'gift_cards/deletebyselection',

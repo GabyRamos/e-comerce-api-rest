@@ -142,7 +142,7 @@
     });
 
     function confirmDelete() {
-        if (confirm("Are you sure want to delete?")) {
+        if (confirm("¿Estás seguro de eliminar?")) {
             return true;
         }
         return false;
@@ -256,7 +256,7 @@
                                 return_id[i-1] = returns[11];
                             }
                         });
-                        if(return_id.length && confirm("Are you sure want to delete?")) {
+                        if(return_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'return-purchase/deletebyselection',

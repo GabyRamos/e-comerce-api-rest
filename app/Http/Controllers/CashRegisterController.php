@@ -27,7 +27,7 @@ class CashRegisterController extends Controller
 		$data['status'] = true;
 		$data['user_id'] = Auth::id();
 		CashRegister::create($data);
-		return redirect()->back()->with('message', 'Cash register created successfully');
+		return redirect()->back()->with('message', 'Caja registradora creada con éxito');
 	}
 
 	public function getDetails($id)

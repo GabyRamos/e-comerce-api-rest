@@ -1,9 +1,9 @@
 @extends('layout.main') @section('content')
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 
 <section>
@@ -93,7 +93,7 @@
                           @endforeach
                           </select>
                       </div>
-                      
+
                       <div class="col-md-6 form-group">
                           <label>{{trans('file.Amount')}} *</label>
                           <input type="number" name="amount" class="form-control" step="any" required>
@@ -137,7 +137,7 @@
                           @endforeach
                           </select>
                       </div>
-                      
+
                       <div class="col-md-6 form-group">
                           <label>{{trans('file.Amount')}} *</label>
                           <input type="number" name="amount" class="form-control" step="any" required>
@@ -161,8 +161,8 @@
 
     var money_transfer_id = [];
     var user_verified = <?php echo json_encode(env('USER_VERIFIED')) ?>;
-    
-    
+
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -180,7 +180,7 @@
     })
 
 function confirmDelete() {
-    if (confirm("Are you sure want to delete?")) {
+    if (confirm("¿Estás seguro de eliminar?")) {
         return true;
     }
     return false;
@@ -274,7 +274,7 @@ function confirmDelete() {
                                 money_transfer_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(money_transfer_id.length && confirm("Are you sure want to delete?")) {
+                        if(money_transfer_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'money_transfers/deletebyselection',

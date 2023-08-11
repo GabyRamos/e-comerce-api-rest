@@ -12,7 +12,7 @@
                         <label class="d-tc mt-2"><strong>{{trans('file.Choose Your Date')}}</strong> &nbsp;</label>
                         <div class="d-tc">
                             <div class="input-group">
-                                <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} To {{$end_date}}" required />
+                                <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} a {{$end_date}}" required />
                                 <input type="hidden" name="start_date" value="{{$start_date}}" />
                                 <input type="hidden" name="end_date" value="{{$end_date}}" />
                             </div>
@@ -41,7 +41,7 @@
             <input type="hidden" name="warehouse_id_hidden" value="{{$warehouse_id}}" />
             {!! Form::close() !!}
 
-    
+
         </div>
     </div>
     <ul class="nav nav-tabs ml-4 mt-3" role="tablist">
@@ -88,7 +88,7 @@
                             <td>{{$sale->customer->name}}</td>
                             <td>
                                 @foreach($lims_product_sale_data[$key] as $product_sale_data)
-                                <?php 
+                                <?php
                                     $product = App\Product::select('name')->find($product_sale_data->product_id);
                                     if($product_sale_data->variant_id) {
                                         $variant = App\Variant::find($product_sale_data->variant_id);
@@ -152,7 +152,7 @@
                         @foreach($lims_purchase_data as $key=>$purchase)
                         <tr>
                             <td>{{$key}}</td>
-                            <?php 
+                            <?php
                                 $supplier = DB::table('suppliers')->find($purchase->supplier_id);
                             ?>
                             <td>{{date($general_setting->date_format, strtotime($purchase->created_at->toDateString())) . ' '. $purchase->created_at->toTimeString()}}</td>
@@ -164,7 +164,7 @@
                             @endif
                             <td>
                                 @foreach($lims_product_purchase_data[$key] as $product_purchase_data)
-                                <?php 
+                                <?php
                                     $product = App\Product::select('name')->find($product_purchase_data->product_id);
                                     if($product_purchase_data->variant_id) {
                                         $variant = App\Variant::find($product_purchase_data->variant_id);
@@ -231,7 +231,7 @@
                         @foreach($lims_quotation_data as $key=>$quotation)
                         <tr>
                             <td>{{$key}}</td>
-                            <?php 
+                            <?php
                                 $supplier = DB::table('suppliers')->find($quotation->supplier_id);
                             ?>
                             <td>{{ date($general_setting->date_format, strtotime($quotation->created_at->toDateString())) }}<br>{{$quotation->created_at->toTimeString()}}</td>
@@ -244,7 +244,7 @@
                             @endif
                             <td>
                                 @foreach($lims_product_quotation_data[$key] as $product_quotation_data)
-                                <?php 
+                                <?php
                                     $product = App\Product::select('name')->find($product_quotation_data->product_id);
                                     if($product_quotation_data->variant_id) {
                                         $variant = App\Variant::find($product_quotation_data->variant_id);
@@ -309,7 +309,7 @@
                             <td>{{$return->biller->name}}</td>
                             <td>
                                 @foreach($lims_product_return_data[$key] as $product_return_data)
-                                <?php 
+                                <?php
                                     $product = App\Product::find($product_return_data->product_id);
                                     if($product_return_data->variant_id) {
                                         $variant = App\Variant::find($product_return_data->variant_id);
@@ -365,7 +365,7 @@
                             <td>{{$expense->reference_no}}</td>
                             <td>{{$expense->expenseCategory->name}}</td>
                             <td>{{$expense->amount}}</td>
-                            <td>{{$expense->note}}</td>     
+                            <td>{{$expense->note}}</td>
                         </tr>
                         @endforeach
                     </tbody>

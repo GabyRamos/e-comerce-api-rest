@@ -1,11 +1,11 @@
 @extends('layout.main') @section('content')
 
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -25,7 +25,7 @@
                                         @if($lims_pos_setting_data)
                                         <input type="hidden" name="customer_id_hidden" value="{{$lims_pos_setting_data->customer_id}}">
                                         @endif
-                                        <select required name="customer_id" id="customer_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select customer...">
+                                        <select required name="customer_id" id="customer_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar cliente...">
                                             @foreach($lims_customer_list as $customer)
                                             <option value="{{$customer->id}}">{{$customer->name . ' (' . $customer->phone_number . ')'}}</option>
                                             @endforeach
@@ -36,7 +36,7 @@
                                         @if($lims_pos_setting_data)
                                         <input type="hidden" name="biller_id_hidden" value="{{$lims_pos_setting_data->biller_id}}">
                                         @endif
-                                        <select required name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Biller...">
+                                        <select required name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccione Facturador...">
                                             @foreach($lims_biller_list as $biller)
                                             <option value="{{$biller->id}}">{{$biller->name . ' (' . $biller->company_name . ')'}}</option>
                                             @endforeach
@@ -64,7 +64,7 @@
                                         @if($lims_pos_setting_data)
                                         <input type="hidden" name="warehouse_id_hidden" value="{{$lims_pos_setting_data->warehouse_id}}">
                                         @endif
-                                        <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                        <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                             @foreach($lims_warehouse_list as $warehouse)
                                             <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                             @endforeach
@@ -90,7 +90,7 @@
                                         @endif
                                         <label class="mt-2"><strong>{{trans('file.Touchscreen keybord')}}</label>
                                     </div>
-                                </div>                              
+                                </div>
                             </div>
                         {!! Form::close() !!}
                     </div>
@@ -106,7 +106,7 @@
     $("ul#setting").addClass("show");
     $("ul#setting #pos-setting-menu").addClass("active");
 
-    
+
 
     $('select[name="customer_id"]').val($("input[name='customer_id_hidden']").val());
     $('select[name="biller_id"]').val($("input[name='biller_id_hidden']").val());

@@ -23,7 +23,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
-                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required id="warehouse_id" name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -43,7 +43,7 @@
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button type="button" class="btn btn-secondary btn-lg"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                                 <tbody>
                                                 	@foreach($lims_product_adjustment_data as $product_adjustment_data)
                                                 	<tr>
-                                                	<?php 
+                                                	<?php
                                                 	$product = DB::table('products')->find($product_adjustment_data->product_id);
                                                 	?>
                                                 	<td>{{$product->name}}</td>
@@ -122,7 +122,7 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 </section>
 <script type="text/javascript">
     $("ul#product").siblings('a').attr('aria-expanded','true');
@@ -245,7 +245,7 @@ for(rowindex  =0; rowindex <= rownumber; rowindex++){
     $('#adjustment-form').on('submit',function(e){
         var rownumber = $('table.order-list tbody tr:last').index();
         if (rownumber < 0) {
-            alert("Please insert product to order table!")
+            alert("Inserte un producto en la tabla de pedidos")
             e.preventDefault();
         }
     });
@@ -285,7 +285,7 @@ for(rowindex  =0; rowindex <= rownumber; rowindex++){
                     $('.selectpicker').selectpicker('refresh');
                     rowindex = newRow.index();
                     calculateTotal();
-                }  
+                }
             }
         });
     }

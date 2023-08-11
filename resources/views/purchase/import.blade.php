@@ -22,7 +22,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
-                                            <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -32,7 +32,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{trans('file.Supplier')}}</label>
-                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select supplier...">
+                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar proveedor...">
                                                 @foreach($lims_supplier_list as $supplier)
                                                 <option value="{{$supplier->id}}">{{$supplier->name .' ('. $supplier->company_name .')'}}</option>
                                                 @endforeach
@@ -54,7 +54,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{trans('file.Attach Document')}}</label>
-                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i>
+                                            <i class="dripicons-question" data-toggle="tooltip" title="Solo soporta archivos jpg, jpeg, png, gif, pdf, csv, docx, xlsx y txt"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -131,7 +131,7 @@
                                             <label>
                                                 <strong>{{trans('file.Discount')}}</strong>
                                             </label>
-                                            <input type="number" name="order_discount" class="form-control" step="any" />
+                                            <input type="number" min="0" name="order_discount" class="form-control" step="any" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">

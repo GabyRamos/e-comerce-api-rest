@@ -17,7 +17,6 @@
     <div class="container-fluid">
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createModal"><i class="dripicons-plus"></i> {{trans("file.Add Category")}}</button>&nbsp;
-        <button class="btn btn-primary" data-toggle="modal" data-target="#importCategory"><i class="dripicons-copy"></i> {{trans('file.Import Category')}}</button>
     </div>
     <div class="table-responsive">
         <table id="category-table" class="table" style="width: 100%">
@@ -51,7 +50,7 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>{{trans('file.name')}} *</label>
-                    {{Form::text('name',null,array('required' => 'required', 'class' => 'form-control', 'placeholder' => 'Type category name...'))}}
+                    {{Form::text('name',null,array('required' => 'required', 'class' => 'form-control', 'placeholder' => 'Escriba el nombre de la categoría...'))}}
                 </div>
                 <div class="col-md-6 form-group">
                     <label>{{trans('file.Image')}}</label>
@@ -59,7 +58,7 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <label>{{trans('file.Parent Category')}}</label>
-                    {{Form::select('parent_id', $lims_categories, null, ['class' => 'form-control','placeholder' => 'No Parent Category'])}}
+                    {{Form::select('parent_id', $lims_categories, null, ['class' => 'form-control','placeholder' => 'Sin categoría principal'])}}
                 </div>
             </div>
 
@@ -150,7 +149,7 @@
     $("ul#product #category-menu").addClass("active");
 
     function confirmDelete() {
-      if (confirm("If you delete category all products under this category will also be deleted. Are you sure want to delete?")) {
+      if (confirm("Si elimina la categoría, también se eliminarán todos los productos de esta categoría. ¿Seguro que quieres eliminar?")) {
           return true;
       }
       return false;
@@ -271,7 +270,7 @@
                                 category_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(category_id.length && confirm("If you delete category all products under this category will also be deleted. Are you sure want to delete?")) {
+                        if(category_id.length && confirm("Si elimina la categoría, también se eliminarán todos los productos de esta categoría. ¿Seguro que quieres eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'category/deletebyselection',
@@ -283,9 +282,10 @@
                                     dt.rows({ page: 'current', selected: true }).remove().draw(false);
                                 }
                             });
+                            alert('¡Categoria eliminada con exito!');
                         }
                         else if(!category_id.length)
-                            alert('No category is selected!');
+                            alert('¡No se ha seleccionado ninguna categoría!');
                     }
                     else
                         alert('This feature is disable for demo!');

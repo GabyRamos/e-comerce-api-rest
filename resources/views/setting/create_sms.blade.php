@@ -19,7 +19,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="lims_customerSearch" id="lims_customerSearch" placeholder="Please type customer name or mobile no and select..." />
+                                        <input type="text" class="form-control" name="lims_customerSearch" id="lims_customerSearch" placeholder="Escriba el nombre del cliente o el número de móvil y seleccione..." />
                                     </div>
                                     <div class="form-group twilio">
                                         <label>{{trans('file.Mobile')}} *</label>

@@ -149,7 +149,7 @@ class CategoryController extends Controller
         $lims_category_data['parent_id'] = $request->parent_id;
         $lims_category_data['is_active'] = true;
         Category::create($lims_category_data);
-        return redirect('category')->with('message', 'Category inserted successfully');
+        return redirect('category')->with('message', 'Categoría insertada con éxito');
     }
 
     public function edit($id)
@@ -184,7 +184,7 @@ class CategoryController extends Controller
         }
         $lims_category_data = Category::findOrFail($request->category_id);
         $lims_category_data->update($input);
-        return redirect('category')->with('message', 'Category updated successfully');
+        return redirect('category')->with('message', 'Categoría actualizada con éxito');
     }
 
     public function import(Request $request)
@@ -193,7 +193,7 @@ class CategoryController extends Controller
         $upload=$request->file('file');
         $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
         if($ext != 'csv')
-            return redirect()->back()->with('not_permitted', 'Please upload a CSV file');
+            return redirect()->back()->with('not_permitted', 'Cargue un archivo CSV');
         $filename =  $upload->getClientOriginalName();
         $filePath=$upload->getRealPath();
         //open and read
@@ -227,7 +227,7 @@ class CategoryController extends Controller
             $category->is_active = true;
             $category->save();
         }
-        return redirect('category')->with('message', 'Category imported successfully');
+        return redirect('category')->with('message', 'Categoría importada con éxito');
     }
 
     public function deleteBySelection(Request $request)
@@ -245,7 +245,7 @@ class CategoryController extends Controller
             $lims_category_data->is_active = false;
             $lims_category_data->save();
         }
-        return 'Category deleted successfully!';
+        return '¡Categoría eliminada con éxito!';
     }
 
     public function destroy($id)
@@ -260,6 +260,6 @@ class CategoryController extends Controller
         if($lims_category_data->image)
             unlink('images/category/'.$lims_category_data->image);
         $lims_category_data->save();
-        return redirect('category')->with('not_permitted', 'Category deleted successfully');
+        return redirect('category')->with('not_permitted', 'Categoría eliminada con éxito');
     }
 }

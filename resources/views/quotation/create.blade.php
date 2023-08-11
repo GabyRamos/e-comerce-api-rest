@@ -1,6 +1,6 @@
 @extends('layout.main') @section('content')
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -19,7 +19,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{trans('file.Biller')}} *</label>
-                                            <select required name="biller_id" class="selectpicker form-control" data-live-search="true" id="biller-id" data-live-search-style="begins" title="Select Biller...">
+                                            <select required name="biller_id" class="selectpicker form-control" data-live-search="true" id="biller-id" data-live-search-style="begins" title="Seleccione Facturador...">
                                                 @foreach($lims_biller_list as $biller)
                                                 <option value="{{$biller->id}}">{{$biller->name . ' (' . $biller->company_name . ')'}}</option>
                                                 @endforeach
@@ -29,7 +29,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{trans('file.Supplier')}}</label>
-                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" id="supplier-id" data-live-search-style="begins" title="Select Supplier...">
+                                            <select name="supplier_id" class="selectpicker form-control" data-live-search="true" id="supplier-id" data-live-search-style="begins" title="Seleccionar proveedor...">
                                                 @foreach($lims_supplier_list as $supplier)
                                                 <option value="{{$supplier->id}}">{{$supplier->name . ' (' . $supplier->company_name . ')'}}</option>
                                                 @endforeach
@@ -41,7 +41,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{trans('file.customer')}} *</label>
-                                            <select id="customer_id" name="customer_id" required class="selectpicker form-control" data-live-search="true" id="customer-id" data-live-search-style="begins" title="Select customer...">
+                                            <select id="customer_id" name="customer_id" required class="selectpicker form-control" data-live-search="true" id="customer-id" data-live-search-style="begins" title="Seleccionar cliente...">
                                                 @foreach($lims_customer_list as $customer)
                                                 <option value="{{$customer->id}}">{{$customer->name . ' (' . $customer->phone_number . ')'}}</option>
                                                 @endforeach
@@ -51,7 +51,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
-                                            <select id="warehouse_id" name="warehouse_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select id="warehouse_id" name="warehouse_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -62,7 +62,7 @@
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button class="btn btn-secondary"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                                 	<div class="col-md-4">
                                 		<div class="form-group">
                                 			<label>{{trans('file.Attach Document')}}</label>
-                                			<i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i> 
+                                			<i class="dripicons-question" data-toggle="tooltip" title="Solo soporta archivos jpg, jpeg, png, gif, pdf, csv, docx, xlsx y txt"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -444,7 +444,7 @@ $('button[name="update_btn"]').on("click", function() {
             product_price[rowindex] = $('input[name="edit_unit_price"]').val() * row_unit_operation_value;
         }
 
-        
+
         var position = $('select[name="edit_unit"]').val();
         var temp_operator = temp_unit_operator[position];
         var temp_operation_value = temp_unit_operation_value[position];
@@ -487,7 +487,7 @@ $(window).keydown(function(e){
 $('#quotation-form').on('submit',function(e){
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
         e.preventDefault();
     }
 });
@@ -545,7 +545,7 @@ function productSearch(data){
                 unit_operation_value.push(data[8]);
                 rowindex = newRow.index();
                 checkQuantity(1, true);
-            } 
+            }
         }
     });
 }
@@ -602,7 +602,7 @@ function checkQuantity(sale_qty, flag) {
             if (flag) {
                 sale_qty = sale_qty.toString().substring(0, sale_qty.toString().length - 1);
                 $('table.order-list tbody tr:nth-child(' + (rowindex + 1) + ')').find('.qty').val(sale_qty);
-            } 
+            }
             else {
                 edit();
                 return;

@@ -9,7 +9,7 @@
 						{{ Form::open(['route' => 'report.warehouseStock', 'method' => 'post', 'id' => 'report-form']) }}
 						<input type="hidden" name="warehouse_id_hidden" value="{{$warehouse_id}}">
 						<h3>{{trans('file.Stock Chart')}} </h3>
-						<p>Select warehouse to view chart</p>
+						<p>Seleccione un almacén para ver gráfico</p>
 						<select class="form-control mb-3" id="warehouse_id" name="warehouse_id">
 							<option value="0">{{trans('file.All Warehouse')}}</option>
 							@foreach($lims_warehouse_list as $warehouse)
@@ -18,7 +18,7 @@
 						</select>
 						{{ Form::close() }}
 					</div>
-					
+
 					<div class="col-md-6 offset-md-3 mt-3 mb-3">
 						<div class="row">
 							<div class="col-md-6">
@@ -28,10 +28,10 @@
 							<div class="col-md-6">
 								<span>Total {{trans('file.Quantity')}}</span>
 								<h2><strong>{{number_format((float)$total_qty, 2, '.', '') }}</strong></h2>
-							</div>	
-						</div>		
+							</div>
+						</div>
 					</div>
-						
+
 					<div class="col-md-5 offset-md-3 mt-2">
 						<div class="pie-chart">
 							@php

@@ -12,7 +12,7 @@
                         <label class="d-tc mt-2"><strong>{{trans('file.Choose Your Date')}}</strong> &nbsp;</label>
                         <div class="d-tc">
                             <div class="input-group">
-                                <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} To {{$end_date}}" required />
+                                <input type="text" class="daterangepicker-field form-control" value="{{$start_date}} a {{$end_date}}" required />
                                 <input type="hidden" name="start_date" value="{{$start_date}}" />
                                 <input type="hidden" name="end_date" value="{{$end_date}}" />
                             </div>
@@ -94,7 +94,7 @@
                             <td>{{$sale->warehouse->name}}</td>
                             <td>
                                 @foreach($lims_product_sale_data[$key] as $product_sale_data)
-                                <?php 
+                                <?php
                                     $product = App\Product::select('name')->find($product_sale_data->product_id);
                                     if($product_sale_data->variant_id) {
                                         $variant = App\Variant::find($product_sale_data->variant_id);
@@ -164,7 +164,7 @@
                         @foreach($lims_purchase_data as $key=>$purchase)
                         <tr>
                             <td>{{$key}}</td>
-                            <?php 
+                            <?php
                                 $supplier = DB::table('suppliers')->find($purchase->supplier_id);
                             ?>
                             <td>{{date($general_setting->date_format, strtotime($purchase->created_at->toDateString())) . ' '. $purchase->created_at->toTimeString()}}</td>
@@ -177,7 +177,7 @@
                             <td>{{$purchase->warehouse->name}}</td>
                             <td>
                                 @foreach($lims_product_purchase_data[$key] as $product_purchase_data)
-                                <?php 
+                                <?php
                                     $product = App\Product::select('name')->find($product_purchase_data->product_id);
                                     if($product_purchase_data->variant_id) {
                                         $variant = App\Variant::find($product_purchase_data->variant_id);
@@ -251,7 +251,7 @@
                             <td>{{$quotation->warehouse->name}}</td>
                             <td>
                                 @foreach($lims_product_quotation_data[$key] as $product_quotation_data)
-                                <?php 
+                                <?php
                                     $product = App\Product::select('name')->find($product_quotation_data->product_id);
                                     if($product_quotation_data->variant_id) {
                                         $variant = App\Variant::find($product_quotation_data->variant_id);
@@ -268,7 +268,7 @@
                                 @endforeach
                             </td>
                             <td>{{number_format((float) $quotation->grand_total, 2, '.', '')}}</td>
-                            
+
                             @if($quotation->quotation_status == 2)
                             <td><div class="badge badge-success">{{trans('file.Sent')}}</div></td>
                             @else
@@ -318,7 +318,7 @@
                             <td>{{$transfer->toWarehouse->name}}</td>
                             <td>
                                 @foreach($lims_product_transfer_data[$key] as $product_transfer_data)
-                                <?php 
+                                <?php
                                     $product = App\Product::find($product_transfer_data->product_id);
                                     if($product_transfer_data->variant_id) {
                                         $variant = App\Variant::find($product_transfer_data->variant_id);
@@ -581,7 +581,7 @@
             $( dt_selector.column( 8 ).footer() ).html(dt_selector.cells( rows, 8, { page: 'current' } ).data().sum().toFixed(2));
         }
         else {
-            
+
             $( dt_selector.column( 6 ).footer() ).html(dt_selector.column( 6, {page:'current'} ).data().sum().toFixed(2));
             $( dt_selector.column( 7 ).footer() ).html(dt_selector.cells( rows, 7, { page: 'current' } ).data().sum().toFixed(2));
             $( dt_selector.column( 8 ).footer() ).html(dt_selector.cells( rows, 8, { page: 'current' } ).data().sum().toFixed(2));
@@ -762,7 +762,7 @@
             $( dt_selector.column( 6 ).footer() ).html(dt_selector.cells( rows, 6, { page: 'current' } ).data().sum().toFixed(2));
         }
         else {
-            
+
             $( dt_selector.column( 6 ).footer() ).html(dt_selector.column( 6, {page:'current'} ).data().sum().toFixed(2));
         }
     }
@@ -850,7 +850,7 @@
             $( dt_selector.column( 6 ).footer() ).html(dt_selector.cells( rows, 6, { page: 'current' } ).data().sum().toFixed(2));
         }
         else {
-            
+
             $( dt_selector.column( 6 ).footer() ).html(dt_selector.column( 6, {page:'current'} ).data().sum().toFixed(2));
         }
     }

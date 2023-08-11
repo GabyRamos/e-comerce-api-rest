@@ -1,10 +1,10 @@
 @extends('layout.main') @section('content')
 
 @if(session()->has('message'))
-  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div> 
+  <div class="alert alert-success alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('message') }}</div>
 @endif
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -96,7 +96,7 @@
                                             <option value="own"> {{trans('file.Own Records')}}</option>
                                         </select>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -119,13 +119,13 @@
                                     <div class="form-group">
                                         <input type="submit" value="{{trans('file.submit')}}" class="btn btn-primary">
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{trans('file.Developed By')}}</label>
                                         <input type="text" name="developed_by" class="form-control" value="{{$lims_general_setting_data->developed_by}}">
                                     </div>
-                                </div>            
+                                </div>
                             </div>
                         {!! Form::close() !!}
                     </div>
@@ -154,6 +154,6 @@
         $('#custom-style').attr('href', style_link);
     });
 
-    
+
 </script>
 @endsection

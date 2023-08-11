@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\CustomerGroup;
 use App\Warehouse;
-use App\Biller;
+/*use App\Biller;*/
 use App\Account;
 use App\PosSetting;
 use App\GeneralSetting;
@@ -77,7 +77,7 @@ class SettingController extends Controller
             $general_setting->site_logo = $logoName;
         }
         $general_setting->save();
-        return redirect()->back()->with('message', 'Data updated successfully');
+        return redirect()->back()->with('message', 'Datos actualizados con éxito');
     }
 
     public function changeTheme($theme)
@@ -107,7 +107,7 @@ class SettingController extends Controller
 
         file_put_contents($path, str_replace($searchArray, $replaceArray, file_get_contents($path)));
 
-        return redirect()->back()->with('message', 'Data updated successfully');
+        return redirect()->back()->with('message', 'Datos actualizados con éxito');
     }
 
     public function smsSetting()
@@ -134,7 +134,7 @@ class SettingController extends Controller
         }
 
         file_put_contents($path, str_replace($searchArray, $replaceArray, file_get_contents($path)));
-        return redirect()->back()->with('message', 'Data updated successfully');
+        return redirect()->back()->with('message', 'Datos actualizados con éxito');
     }
 
     public function createSms()
@@ -199,7 +199,7 @@ class SettingController extends Controller
         $lims_hrm_setting_data->checkin = $data['checkin'];
         $lims_hrm_setting_data->checkout = $data['checkout'];
         $lims_hrm_setting_data->save();
-        return redirect()->back()->with('message', 'Data updated successfully');
+        return redirect()->back()->with('message', 'Datos actualizados con éxito');
 
     }
     public function posSetting()
@@ -209,7 +209,7 @@ class SettingController extends Controller
         $lims_biller_list = Biller::where('is_active', true)->get();
         $lims_pos_setting_data = PosSetting::latest()->first();
 
-    	return view('setting.pos_setting', compact('lims_customer_list', 'lims_warehouse_list', 'lims_biller_list', 'lims_pos_setting_data'));
+    	return view('setting.pos_setting', compact('lims_customer_list', 'lims_warehouse_list', /*'lims_biller_list',*/ 'lims_pos_setting_data'));
     }
 
     public function posSettingStore(Request $request)

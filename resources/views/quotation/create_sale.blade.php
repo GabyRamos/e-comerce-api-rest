@@ -20,7 +20,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.customer')}} *</label>
                                             <input type="hidden" name="customer_id_hidden" value="{{ $lims_quotation_data->customer_id }}" />
-                                            <select required name="customer_id" class="selectpicker form-control" data-live-search="true" id="customer_id" data-live-search-style="begins" title="Select customer...">
+                                            <select required name="customer_id" class="selectpicker form-control" data-live-search="true" id="customer_id" data-live-search-style="begins" title="Seleccionar cliente...">
                                                 @foreach($lims_customer_list as $customer)
                                                 <?php $deposit[$customer->id] = $customer->deposit - $customer->expense; ?>
                                                 <option value="{{$customer->id}}">{{$customer->name . ' (' . $customer->phone_number . ')'}}</option>
@@ -32,7 +32,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Warehouse')}} *</label>
                                             <input type="hidden" name="warehouse_id_hidden" value="{{$lims_quotation_data->warehouse_id}}" />
-                                            <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select warehouse...">
+                                            <select required name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                                 @foreach($lims_warehouse_list as $warehouse)
                                                 <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                                 @endforeach
@@ -43,7 +43,7 @@
                                         <div class="form-group">
                                             <label>{{trans('file.Biller')}} *</label>
                                             <input type="hidden" name="biller_id_hidden" value="{{$lims_quotation_data->biller_id}}" />
-                                            <select required name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Biller...">
+                                            <select required name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccione Facturador...">
                                                 @foreach($lims_biller_list as $biller)
                                                 <option value="{{$biller->id}}">{{$biller->name . ' (' . $biller->company_name . ')'}}</option>
                                                 @endforeach
@@ -56,7 +56,7 @@
                                         <label>{{trans('file.Select Product')}}</label>
                                         <div class="search-box input-group">
                                             <button type="button" class="btn btn-secondary btn-lg"><i class="fa fa-barcode"></i></button>
-                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="Please type product code and select..." class="form-control" />
+                                            <input type="text" name="product_code_name" id="lims_productcodeSearch" placeholder="por favor escriba el código del producto y seleccione..." class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -247,7 +247,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>{{trans('file.Attach Document')}}</label>
-                                            <i class="dripicons-question" data-toggle="tooltip" title="Only jpg, jpeg, png, gif, pdf, csv, docx, xlsx and txt file is supported"></i>
+                                            <i class="dripicons-question" data-toggle="tooltip" title="Solo soporta archivos jpg, jpeg, png, gif, pdf, csv, docx, xlsx y txt"></i>
                                             <input type="file" name="document" class="form-control" />
                                             @if($errors->has('extension'))
                                                 <span>
@@ -755,7 +755,7 @@ $('select[name="gift_card_id"]').on("change", function() {
 
 $('input[name="paid_amount"]').on("input", function() {
     if( $(this).val() > parseFloat($('input[name="paying_amount"]').val()) ) {
-        alert('Paying amount cannot be bigger than recieved amount');
+        alert('El monto recibido no puede ser menor que el monto a pagar');
         $(this).val('');
     }
     else if( $(this).val() > parseFloat($('#grand_total').text()) ){
@@ -1083,11 +1083,11 @@ $(window).keydown(function(e){
 $(document).on('submit', '.payment-form', function(e) {
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        alert("Inserte un producto en la tabla de pedidos")
         e.preventDefault();
     }
     else if( parseFloat($("#paying-amount").val()) < parseFloat($("#paid-amount").val()) ){
-        alert('Paying amount cannot be bigger than recieved amount');
+        alert('El monto recibido no puede ser menor que el monto a pagar');
         e.preventDefault();
     }
     else if( $('select[name="payment_status"]').val() == 3 && parseFloat($("#paid-amount").val()) == parseFloat($('input[name="grand_total"]').val()) ) {

@@ -30,7 +30,7 @@ class UserController extends Controller
             return view('user.index', compact('lims_user_list', 'all_permission'));
         }
         else
-            return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
+            return redirect()->back()->with('not_permitted', '¡Lo siento! No tienes permiso para acceder a este módulo.');
     }
 
     public function create()
@@ -43,7 +43,7 @@ class UserController extends Controller
             return view('user.create', compact('lims_role_list', 'lims_biller_list', 'lims_warehouse_list'));
         }
         else
-            return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
+            return redirect()->back()->with('not_permitted', '¡Lo siento! No tienes permiso para acceder a este módulo.');
     }
 
     public function generatePassword()
@@ -71,7 +71,7 @@ class UserController extends Controller
         ]);
 
         $data = $request->all();
-        $message = 'User created successfully';
+        $message = 'Usuario creado con éxito';
         try{
             Mail::send( 'mail.user_details', $data, function( $message ) use ($data)
             {
@@ -86,7 +86,7 @@ class UserController extends Controller
         $data['is_deleted'] = false;
         $data['password'] = bcrypt($data['password']);
         User::create($data);
-        return redirect('user')->with('message1', $message); 
+        return redirect('user')->with('message1', $message);
     }
 
     public function edit($id)
@@ -97,10 +97,10 @@ class UserController extends Controller
             $lims_role_list = Roles::where('is_active', true)->get();
             $lims_biller_list = Biller::where('is_active', true)->get();
             $lims_warehouse_list = Warehouse::where('is_active', true)->get();
-            return view('user.edit', compact('lims_user_data', 'lims_role_list', 'lims_biller_list', 'lims_warehouse_list'));
+            return view('user.edit', compact('lims_user_data', 'lims_role_list',/* 'lims_biller_list', */'lims_warehouse_list'));
         }
         else
-            return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
+            return redirect()->back()->with('not_permitted', '¡Lo siento! No tienes permiso para acceder a este módulo.');
     }
 
     public function update(Request $request, $id)
@@ -131,7 +131,7 @@ class UserController extends Controller
             $input['password'] = bcrypt($request['password']);
         $lims_user_data = User::find($id);
         $lims_user_data->update($input);
-        return redirect('user')->with('message2', 'Data updated successfullly');
+        return redirect('user')->with('message2', 'Datos actualizados con éxito');
     }
 
     public function profile($id)
@@ -148,7 +148,7 @@ class UserController extends Controller
         $input = $request->all();
         $lims_user_data = User::find($id);
         $lims_user_data->update($input);
-        return redirect()->back()->with('message3', 'Data updated successfullly');
+        return redirect()->back()->with('message3', 'Datos actualizados con éxito');
     }
 
     public function changePassword(Request $request, $id)
@@ -159,14 +159,14 @@ class UserController extends Controller
         $input = $request->all();
         $lims_user_data = User::find($id);
         if($input['new_pass'] != $input['confirm_pass'])
-            return redirect("user/" .  "profile/" . $id )->with('message2', "Please Confirm your new password");
+            return redirect("user/" .  "profile/" . $id )->with('message2', "Por favor, confirme su nueva contraseña");
 
         if (Hash::check($input['current_pass'], $lims_user_data->password)) {
             $lims_user_data->password = bcrypt($input['new_pass']);
             $lims_user_data->save();
         }
         else {
-            return redirect("user/" .  "profile/" . $id )->with('message1', "Current Password doesn't match");
+            return redirect("user/" .  "profile/" . $id )->with('message1', "La contraseña actual no coincide");
         }
         auth()->logout();
         return redirect('/');
@@ -188,7 +188,7 @@ class UserController extends Controller
     {
         if(!env('USER_VERIFIED'))
             return redirect()->back()->with('not_permitted', 'This feature is disable for demo!');
-        
+
         $lims_user_data = User::find($id);
         $lims_user_data->is_deleted = true;
         $lims_user_data->is_active = false;
@@ -198,6 +198,6 @@ class UserController extends Controller
             return redirect('/login');
         }
         else
-            return redirect('user')->with('message3', 'Data deleted successfullly');
+            return redirect('user')->with('message3', 'Datos eliminados con éxito');
     }
 }

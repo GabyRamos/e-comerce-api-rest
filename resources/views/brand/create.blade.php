@@ -51,7 +51,7 @@
                                 <li class="divider"></li>
                                 {{ Form::open(['route' => ['brand.destroy', $brand->id], 'method' => 'DELETE'] ) }}
                                 <li>
-                                    <button type="submit" class="btn btn-link" onclick="return confirm('Are you sure want to delete?')"><i class="dripicons-trash"></i> {{trans('file.delete')}}</button>
+                                    <button type="submit" class="btn btn-link" onclick="return confirm('¿Estás seguro de eliminar?')"><i class="dripicons-trash"></i> {{trans('file.delete')}}</button>
                                 </li>
                                 {{ Form::close() }}
                             </ul>
@@ -312,7 +312,7 @@
                                 brand_id[i-1] = $(this).closest('tr').data('id');
                             }
                         });
-                        if(brand_id.length && confirm("Are you sure want to delete?")) {
+                        if(brand_id.length && confirm("¿Estás seguro de eliminar?")) {
                             $.ajax({
                                 type:'POST',
                                 url:'brand/deletebyselection',

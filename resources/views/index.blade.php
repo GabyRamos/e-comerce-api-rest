@@ -100,12 +100,12 @@
             <div class="brand-text float-left mt-4">
                 <h3>{{trans('file.welcome')}} <span>{{Auth::user()->name}}</span> </h3>
             </div>
-            <div class="filter-toggle btn-group">
-              <button class="btn btn-secondary date-btn" data-start_date="{{date('Y-m-d')}}" data-end_date="{{date('Y-m-d')}}">{{trans('file.Today')}}</button>
-              <button class="btn btn-secondary date-btn" data-start_date="{{date('Y-m-d', strtotime(' -7 day'))}}" data-end_date="{{date('Y-m-d')}}">{{trans('file.Last 7 Days')}}</button>
-              <button class="btn btn-secondary date-btn active" data-start_date="{{date('Y').'-'.date('m').'-'.'01'}}" data-end_date="{{date('Y-m-d')}}">{{trans('file.This Month')}}</button>
-              <button class="btn btn-secondary date-btn" data-start_date="{{date('Y').'-01'.'-01'}}" data-end_date="{{date('Y').'-12'.'-31'}}">{{trans('file.This Year')}}</button>
-            </div>
+{{--            <div class="filter-toggle btn-group">--}}
+{{--              <button class="btn btn-secondary date-btn" data-start_date="{{date('Y-m-d')}}" data-end_date="{{date('Y-m-d')}}">{{trans('file.Today')}}</button>--}}
+{{--              <button class="btn btn-secondary date-btn" data-start_date="{{date('Y-m-d', strtotime(' -7 day'))}}" data-end_date="{{date('Y-m-d')}}">{{trans('file.Last 7 Days')}}</button>--}}
+{{--              <button class="btn btn-secondary date-btn active" data-start_date="{{date('Y').'-'.date('m').'-'.'01'}}" data-end_date="{{date('Y-m-d')}}">{{trans('file.This Month')}}</button>--}}
+{{--              <button class="btn btn-secondary date-btn" data-start_date="{{date('Y').'-01'.'-01'}}" data-end_date="{{date('Y').'-12'.'-31'}}">{{trans('file.This Year')}}</button>--}}
+{{--            </div>--}}
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
                 <!-- Count item widget-->
                 <div class="col-sm-3">
                   <div class="wrapper count-title text-center">
-                      <a class="dropdown-item btn-pos btn-sm" href="http://127.0.0.1:8000/pos"><i class="dripicons-shopping-bag"></i><span> POS</span></a>
+                      <a class="dropdown-item btn-pos btn-sm" href="http://127.0.0.1:8000/pos"><i class="dripicons-shopping-bag"></i><span> PDV</span></a>
                   </div>
                 </div>
                 <!-- Count item widget-->
@@ -215,9 +215,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="#purchase-latest" role="tab" data-toggle="tab">{{trans('file.Purchase')}}</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#quotation-latest" role="tab" data-toggle="tab">{{trans('file.Quotation')}}</a>
-                  </li>
+{{--                  <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="#quotation-latest" role="tab" data-toggle="tab">{{trans('file.Quotation')}}</a>--}}
+{{--                  </li>--}}
                   <li class="nav-item">
                     <a class="nav-link" href="#payment-latest" role="tab" data-toggle="tab">{{trans('file.Payment')}}</a>
                   </li>
@@ -357,37 +357,6 @@
             <div class="col-md-5">
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                  <h4>{{trans('file.Best Seller').' '.date('F')}}</h4>
-                  <div class="right-column">
-                    <div class="badge badge-primary">{{trans('file.top')}} 5</div>
-                  </div>
-                </div>
-                <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>SL No</th>
-                          <th>{{trans('file.Product Details')}}</th>
-                          <th>{{trans('file.qty')}}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach($best_selling_qty as $key=>$sale)
-                        <?php $product = DB::table('products')->find($sale->product_id); ?>
-                        <tr>
-                          <td>{{$key + 1}}</td>
-                          <td>{{$product->name}}<br>[{{$product->code}}]</td>
-                          <td>{{$sale->sold_qty}}</td>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
                   <h4>{{trans('file.Best Seller').' '.date('Y'). '('.trans('file.qty').')'}}</h4>
                   <div class="right-column">
                     <div class="badge badge-primary">{{trans('file.top')}} 5</div>
@@ -397,7 +366,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>SL No</th>
+                          <th>No</th>
                           <th>{{trans('file.Product Details')}}</th>
                           <th>{{trans('file.qty')}}</th>
                         </tr>
@@ -428,7 +397,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>SL No</th>
+                          <th>No</th>
                           <th>{{trans('file.Product Details')}}</th>
                           <th>{{trans('file.grand total')}}</th>
                         </tr>

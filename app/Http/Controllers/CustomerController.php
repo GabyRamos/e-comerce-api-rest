@@ -65,7 +65,7 @@ class CustomerController extends Controller
             }
             catch(\Exception $e){
                 $message = 'Customer created successfully. Please setup your <a href="setting/mail_setting">mail setting</a> to send mail.';
-            }   
+            }
         }
         Customer::create($lims_customer_data);
         if($lims_customer_data['pos'])
@@ -100,7 +100,7 @@ class CustomerController extends Controller
         $input = $request->all();
         $lims_customer_data = Customer::find($id);
         $lims_customer_data->update($input);
-        return redirect('customer')->with('edit_message', 'Data updated Successfully');
+        return redirect('customer')->with('edit_message', 'Datos actualizados con éxito');
     }
 
     public function importCustomer(Request $request)
@@ -110,7 +110,7 @@ class CustomerController extends Controller
             $upload=$request->file('file');
             $ext = pathinfo($upload->getClientOriginalName(), PATHINFO_EXTENSION);
             if($ext != 'csv')
-                return redirect()->back()->with('not_permitted', 'Please upload a CSV file');
+                return redirect()->back()->with('not_permitted', 'Necesitas cargar un archivo CSV');
             $filename =  $upload->getClientOriginalName();
             $filePath=$upload->getRealPath();
             //open and read
@@ -225,7 +225,7 @@ class CustomerController extends Controller
         $lims_customer_data->deposit += $amount_dif;
         $lims_customer_data->save();
         $lims_deposit_data->update($data);
-        return redirect('customer')->with('create_message', 'Data updated successfully');
+        return redirect('customer')->with('create_message', 'Datos actualizados con éxito');
     }
 
     public function deleteDeposit(Request $request)

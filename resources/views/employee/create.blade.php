@@ -88,20 +88,20 @@
                                     </div>
                                     <div class="form-group" id="warehouse">
                                         <label>{{trans('file.Warehouse')}} *</label>
-                                        <select name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Warehouse...">
+                                        <select name="warehouse_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                             @foreach($lims_warehouse_list as $warehouse)
                                             <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group" id="biller">
+<!--                                    <div class="form-group" id="biller">
                                         <label>{{trans('file.Biller')}} *</label>
-                                        <select name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Biller...">
+                                        <select name="biller_id" class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccione Facturador...">
                                             @foreach($lims_biller_list as $biller)
                                             <option value="{{$biller->id}}">{{$biller->name}} ({{$biller->company_name}})</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -124,7 +124,9 @@
     $("ul#hrm #employee-menu").addClass("active");
 
     $('#warehouse').hide();
+/*
     $('#biller').hide();
+*/
 
     $('input[name="user"]').on('change', function() {
         if ($(this).is(':checked')) {
@@ -139,22 +141,26 @@
             $('input[name="password"]').prop('required',false);
             $('select[name="role_id"]').prop('required',false);
             $('select[name="warehouse_id"]').prop('required',false);
-            $('select[name="biller_id"]').prop('required',false);
+            // $('select[name="biller_id"]').prop('required',false);
         }
     });
 
     $('select[name="role_id"]').on('change', function() {
         if($(this).val() > 2){
             $('#warehouse').show(400);
+/*
             $('#biller').show(400);
+*/
             $('select[name="warehouse_id"]').prop('required',true);
-            $('select[name="biller_id"]').prop('required',true);
+            // $('select[name="biller_id"]').prop('required',true);
         }
         else{
             $('#warehouse').hide(400);
+/*
             $('#biller').hide(400);
+*/
             $('select[name="warehouse_id"]').prop('required',false);
-            $('select[name="biller_id"]').prop('required',false);
+            // $('select[name="biller_id"]').prop('required',false);
         }
     });
 </script>

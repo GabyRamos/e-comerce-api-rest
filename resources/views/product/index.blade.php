@@ -19,7 +19,7 @@
     <div class="container-fluid">
         @if(in_array("products-add", $all_permission))
             <a href="{{route('products.create')}}" class="btn btn-info"><i class="dripicons-plus"></i> {{__('file.add_product')}}</a>
-            <a href="#" data-toggle="modal" data-target="#importProduct" class="btn btn-primary"><i class="dripicons-copy"></i> {{__('file.import_product')}}</a>
+           <a href="#" data-toggle="modal" data-target="#importProduct" class="btn btn-primary"><i class="dripicons-copy"></i> {{__('file.import_product')}}</a>
         @endif
     </div>
     <div class="table-responsive">
@@ -48,7 +48,7 @@
       <div class="modal-content">
         {!! Form::open(['route' => 'product.import', 'method' => 'post', 'files' => true]) !!}
         <div class="modal-header">
-          <h5 id="exampleModalLabel" class="modal-title">Import Product</h5>
+          <h5 id="exampleModalLabel" class="modal-title">Importar Producto</h5>
           <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true"><i class="dripicons-cross"></i></span></button>
         </div>
         <div class="modal-body">
@@ -80,7 +80,7 @@
     <div role="document" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 id="exampleModalLabel" class="modal-title">{{trans('Product Details')}}</h5>
+          <h5 id="exampleModalLabel" class="modal-title">{{trans('Detalles de producto')}}</h5>
           <button id="print-btn" type="button" class="btn btn-default btn-sm ml-3"><i class="dripicons-print"></i> {{trans('file.Print')}}</button>
           <button type="button" id="close-btn" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true"><i class="dripicons-cross"></i></span></button>
         </div>
@@ -128,7 +128,7 @@
     $("ul#product #product-list-menu").addClass("active");
 
 	function confirmDelete() {
-	    if (confirm("Are you sure want to delete?")) {
+	    if (confirm("¿Estás seguro de eliminar?")) {
 	        return true;
 	    }
 	    return false;
@@ -180,7 +180,7 @@
         product[11] = product[11].replace(/@/g, '"');
         htmltext = slidertext = '';
 
-        htmltext = '<p><strong>{{trans("file.Type")}}: </strong>'+product[0]+'</p><p><strong>{{trans("file.name")}}: </strong>'+product[1]+'</p><p><strong>{{trans("file.Code")}}: </strong>'+product[2]+ '</p><p><strong>{{trans("file.Brand")}}: </strong>'+product[3]+'</p><p><strong>{{trans("file.category")}}: </strong>'+product[4]+'</p><p><strong>{{trans("file.Quantity")}}: </strong>'+product[16]+'</p><p><strong>{{trans("file.Unit")}}: </strong>'+product[5]+'</p><p><strong>{{trans("file.Cost")}}: </strong>'+product[6]+'</p><p><strong>{{trans("file.Price")}}: </strong>'+product[7]+'</p><p><strong>{{trans("file.Tax")}}: </strong>'+product[8]+'</p><p><strong>{{trans("file.Tax Method")}} : </strong>'+product[9]+'</p><p><strong>{{trans("file.Alert Quantity")}} : </strong>'+product[10]+'</p><p><strong>{{trans("file.Product Details")}}: </strong></p>'+product[11];
+        htmltext = '<p><strong>{{trans("file.Type")}}: </strong>'+product[0]+'</p><p><strong>{{trans("file.name")}}: </strong>'+product[1]+'</p><p><strong>{{trans("file.Code")}}: </strong>'+product[2]+ '</p><p><strong>{{trans("file.Brand")}}: </strong>'+product[3]+'</p><p><strong>{{trans("file.category")}}: </strong>'+product[4]+'</p><p><strong>{{trans("file.Quantity")}}: </strong>'+product[16]+'</p><p><strong>{{trans("file.Unit")}}: </strong>'+product[5]+'</p><p><strong>{{trans("file.Cost")}}: </strong>'+product[6]+'</p><p><strong>{{trans("file.Price")}}: </strong>'+product[7]+'</p><p><strong>{{trans("file.Tax")}}: </strong>'+product[8]+'</p><p><strong>{{trans("file.Tax Method")}} : </strong>'+product[9]+'</p><p><strong>{{trans("file.Alert Quantity")}} : </strong>'+product[10]+'</p><p><strong>{{trans("Detalles de producto")}}: </strong></p>'+product[11];
 
         if(product[17]) {
             var product_image = product[17].split(",");
@@ -442,10 +442,10 @@
                                 });
                             }
                             else if(!product_id.length)
-                                alert('No product is selected!');
+                                alert('¡No se ha seleccionado ningún producto!');
                         }
                         else
-                            alert('This feature is disable for demo!');
+                            alert('¡Esta función está desactivada para la demostración!');
                     }
                 },
                 {

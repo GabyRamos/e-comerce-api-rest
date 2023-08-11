@@ -1,7 +1,7 @@
 @extends('layout.main') @section('content')
 
 @if(session()->has('not_permitted'))
-  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div> 
+  <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ session()->get('not_permitted') }}</div>
 @endif
 <section class="forms">
     <div class="container-fluid">
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label><strong>{{trans('file.Role')}} *</strong></label>
-                                        <select name="role_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Role...">
+                                        <select name="role_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar rol...">
                                           @foreach($lims_role_list as $role)
                                               <option value="{{$role->id}}">{{$role->name}}</option>
                                           @endforeach
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="form-group" id="biller-id">
                                         <label><strong>{{trans('file.Biller')}} *</strong></label>
-                                        <select name="biller_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Biller...">
+                                        <select name="biller_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccione Facturador...">
                                           @foreach($lims_biller_list as $biller)
                                               <option value="{{$biller->id}}">{{$biller->name}}</option>
                                           @endforeach
@@ -83,13 +83,13 @@
                                     </div>
                                     <div class="form-group" id="warehouseId">
                                         <label><strong>{{trans('file.Warehouse')}} *</strong></label>
-                                        <select name="warehouse_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Warehouse...">
+                                        <select name="warehouse_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Seleccionar almacén...">
                                           @foreach($lims_warehouse_list as $warehouse)
                                               <option value="{{$warehouse->id}}">{{$warehouse->name}}</option>
                                           @endforeach
                                         </select>
                                     </div>
-                                </div>                              
+                                </div>
                             </div>
                         {!! Form::close() !!}
                     </div>
@@ -111,7 +111,7 @@
     $('.selectpicker').selectpicker({
       style: 'btn-link',
     });
-    
+
     $('#genbutton').on("click", function(){
       $.get('genpass', function(data){
         $("input[name='password']").val(data);
